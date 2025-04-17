@@ -21,61 +21,57 @@ import com.aptcoursework.model.user;
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/loginController" })
 public class loginController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public loginController() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public loginController() {
+        super();
+    }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.getWriter().append("Served at: ").append(request.getContextPath());
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		String emailToCheck = request.getParameter("email");
-		String passwordToCheck = request.getParameter("password");
-	    try {
-	        userDAO userdao = new userDAO();
-	        user user = userdao.login(emailToCheck, passwordToCheck);
-	        
-	        if (user != null) {
-	            HttpSession session = request.getSession();
-	            session.setAttribute("userWithSession", user);
-	            session.setMaxInactiveInterval(600); // 10 minutes in seconds
-	            response.sendRedirect(request.getContextPath() + "/pages/Dashboard.jsp");
-	        } else {
-	            request.setAttribute("loginError", "Invalid email or password. Please try again.");
-	            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
-	        }
-	    } catch (ClassNotFoundException | SQLException e) {
-	        request.setAttribute("errorMessage", "A system error occurred. Please try again later.");
-	        request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
-	        e.printStackTrace(); // Optional: log to file in production
-	    }finally {
-			if (out != null) {
-				out.close();
-			}
-		}
-	}
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        String emailToCheck = request.getParameter("email");
+        String passwordToCheck = request.getParameter("password");
+
+        try {
+            userDAO userdao = new userDAO();
+            user user = userdao.login(emailToCheck, passwordToCheck);
+
+            if (user != null) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userWithSession", user);
+                session.setMaxInactiveInterval(600); // 10 minutes in seconds
+
+                // Check user role and redirect accordingly
+                if ("customer".equalsIgnoreCase(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/pages/home.jsp"); // Redirect to home for customer
+                } else if ("admin".equalsIgnoreCase(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/pages/Dashboard.jsp"); // Redirect to dashboard for admin
+                } else {
+                    // If role is not recognized, redirect to home or show error
+                    response.sendRedirect(request.getContextPath() + "/pages/home.jsp");
+                }
+            } else {
+                request.setAttribute("loginError", "Invalid email or password. Please try again.");
+                request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            request.setAttribute("errorMessage", "A system error occurred. Please try again later.");
+            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+            e.printStackTrace(); // Optional: log to file in production
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+        }
+    }
 }
+
 
 

@@ -18,34 +18,26 @@ public class userDAO {
 		this.conn = DatabaseConnection.getConnection();
 	}
 
-	// Registers a new user in the database
-	public boolean register(user user) {
-		boolean isUserRegistered = false;
-		// SQL statement to insert user details
-		String query = "INSERT INTO users (username, password, email, phone_no, address, role) VALUES (?, ?, ?, ?, ?, ?)";
-		if (conn != null) {
-
-			try {
-				ps = conn.prepareStatement(query);
-				ps.setString(1, user.getName());
-				ps.setString(2, user.getPassword());
-				ps.setString(3, user.getEmail()); // TODO Passwords should be hashed in real-world apps
-				ps.setInt(4, user.getPhone());
-				ps.setString(5, user.getAddress());
-				ps.setString(6, user.getRole());
-				
-				// Execute the insert query
-				if (ps.executeUpdate() > 0) {
-					isUserRegistered = true;
-				}
-			} catch (SQLException e) {
-				// TODO Good for debugging; can be replaced with proper logging
-				e.printStackTrace();
-			}
-		}
-		return isUserRegistered;
-
-	}
+	/*
+	 * // Registers a new user in the database public boolean register(user user) {
+	 * boolean isUserRegistered = false; // SQL statement to insert user details
+	 * String query =
+	 * "INSERT INTO users (username, password, email, phone_no, address, role) VALUES (?, ?, ?, ?, ?, ?)"
+	 * ; if (conn != null) {
+	 * 
+	 * try { ps = conn.prepareStatement(query); ps.setString(1, user.getName());
+	 * ps.setString(2, user.getPassword()); ps.setString(3, user.getEmail()); //
+	 * TODO Passwords should be hashed in real-world apps ps.setInt(4,
+	 * user.getPhone()); ps.setString(5, user.getAddress()); ps.setString(6,
+	 * user.getRole());
+	 * 
+	 * // Execute the insert query if (ps.executeUpdate() > 0) { isUserRegistered =
+	 * true; } } catch (SQLException e) { // TODO Good for debugging; can be
+	 * replaced with proper logging e.printStackTrace(); } } return
+	 * isUserRegistered;
+	 * 
+	 * }
+	 */
 
 	// get all the users from database
 	public ArrayList<user> getAllUsers() {
@@ -60,13 +52,13 @@ public class userDAO {
 				while (userSet.next()) {
 					user user = new user();
 					user.setUserId(userSet.getInt("user_id"));
-					user.setName(userSet.getString("name"));
+					user.setName(userSet.getString("username"));
 					user.setEmail(userSet.getString("email"));
 					user.setPassword(userSet.getString("password"));
 					user.setPhone(userSet.getInt("phone_no"));
 					user.setAddress(userSet.getString("address"));
 					user.setRole(userSet.getString("role"));
-					user.setCreatedAt(userSet.getTimestamp("registered_time"));
+					user.setCreatedAt(userSet.getTimestamp("registered"));
 					users.add(user);
 				}
 			} catch (SQLException e) {
@@ -92,13 +84,13 @@ public class userDAO {
 	            if (rs.next()) {
 	                user = new user(
 	                    rs.getInt("user_id"),
-	                    rs.getString("name"),
+	                    rs.getString("username"),
 	                    rs.getString("password"),
 	                    rs.getString("email"),
 	                    rs.getInt("phone_no"),
 	                    rs.getString("address"),
 	                    rs.getString("role"),
-	                    rs.getTimestamp("registered_time")
+	                    rs.getTimestamp("registered")
 	                );
 	            }
 	        } catch (SQLException e) {
