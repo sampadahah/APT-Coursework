@@ -7,6 +7,6 @@
 <title>Dashboard</title>
 </head>
 <body>
-	<%@ include file="header.jsp" %>
+	<%@ include file="adminheader.jsp" %>
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.aptcoursework.model;
 
 import java.sql.Timestamp;
 
+
 public class user {
 	private int user_id;
 	private String username;
@@ -10,14 +11,13 @@ public class user {
 	private int phone_no;
 	private String address;
 	private String role;
-	private Timestamp registered_date;
+	private Timestamp registered;
 
 	// Constructors
 	public user() {
 	}
 
-	public user(int user_id, String username, String password, String email, int phone_no, String address, String role,
-			Timestamp registered_date) {
+	public user(int user_id, String username, String password, String email, int phone_no, String address, String role,Timestamp dateTime) {
 		this.user_id = user_id;
 		this.username = username;
 		this.password = password;
@@ -25,7 +25,7 @@ public class user {
 		this.phone_no = phone_no;
 		this.address = address;
 		this.role = role;
-		this.registered_date = registered_date;
+		this.registered = dateTime;
 	}
 
 	// Getters and Setters
@@ -88,10 +88,10 @@ public class user {
 	}
 
 	public Timestamp getRegisteredDate() {
-		return registered_date;
+		return registered;
 	}
 
-	public void setCreatedAt(Timestamp registered_date) {
-		this.registered_date = registered_date;
+	public void setRegisteredDate(Timestamp dateTime) {
+		this.registered= dateTime;
 	}
 }

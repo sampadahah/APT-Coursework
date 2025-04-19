@@ -11,7 +11,7 @@
 	  <div class="container">
 	  <h2>Create a New Account</h2>
 	  <p style="text-align: center; margin-bottom: 25px;">It’s quick and easy – just like your skincare routine.</p>
-	  <form action="../loginController" method="post">
+	     <form action="<%= request.getContextPath() %>/registerController" method="post">
 	    <div>
 	      <label>Username:</label>
 	      <input type="text" name="username">
@@ -48,12 +48,12 @@
 	      <input type="password" name="confirmPassword">
 	    </div>
 	    <div class="full-width">
-	      <button type="signup">Sign Up</button>
+	      <button type="submit">Sign Up</button>
 	    </div>
+	    </form>
 	    <div class="login-link">
 			<a href="login.jsp">Already have an account?</a>
     	</div>
-	  </form>
 	</div>
 </body>
 </html>

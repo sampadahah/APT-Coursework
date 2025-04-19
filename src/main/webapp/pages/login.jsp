@@ -12,7 +12,7 @@
 
   <div class="login-box">
     <h2>Login to your account</h2>
-    <form action="../loginController" method="post">
+    <form action="<%= request.getContextPath() %>/loginController" method="post">
       <input type="text" name="email" placeholder="Email" required>
       <input type="password" name="password" placeholder="Password" required>
       <button type="submit">Login</button>

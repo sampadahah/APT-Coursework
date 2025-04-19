@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.aptcoursework.controller.dao.userDAO;
+import com.aptcoursework.controller.dao.UserDAO;
 import com.aptcoursework.model.user;
 
 /**
@@ -34,37 +34,39 @@ public class loginController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	/*doGet(request,response);*/
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
         String emailToCheck = request.getParameter("email");
         String passwordToCheck = request.getParameter("password");
 
         try {
-            userDAO userdao = new userDAO();
+            UserDAO userdao = new UserDAO();
             user user = userdao.login(emailToCheck, passwordToCheck);
 
             if (user != null) {
+            	//session creation for logged-in user
                 HttpSession session = request.getSession();
                 session.setAttribute("userWithSession", user);
-                session.setMaxInactiveInterval(600); // 10 minutes in seconds
+                session.setMaxInactiveInterval(600); 
 
                 // Check user role and redirect accordingly
-                if ("customer".equalsIgnoreCase(user.getRole())) {
+                if ("Customer".equalsIgnoreCase(user.getRole())) {
                     response.sendRedirect(request.getContextPath() + "/pages/home.jsp"); // Redirect to home for customer
-                } else if ("admin".equalsIgnoreCase(user.getRole())) {
-                    response.sendRedirect(request.getContextPath() + "/pages/Dashboard.jsp"); // Redirect to dashboard for admin
+                }else if ("Admin".equalsIgnoreCase(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/pages/dashboard.jsp"); // Redirect to dashboard for admin
                 } else {
                     // If role is not recognized, redirect to home or show error
                     response.sendRedirect(request.getContextPath() + "/pages/home.jsp");
                 }
-            } else {
+            } else  {
                 request.setAttribute("loginError", "Invalid email or password. Please try again.");
                 request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
             }
         } catch (ClassNotFoundException | SQLException e) {
             request.setAttribute("errorMessage", "A system error occurred. Please try again later.");
-            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
-            e.printStackTrace(); // Optional: log to file in production
+            request.getRequestDispatcher(request.getContextPath()+"/pages/login.jsp").forward(request, response);
+        
         } finally {
             if (out != null) {
                 out.close();
