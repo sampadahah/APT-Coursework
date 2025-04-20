@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -12,6 +13,17 @@
 
   <div class="login-box">
     <h2>Login to your account</h2>
+    <!-- Error Message Display -->
+	<% if (request.getAttribute("errormessage")!=null){%>
+	<div class="alert alert-danger mt-2">
+		<%=request.getAttribute("errorMessage") %>
+	</div>
+	<% } %>
+		<% if (request.getAttribute("loginError")!=null){%>
+	<div class="alert alert-danger mt-2" style="text-align:center">
+		<%=request.getAttribute("loginError") %>
+	</div>
+	<% } %>
     <form action="<%= request.getContextPath() %>/loginController" method="post">
       <input type="text" name="email" placeholder="Email" required>
       <input type="password" name="password" placeholder="Password" required>

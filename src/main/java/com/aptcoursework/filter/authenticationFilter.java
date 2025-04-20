@@ -9,12 +9,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = { "/pages/login.jsp","/loginController" })
+@WebFilter(urlPatterns = { "/pages/*" })
 public class authenticationFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -34,34 +33,31 @@ public class authenticationFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 
 		String uri = req.getRequestURI();
-		
+
+
 		// Check if logged in
 		HttpSession session = req.getSession(false);
 		boolean loggedIn = session != null && session.getAttribute("userWithSession") != null;
 		
-		if(!loggedIn) {
-			Cookie[] cookies=req.getCookies();
-			if(cookies!=null) {
-				for(Cookie cookie:cookies) {
-					if("userEmail".equals(cookie.getName())) {
-						loggedIn=true;
-					}
-				}
-			}
-		}
+		/*System.out.println("Request URI: " + uri);
+		System.out.println("Session exists? " + (session != null));
+		System.out.println("Logged In? " + loggedIn);*/
 
 		if (!loggedIn && (uri.endsWith("login.jsp") || uri.endsWith("loginController"))) {
 			chain.doFilter(request, response);
-			//return;
-		}else if (loggedIn) {
+			return;
+		}
+		// Skipping filter for login page and login controller
+		if (loggedIn) {
 			if (uri.endsWith("login.jsp") || uri.endsWith("loginController")) {
+
 				res.sendRedirect(req.getContextPath() + "/pages/home.jsp");
 			} else {
-				chain.doFilter(request, response);  //go to requested page
-				//return;
+				chain.doFilter(request, response);
+				return;
 			}
 		} else {
-			res.sendRedirect(req.getContextPath() + "/pages/login.jsp");  //redirecting to login page if not logged in
+			res.sendRedirect(req.getContextPath() + "/pages/login.jsp");
 		}
 
 	}

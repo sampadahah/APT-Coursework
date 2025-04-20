@@ -100,6 +100,9 @@
 	      <a href="login.jsp"><i class="user"></i> Login </a> / <a href="register.jsp"><i class="user"></i>Sign Up</a>
 	      <a href="#"><i class="far fa-heart"></i></a>
 	      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+	      <form action="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">
+    	  	<button type="submit">Logout</button>
+	  	  </form>
 	    </div>
 	  </div>
 	

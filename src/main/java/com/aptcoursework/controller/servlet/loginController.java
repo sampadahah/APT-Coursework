@@ -53,10 +53,6 @@ public class loginController extends HttpServlet {
                 session.setAttribute("userWithSession", user);
                 session.setMaxInactiveInterval(30*60); 
                 
-                //setting up a cookie for the user
-                Cookie userCookie=new Cookie("userEmail",emailToCheck);
-                userCookie.setMaxAge(30*60);
-                response.addCookie(userCookie);
                 
                 // Check user role and redirect accordingly
                 if ("Customer".equalsIgnoreCase(user.getRole())) {
