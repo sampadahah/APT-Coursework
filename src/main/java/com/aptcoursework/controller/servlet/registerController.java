@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import com.aptcoursework.controller.dao.UserDAO;
 import com.aptcoursework.model.user;
+import com.aptcoursework.utility.EncryptDecrypt;
 
 /**
  * Servlet implementation class RegisterController
@@ -66,7 +67,7 @@ public class registerController extends HttpServlet {
             newUser.setPhone(phone);
             newUser.setAddress(address);
             newUser.setRole(role);
-            newUser.setPassword(password);
+            newUser.setPassword(EncryptDecrypt.encrypt(password));
             newUser.setRegisteredDate(timestamp);
             boolean isRegistered = userdao.register(newUser);
 

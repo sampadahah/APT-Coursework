@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.aptcoursework.controller.dao.UserDAO;
 import com.aptcoursework.model.user;
+import com.aptcoursework.utility.EncryptDecrypt;
 
 /**
  * Servlet implementation class LogInController
@@ -42,14 +44,20 @@ public class loginController extends HttpServlet {
 
         try {
             UserDAO userdao = new UserDAO();
-            user user = userdao.login(emailToCheck, passwordToCheck);
+            //String encryptedPassword = EncryptDecrypt.encrypt(passwordToCheck);   //checking the user entered password
+            user user = userdao.login(emailToCheck, EncryptDecrypt.encrypt(passwordToCheck));
 
             if (user != null) {
             	//session creation for logged-in user
                 HttpSession session = request.getSession();
                 session.setAttribute("userWithSession", user);
-                session.setMaxInactiveInterval(600); 
-
+                session.setMaxInactiveInterval(30*60); 
+                
+                //setting up a cookie for the user
+                Cookie userCookie=new Cookie("userEmail",emailToCheck);
+                userCookie.setMaxAge(30*60);
+                response.addCookie(userCookie);
+                
                 // Check user role and redirect accordingly
                 if ("Customer".equalsIgnoreCase(user.getRole())) {
                     response.sendRedirect(request.getContextPath() + "/pages/home.jsp"); // Redirect to home for customer
