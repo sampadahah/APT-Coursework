@@ -47,7 +47,8 @@ public class profileController extends HttpServlet {
 		
         String newUsername = request.getParameter("username");
         String email = request.getParameter("email");
-        long phone= Long.parseLong(request.getParameter("phone"));
+        String phoneString=request.getParameter("phone");
+        long phone=Long.parseLong(phoneString);
         String address = request.getParameter("address");
 
         
