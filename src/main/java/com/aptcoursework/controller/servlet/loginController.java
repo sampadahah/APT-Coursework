@@ -46,7 +46,6 @@ public class loginController extends HttpServlet {
             UserDAO userdao = new UserDAO();
             //String encryptedPassword = EncryptDecrypt.encrypt(passwordToCheck);   //checking the user entered password
             user user = userdao.login(emailToCheck, EncryptDecrypt.encrypt(passwordToCheck));
-
             if (user != null) {
             	//session creation for logged-in user
                 HttpSession session = request.getSession();
@@ -57,6 +56,7 @@ public class loginController extends HttpServlet {
                 session.setAttribute("phone_no", user.getPhone()); // must match "phone_no" used in JSP
                 session.setAttribute("address", user.getAddress());
                 session.setMaxInactiveInterval(30*60); 
+                
                 System.out.println(session.getId());
                 
                 Cookie usernameCookie=new Cookie("username",user.getName());

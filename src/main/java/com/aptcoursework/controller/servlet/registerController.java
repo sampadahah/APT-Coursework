@@ -40,7 +40,7 @@ public class registerController extends HttpServlet {
 
         String username = request.getParameter("username");
         String email = request.getParameter("email");
-        int phone = Integer.parseInt(request.getParameter("phone"));
+        long phone = Integer.parseInt(request.getParameter("phone"));
         String address = request.getParameter("address");
         String role = request.getParameter("role");
         String registered = request.getParameter("registeredDate");

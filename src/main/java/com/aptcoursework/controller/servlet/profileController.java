@@ -47,7 +47,7 @@ public class profileController extends HttpServlet {
 		
         String newUsername = request.getParameter("username");
         String email = request.getParameter("email");
-        int phone= Integer.parseInt(request.getParameter("phone"));
+        long phone= Long.parseLong(request.getParameter("phone"));
         String address = request.getParameter("address");
 
         
@@ -57,16 +57,6 @@ public class profileController extends HttpServlet {
         updatedUser.setPhone(phone);
         updatedUser.setAddress(address);
         boolean success=false;
-
-        if (success) {
-        	System.out.println("Profile updated successfully for: " + newUsername);
-            session.setAttribute("username", newUsername);
-            session.setAttribute("email", email);
-            session.setAttribute("phone", phone);
-            session.setAttribute("address", address);
-            request.setAttribute("successMessage", "Profile updated successfully.");
-            response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
-            //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
 
         try {
             UserDAO userDAO = new UserDAO();
@@ -80,18 +70,20 @@ public class profileController extends HttpServlet {
                 session.setAttribute("address", address);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
+                response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
+                return;
             } else {
-                request.setAttribute("error", "Failed to update profile.");
+                request.setAttribute("errorMessage", "Failed to update profile.");
             }
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            request.setAttribute("error", "Database connection error.");
+            request.setAttribute("errorMessage", "Database connection error.");
         }
 
         request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
     }
 }
-}
+
 
 
