@@ -111,7 +111,7 @@ public class UserDAO {
 	}
 	public boolean updatedUserProfile(String oldUsername, user updatedUser) {
 		boolean isUpdated = false;
-		String query = "UPDATE users SET username=?, email=?, phone=?, address=? WHERE username=?";
+		String query = "UPDATE user SET username=?, email=?, phone_no=?, address=? WHERE username=?";
 		
 		if(conn != null) {
 			try {

@@ -66,33 +66,31 @@ public class profileController extends HttpServlet {
         updatedUser.setPhone(phone_no);
         updatedUser.setAddress(address);
         
-        boolean success = false;
         
-		try {
-			UserDAO userDAO = new UserDAO();
-			success = userDAO.updatedUserProfile(oldUsername, updatedUser);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			
-	        request.setAttribute("error", "Database connection error.");
-	        request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
-	        return;
-		}
         
-        if (success) {
-        	System.out.println("Profile updated successfully for: " + newUsername);
-            session.setAttribute("username", newUsername);
-            session.setAttribute("email", email);
-            session.setAttribute("phone", phone_no);
-            session.setAttribute("address", address);
-            request.setAttribute("successMessage", "Profile updated successfully.");
-            request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+        try {
+            UserDAO userDAO = new UserDAO();
+            boolean success = userDAO.updatedUserProfile(oldUsername, updatedUser);
 
-        } else {
-            request.setAttribute("error", "Failed to update profile.");
-            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+            if (success) {
+                // Update session
+                session.setAttribute("username", newUsername);
+                session.setAttribute("email", email);
+                session.setAttribute("phone", phone_no);
+                session.setAttribute("address", address);
+
+                request.setAttribute("successMessage", "Profile updated successfully.");
+            } else {
+                request.setAttribute("error", "Failed to update profile.");
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("error", "Database connection error.");
         }
-	}
 
+        request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+    }
 }
+
+
