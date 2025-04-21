@@ -56,10 +56,8 @@ public class profileController extends HttpServlet {
         updatedUser.setEmail(email);
         updatedUser.setPhone(phone);
         updatedUser.setAddress(address);
-        
-        
-        
-<<<<<<< HEAD
+        boolean success=false;
+
         if (success) {
         	System.out.println("Profile updated successfully for: " + newUsername);
             session.setAttribute("username", newUsername);
@@ -69,17 +67,16 @@ public class profileController extends HttpServlet {
             request.setAttribute("successMessage", "Profile updated successfully.");
             response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
             //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
-=======
+
         try {
             UserDAO userDAO = new UserDAO();
-            boolean success = userDAO.updatedUserProfile(oldUsername, updatedUser);
->>>>>>> 9cc8f0d4fdf4e38d6f35bd3a1fcb0c84caedfd5e
+            success = userDAO.updatedUserProfile(oldUsername, updatedUser);
 
             if (success) {
                 // Update session
                 session.setAttribute("username", newUsername);
                 session.setAttribute("email", email);
-                session.setAttribute("phone", phone_no);
+                session.setAttribute("phone", phone);
                 session.setAttribute("address", address);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
@@ -94,6 +91,7 @@ public class profileController extends HttpServlet {
 
         request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
     }
+}
 }
 
 

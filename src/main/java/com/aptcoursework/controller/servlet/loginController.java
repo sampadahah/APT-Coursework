@@ -59,7 +59,23 @@ public class loginController extends HttpServlet {
                 session.setMaxInactiveInterval(30*60); 
                 System.out.println(session.getId());
                 
+                Cookie usernameCookie=new Cookie("username",user.getName());
+                Cookie emailCookie=new Cookie("email",user.getEmail());
+                usernameCookie.setMaxAge(30*60);
+                emailCookie.setMaxAge(30*60);
                 
+                response.addCookie(usernameCookie);
+                response.addCookie(emailCookie);
+                
+                Cookie[] cookies = request.getCookies();
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        System.out.println("Cookie Name: " + cookie.getName() + ", Value: " + cookie.getValue());
+                    }
+                } else {
+                    System.out.println("No cookies found.");
+                }
+
                 // Check user role and redirect accordingly
                 if ("Customer".equalsIgnoreCase(user.getRole())) {
                     response.sendRedirect(request.getContextPath() + "/pages/home.jsp"); // Redirect to home for customer
