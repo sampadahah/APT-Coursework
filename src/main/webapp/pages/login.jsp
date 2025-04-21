@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
  <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +18,7 @@
 		<%=request.getAttribute("errorMessage") %>
 	</div>
 	<% } %>
-		<% if (request.getAttribute("loginError")!=null){%>
+	<% if (request.getAttribute("loginError")!=null){%>
 	<div class="alert alert-danger mt-2" style="text-align:center">
 		<%=request.getAttribute("loginError") %>
 	</div>

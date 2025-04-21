@@ -96,9 +96,7 @@
 	    <a href="dashboard.jsp">Dashboard</a>
 	    <a href="#">Category</a>
 	    <a href="#">Product</a>
-	    <form action="<%= request.getContextPath() %>/logoutController" method="get" style="display:inline;"> 
-    		<button type="submit">Logout</button>
-	  	</form>
+	    <a href="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">Logout</a> 
 	  </nav>
 	</header>
 		

@@ -10,6 +10,11 @@
 	  <h1 class="brand">kasam</h1>
 	  <div class="container">
 	  <h2>Create a New Account</h2>
+	  <% if (request.getAttribute("errormessage")!=null){%>
+	  <div class="alert alert-danger mt-2">
+		<%=request.getAttribute("errorMessage") %>
+	  </div>
+	  <% } %>
 	  <p style="text-align: center; margin-bottom: 25px;">It’s quick and easy – just like your skincare routine.</p>
 	     <form action="<%= request.getContextPath() %>/registerController" method="post">
 	    <div>

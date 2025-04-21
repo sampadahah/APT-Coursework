@@ -19,10 +19,20 @@
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/profile.css">
 </head>
 <body>
+	<%@ include file="header.jsp" %>
 
 <div class="profile-box">
     <h2>Welcome, <%= username %></h2>
-    
+    <% if (successMessage!=null){%>
+	<div class="success" style="text-align:center">
+		<%=request.getAttribute("successMessage") %>
+	</div>
+	<% } %>
+	 <% if (errorMessage!=null){%>
+	<div class="error" style="text-align:center">
+		<%=request.getAttribute("errorMessage") %>
+	</div>
+	<% } %>
     <form action="<%= request.getContextPath() %>/profileController" method="post">
         Username:<br>
         <input type="text" name="username" value="<%= username %>" required><br>

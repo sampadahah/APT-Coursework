@@ -47,23 +47,14 @@ public class profileController extends HttpServlet {
 		
         String newUsername = request.getParameter("username");
         String email = request.getParameter("email");
-        String phone = request.getParameter("phone");
+        int phone= Integer.parseInt(request.getParameter("phone"));
         String address = request.getParameter("address");
-        
-        int phone_no = 0;
-        try{
-        	phone_no = Integer.parseInt(phone);
-        }catch (NumberFormatException e) {
-        	
-        	request.setAttribute("error", "Invalid phone number format.");
-        	request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
-        	return;
-        }
+
         
         user updatedUser = new user();
         updatedUser.setName(newUsername);
         updatedUser.setEmail(email);
-        updatedUser.setPhone(phone_no);
+        updatedUser.setPhone(phone);
         updatedUser.setAddress(address);
         
         boolean success = false;
@@ -84,10 +75,11 @@ public class profileController extends HttpServlet {
         	System.out.println("Profile updated successfully for: " + newUsername);
             session.setAttribute("username", newUsername);
             session.setAttribute("email", email);
-            session.setAttribute("phone", phone_no);
+            session.setAttribute("phone", phone);
             session.setAttribute("address", address);
             request.setAttribute("successMessage", "Profile updated successfully.");
-            request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
+            //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
 
         } else {
             request.setAttribute("error", "Failed to update profile.");

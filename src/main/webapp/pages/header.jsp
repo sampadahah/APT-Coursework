@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="com.aptcoursework.model.user" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,17 +100,24 @@
 	    </div>
 	
 	    <div class="header-icons">
-	      <a href="login.jsp"><i class="user"></i> Login </a> / <a href="register.jsp"><i class="user"></i>Sign Up</a>
-	      <a href="#"><i class="far fa-heart"></i></a>
-	      <a href="#"><i class="fas fa-shopping-cart"></i></a>
-	      <form action="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">
-    	  	<button type="submit">Logout</button>
-	  	  </form>
+	    	<c:choose>
+	    		<c:when test="${not empty sessionScope.userWithSession}">
+	      			<!-- User is logged in -->
+	     			<a href="profile.jsp">Edit Profile</a>
+	      			<a href="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">Logout</a>
+    	  			<a href="#"><i class="far fa-heart"></i></a>
+	      			<a href="#"><i class="fas fa-shopping-cart"></i></a>
+	   	 		</c:when>
+			    <c:otherwise>
+			      <!-- User is NOT logged in -->
+			      <a href="login.jsp">Login</a> / <a href="register.jsp">Signup</a>
+			    </c:otherwise>
+	  		</c:choose>
 	    </div>
 	  </div>
 	
 	  <nav class="nav-bar">
-	    <a href="#">Home</a>
+	    <a href="home.jsp">Home</a>
 	    <a href="#">Products</a>
 	    <a href="#">Blog</a>
 	    <a href="#">About Us</a>

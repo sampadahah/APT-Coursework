@@ -51,7 +51,13 @@ public class loginController extends HttpServlet {
             	//session creation for logged-in user
                 HttpSession session = request.getSession();
                 session.setAttribute("userWithSession", user);
+                
+                session.setAttribute("username", user.getName());
+                session.setAttribute("email", user.getEmail());
+                session.setAttribute("phone_no", user.getPhone()); // must match "phone_no" used in JSP
+                session.setAttribute("address", user.getAddress());
                 session.setMaxInactiveInterval(30*60); 
+                System.out.println(session.getId());
                 
                 
                 // Check user role and redirect accordingly
