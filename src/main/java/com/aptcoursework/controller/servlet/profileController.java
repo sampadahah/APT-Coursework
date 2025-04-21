@@ -1,0 +1,98 @@
+package com.aptcoursework.controller.servlet;
+
+import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.aptcoursework.controller.dao.UserDAO;
+import com.aptcoursework.model.user;
+
+/**
+ * Servlet implementation class profileController
+ */
+@WebServlet("/profileController")
+public class profileController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public profileController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		
+		String oldUsername = (String) session.getAttribute("username");
+		
+        String newUsername = request.getParameter("username");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String address = request.getParameter("address");
+        
+        int phone_no = 0;
+        try{
+        	phone_no = Integer.parseInt(phone);
+        }catch (NumberFormatException e) {
+        	
+        	request.setAttribute("error", "Invalid phone number format.");
+        	request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+        	return;
+        }
+        
+        user updatedUser = new user();
+        updatedUser.setName(newUsername);
+        updatedUser.setEmail(email);
+        updatedUser.setPhone(phone_no);
+        updatedUser.setAddress(address);
+        
+        boolean success = false;
+        
+		try {
+			UserDAO userDAO = new UserDAO();
+			success = userDAO.updatedUserProfile(oldUsername, updatedUser);
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			
+	        request.setAttribute("error", "Database connection error.");
+	        request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+	        return;
+		}
+        
+        if (success) {
+        	System.out.println("Profile updated successfully for: " + newUsername);
+            session.setAttribute("username", newUsername);
+            session.setAttribute("email", email);
+            session.setAttribute("phone", phone_no);
+            session.setAttribute("address", address);
+            request.setAttribute("successMessage", "Profile updated successfully.");
+            request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+
+        } else {
+            request.setAttribute("error", "Failed to update profile.");
+            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+        }
+	}
+
+}

@@ -109,5 +109,28 @@ public class UserDAO {
 
 	    return user;
 	}
+	public boolean updatedUserProfile(String oldUsername, user updatedUser) {
+		boolean isUpdated = false;
+		String query = "UPDATE users SET username=?, email=?, phone=?, address=? WHERE username=?";
+		
+		if(conn != null) {
+			try {
+				ps = conn.prepareStatement(query);
+				ps.setString(1, updatedUser.getName());
+				ps.setString(2, updatedUser.getEmail());
+                ps.setInt(3, updatedUser.getPhone());
+                ps.setString(4, updatedUser.getAddress());
+                ps.setString(5, oldUsername);
+                
+                if(ps.executeUpdate()>0) {
+                	isUpdated = true;
+                }
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+		return isUpdated;
+	}
 
 }
