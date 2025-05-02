@@ -29,7 +29,7 @@
       <button type="submit">Login</button>
     </form>
     <div class="signup-link">
-      Don't have an account? <a href="register.jsp">Sign up</a>
+      Don't have an account? <a href="<%= request.getContextPath() %>/pages/register.jsp">Sign up</a>
     </div>
   </div>
 </body>

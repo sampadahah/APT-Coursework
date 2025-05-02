@@ -10,12 +10,12 @@
 	  <h1 class="brand">kasam</h1>
 	  <div class="container">
 	  <h2>Create a New Account</h2>
-	  <% if (request.getAttribute("errormessage")!=null){%>
-	  <div class="alert alert-danger mt-2">
+	  <p style="text-align: center; margin-bottom: 25px;">It's quick and easy – just like your skincare routine.</p>
+	  <% if (request.getAttribute("errorMessage")!=null){%>
+	  <div class="alert alert-danger mt-2" style="text-align:center" >
 		<%=request.getAttribute("errorMessage") %>
 	  </div>
 	  <% } %>
-	  <p style="text-align: center; margin-bottom: 25px;">It’s quick and easy – just like your skincare routine.</p>
 	     <form action="<%= request.getContextPath() %>/registerController" method="post">
 	    <div>
 	      <label>Username:</label>
@@ -57,7 +57,7 @@
 	    </div>
 	    </form>
 	    <div class="login-link">
-			<a href="login.jsp">Already have an account?</a>
+			<a href="<%= request.getContextPath() %>/pages/login.jsp">Already have an account?</a>
     	</div>
 	</div>
 </body>

@@ -47,7 +47,8 @@ public class profileController extends HttpServlet {
 		
         String newUsername = request.getParameter("username");
         String email = request.getParameter("email");
-        int phone= Integer.parseInt(request.getParameter("phone"));
+        String phoneString=request.getParameter("phone");
+        long phone=Long.parseLong(phoneString);
         String address = request.getParameter("address");
 
         
@@ -56,44 +57,34 @@ public class profileController extends HttpServlet {
         updatedUser.setEmail(email);
         updatedUser.setPhone(phone);
         updatedUser.setAddress(address);
-        
-        
-        
-<<<<<<< HEAD
-        if (success) {
-        	System.out.println("Profile updated successfully for: " + newUsername);
-            session.setAttribute("username", newUsername);
-            session.setAttribute("email", email);
-            session.setAttribute("phone", phone);
-            session.setAttribute("address", address);
-            request.setAttribute("successMessage", "Profile updated successfully.");
-            response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
-            //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
-=======
+        boolean success=false;
+
         try {
             UserDAO userDAO = new UserDAO();
-            boolean success = userDAO.updatedUserProfile(oldUsername, updatedUser);
->>>>>>> 9cc8f0d4fdf4e38d6f35bd3a1fcb0c84caedfd5e
+            success = userDAO.updatedUserProfile(oldUsername, updatedUser);
 
             if (success) {
                 // Update session
                 session.setAttribute("username", newUsername);
                 session.setAttribute("email", email);
-                session.setAttribute("phone", phone_no);
+                session.setAttribute("phone", phone);
                 session.setAttribute("address", address);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
+                response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
+                return;
             } else {
-                request.setAttribute("error", "Failed to update profile.");
+                request.setAttribute("errorMessage", "Failed to update profile.");
             }
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            request.setAttribute("error", "Database connection error.");
+            request.setAttribute("errorMessage", "Database connection error.");
         }
 
         request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
     }
 }
+
 
 

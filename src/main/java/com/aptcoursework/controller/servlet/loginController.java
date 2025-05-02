@@ -46,7 +46,6 @@ public class loginController extends HttpServlet {
             UserDAO userdao = new UserDAO();
             //String encryptedPassword = EncryptDecrypt.encrypt(passwordToCheck);   //checking the user entered password
             user user = userdao.login(emailToCheck, EncryptDecrypt.encrypt(passwordToCheck));
-
             if (user != null) {
             	//session creation for logged-in user
                 HttpSession session = request.getSession();
@@ -57,14 +56,33 @@ public class loginController extends HttpServlet {
                 session.setAttribute("phone_no", user.getPhone()); // must match "phone_no" used in JSP
                 session.setAttribute("address", user.getAddress());
                 session.setMaxInactiveInterval(30*60); 
+                
                 System.out.println(session.getId());
                 
+                Cookie usernameCookie=new Cookie("username",user.getName());
+                Cookie emailCookie=new Cookie("email",user.getEmail());
+                usernameCookie.setMaxAge(30*60);
+                emailCookie.setMaxAge(30*60);
                 
+                response.addCookie(usernameCookie);
+                response.addCookie(emailCookie);
+                
+                Cookie[] cookies = request.getCookies();
+                if (cookies != null) {
+                    for (Cookie cookie : cookies) {
+                        System.out.println("Cookie Name: " + cookie.getName() + ", Value: " + cookie.getValue());
+                    }
+                } else {
+                    System.out.println("No cookies found.");
+                }
+
                 // Check user role and redirect accordingly
                 if ("Customer".equalsIgnoreCase(user.getRole())) {
                     response.sendRedirect(request.getContextPath() + "/pages/home.jsp"); // Redirect to home for customer
+                   
                 }else if ("Admin".equalsIgnoreCase(user.getRole())) {
                     response.sendRedirect(request.getContextPath() + "/pages/dashboard.jsp"); // Redirect to dashboard for admin
+                 
                 } else {
                     // If role is not recognized, redirect to home or show error
                     response.sendRedirect(request.getContextPath() + "/pages/home.jsp");

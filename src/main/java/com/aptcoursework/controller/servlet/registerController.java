@@ -37,51 +37,71 @@ public class registerController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        int phone = Integer.parseInt(request.getParameter("phone"));
-        String address = request.getParameter("address");
-        String role = request.getParameter("role");
-        String registered = request.getParameter("registeredDate");
-        String password = request.getParameter("password");
-        String confirmPassword = request.getParameter("confirmPassword");
-        
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(registered, formatter);
-        
-        Timestamp timestamp = Timestamp.valueOf(dateTime);
         try {
+	        String username = request.getParameter("username");
+	        String email = request.getParameter("email");
+	        String phoneString=request.getParameter("phone");
+	        long phone;
+	        try {
+	        	phone = Long.parseLong(phoneString);
+	        }catch (NumberFormatException e){
+                request.setAttribute("errorMessage", "Invalid phone number format.");
+                request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
+                return;
+            }
+	        String address = request.getParameter("address");
+	        String role = request.getParameter("role");
+	        String registered = request.getParameter("registeredDate");
+	        String password = request.getParameter("password");
+	        String confirmPassword = request.getParameter("confirmPassword");
+	        
+	        //validating empty input fields
+	        if (username.isEmpty() || email.isEmpty() || address.isEmpty() || role.isEmpty() || registered.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+	            request.setAttribute("errorMessage", "Please fill in all fields.");
+	            request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
+	           return;
+	        }
+	        //checking passwords
             if (!password.equals(confirmPassword)) {
                 request.setAttribute("errorMessage", "Passwords do not match.");
                 request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
                 return;
             }
-
-            UserDAO userdao = new UserDAO();
             
-            // Create user object
-            user newUser = new user();
-            newUser.setName(username);
-            newUser.setEmail(email);
-            newUser.setPhone(phone);
-            newUser.setAddress(address);
-            newUser.setRole(role);
-            newUser.setPassword(EncryptDecrypt.encrypt(password));
-            newUser.setRegisteredDate(timestamp);
-            boolean isRegistered = userdao.register(newUser);
-
-            if (isRegistered) {
-                // After successful registration, redirect to login page
-                response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
-            } else {
-                request.setAttribute("errorMessage", "Registration failed. Please try again.");
-                request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
-            }
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+	        LocalDateTime dateTime = LocalDateTime.parse(registered, formatter);
+	        Timestamp timestamp = Timestamp.valueOf(dateTime);
+	
+	        UserDAO userdao = new UserDAO();
+	            
+	        // Create user object
+	         user newUser = new user();
+	         newUser.setName(username);
+	         newUser.setEmail(email);
+	         newUser.setPhone(phone);
+	         newUser.setAddress(address);
+	         newUser.setRole(role);
+	         newUser.setPassword(EncryptDecrypt.encrypt(password));
+	         newUser.setRegisteredDate(timestamp);
+	         
+	         boolean isRegistered = userdao.register(newUser);
+	
+	         if (isRegistered) {
+	                // After successful registration, redirect to login page
+	             response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
+	         } else {
+	             request.setAttribute("errorMessage", "Registration failed. Please try again.");
+	             request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
+	         }
         } catch (ClassNotFoundException | SQLException e) {
+        	e.printStackTrace();
             request.setAttribute("errorMessage", "A system error occurred. Please try again later.");
             request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
-        } finally {
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "Unexpected error occurred.");
+            request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
+        }finally {
             if (out != null) {
                 out.close();
             }
