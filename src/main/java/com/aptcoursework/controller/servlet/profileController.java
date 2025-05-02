@@ -18,7 +18,7 @@ import com.aptcoursework.model.user;
  */
 @WebServlet("/profileController")
 public class profileController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,23 +28,23 @@ public class profileController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+/**
+ * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+ */
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+// TODO Auto-generated method stub
+response.getWriter().append("Served at: ").append(request.getContextPath());
+}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		
-		String oldUsername = (String) session.getAttribute("username");
-		
+/**
+ * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+ */
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+// TODO Auto-generated method stub
+HttpSession session = request.getSession();
+
+String oldUsername = (String) session.getAttribute("username");
+
         String newUsername = request.getParameter("username");
         String email = request.getParameter("email");
         int phone= Integer.parseInt(request.getParameter("phone"));
@@ -56,44 +56,31 @@ public class profileController extends HttpServlet {
         updatedUser.setEmail(email);
         updatedUser.setPhone(phone);
         updatedUser.setAddress(address);
-        
-        
-        
-<<<<<<< HEAD
-        if (success) {
-        	System.out.println("Profile updated successfully for: " + newUsername);
-            session.setAttribute("username", newUsername);
-            session.setAttribute("email", email);
-            session.setAttribute("phone", phone);
-            session.setAttribute("address", address);
-            request.setAttribute("successMessage", "Profile updated successfully.");
-            response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
-            //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
-=======
+        boolean success=false;
+
         try {
             UserDAO userDAO = new UserDAO();
-            boolean success = userDAO.updatedUserProfile(oldUsername, updatedUser);
->>>>>>> 9cc8f0d4fdf4e38d6f35bd3a1fcb0c84caedfd5e
+            success = userDAO.updatedUserProfile(oldUsername, updatedUser);
 
             if (success) {
                 // Update session
                 session.setAttribute("username", newUsername);
                 session.setAttribute("email", email);
-                session.setAttribute("phone", phone_no);
+                session.setAttribute("phone", phone);
                 session.setAttribute("address", address);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
+                response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
+                return;
             } else {
-                request.setAttribute("error", "Failed to update profile.");
+                request.setAttribute("errorMessage", "Failed to update profile.");
             }
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            request.setAttribute("error", "Database connection error.");
+            request.setAttribute("errorMessage", "Database connection error.");
         }
 
         request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
     }
 }
-
-
