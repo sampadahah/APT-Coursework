@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = { "/pages/dashboard.jsp" })
+@WebFilter(urlPatterns = { "/pages/dashboard.jsp"})
 public class authenticationFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -54,7 +54,6 @@ public class authenticationFilter implements Filter {
 				res.sendRedirect(req.getContextPath() + "/pages/home.jsp");
 			} else {
 				chain.doFilter(request, response);
-				return;
 			}
 		} else {
 			res.sendRedirect(req.getContextPath() + "/pages/login.jsp");

@@ -8,7 +8,7 @@
 	String address = (String) session.getAttribute("address");
     
     String successMessage = (String) request.getAttribute("successMessage");
-    String errorMessage = (String) request.getAttribute("error");
+    String errorMessage = (String) request.getAttribute("errorMessage");
 %>
 
 
@@ -22,17 +22,7 @@
 	<%@ include file="header.jsp" %>
 
 <div class="profile-box">
-    <h2>Welcome, <%= username %></h2>
-    <% if (successMessage!=null){%>
-	<div class="success" style="text-align:center">
-		<%=request.getAttribute("successMessage") %>
-	</div>
-	<% } %>
-	 <% if (errorMessage!=null){%>
-	<div class="error" style="text-align:center">
-		<%=request.getAttribute("errorMessage") %>
-	</div>
-	<% } %>
+    <h2>Welcome, ${sessionScope.username}</h2>
     <form action="<%= request.getContextPath() %>/profileController" method="post">
         Username:<br>
         <input type="text" name="username" value="<%= username %>" required><br>
@@ -48,6 +38,16 @@
         
         <input type="submit" value="Save Changes">
     </form>
+     <% if (successMessage!=null){%>
+	<div class="success" style="text-align:center">
+		<%=request.getAttribute("successMessage") %>
+	</div>
+	<% } %>
+	 <% if (errorMessage!=null){%>
+	<div class="error" style="text-align:center">
+		<%=request.getAttribute("errorMessage") %>
+	</div>
+	<% } %>
 </div>
 
 </body>

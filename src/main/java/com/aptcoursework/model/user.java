@@ -8,7 +8,7 @@ public class user {
 	private String username;
 	private String password;
 	private String email;
-	private int phone_no;
+	private long phone_no;
 	private String address;
 	private String role;
 	private Timestamp registered;
@@ -17,7 +17,7 @@ public class user {
 	public user() {
 	}
 
-	public user(int user_id, String username, String password, String email, int phone_no, String address, String role,Timestamp dateTime) {
+	public user(int user_id, String username, String password, String email, long phone_no, String address, String role,Timestamp dateTime) {
 		this.user_id = user_id;
 		this.username = username;
 		this.password = password;
@@ -63,11 +63,11 @@ public class user {
 	}
 
 
-	public int getPhone() {
+	public long getPhone() {
 		return phone_no;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(long phone) {
 		this.phone_no = phone;
 	}
 
