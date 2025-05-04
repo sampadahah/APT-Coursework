@@ -51,40 +51,5 @@
 	</div>
 	<% } %>
 </div>
-<%-- <script>
-document.getElementById("profileForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-    const data = new URLSearchParams();
-    for (const pair of formData) {
-        data.append(pair[0], pair[1]);
-    }
-
-    fetch("<%= request.getContextPath() %>/profileController", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: data
-    })
-    .then(response => {
-        if (response.redirected) {
-            window.location.href = response.url;
-        } else {
-            return response.text();
-        }
-    })
-    .then(result => {
-        console.log("Update result:", result);
-        location.reload(); // Optional: refresh to show updated session values
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("Failed to update profile.");
-    });
-});
-</script> --%>
-
 </body>
 </html>
