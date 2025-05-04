@@ -1,0 +1,83 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Categories</title>
+	<%@ include file="header.jsp" %>
+    <title>Skincare Categories</title>
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/categories.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+            gap: 40px;
+            padding: 80px 60px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .category-name {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            padding: 40px 20px;
+            transition: transform 0.2s, background-color 0.2s;
+            background-color: #ffe4ec;
+        }
+
+        .category-name:hover {
+            transform: scale(1.05);
+            background-color: #d63384;
+        }
+
+        .category-name h3, .category-name p {
+            margin: 10px 0;
+            color: #333;
+            transition: color 0.2s;
+        }
+
+        .category-name:hover h3,
+        .category-name:hover p {
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size:50px; color:#d63384">Our Categories</h1>
+    <p style="margin-top: 40px; font-size: 1.2em; color: #555;">Pure ingredients. Gentle skincare. A planet-friendly glow.</p>
+    <div class="category-container">
+        <a href="products.jsp?category=cleansers" class="category-name">
+            <h3>Cleansers</h3>
+            <p>Remove dirt & makeup</p>
+        </a>
+        <a href="products.jsp?category=moisturizers" class="category-name">
+            <h3>Moisturizers</h3>
+            <p>Hydrate your skin</p>
+        </a>
+        <a href="products.jsp?category=serums" class="category-name">
+            <h3>Serums</h3>
+            <p>Target specific concerns</p>
+        </a>
+        <a href="products.jsp?category=sunscreens" class="category-name">
+            <h3>Sunscreens</h3>
+            <p>Protect from UV rays</p>
+        </a>
+    </div>
+    <%@ include file="footer.jsp" %>
+</body>
+</html>
