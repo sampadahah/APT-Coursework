@@ -8,7 +8,48 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
+.header-btn {
+  display: flex;
+  align-items: center;
+  color: #d63384; /* Pink color */
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  gap: 5px; /* Add space between icon and text */
+  transition: color 0.3s ease;
+}
+
+.header-btn:hover {
+  color: #c12374; /* Slightly darker pink on hover */
+}
+
+.header-btn i {
+  font-size: 18px; /* Icon size */
+}
+
+.header-icons i {
+  color: #d63384; /* Pink color matching your theme */
+  font-size: 20px; /* Optional: adjust size */
+  transition: color 0.3s ease;
+}
+
+.header-icons i:hover {
+  color: #c12374; /* Slightly darker pink on hover */
+}
+
+.user-icon i {
+  color: #d63384; /* Pink color matching your theme */
+  font-size: 20px; /* Optional: adjust size */
+  transition: color 0.3s ease;
+}
+
+.user-icon i:hover {
+  color: #c12374; /* Slightly darker pink on hover */
+  
+  /* Remove hover effect for summary cards */
+}
 .header-top {
   display: flex;
   align-items: center;
@@ -32,6 +73,7 @@
   border-radius: 8px;
   width: 400px;
   background-color: #ffe4ec;
+  margin-left:270px;
 }
 
 .search-bar input {
@@ -85,7 +127,42 @@
 }
 .header-icons a:hover{
   color: #d63384;
+
 }
+
+.auth-button {
+  background-color: #d63384; /* Pink color */
+  color: white; /* Text color set to white */
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: 'Arial', sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.auth-button:hover {
+  background-color: #c12374; /* Slightly darker pink on hover */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.auth-button i {
+  font-size: 18px; /* Icon size */
+  color: white; /* Icon color set to white */
+}
+
+.auth-button span {
+  color: white; /* Text color set to white for login/signup */
+  font-size: 16px; /* Optional: adjust font size */
+}
+
+
+
 </style>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -106,10 +183,27 @@
 	     			<a href="profile.jsp">Edit Profile</a>
 	      			<a href="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">Logout</a>
 	      			<a href="#"><i class="fas fa-shopping-cart"></i></a>
+	      			<a href="#"><i class="fas fa-shopping-cart"></i></a>
 	   	 		</c:when>
 			    <c:otherwise>
 			      <!-- User is NOT logged in -->
-			      <a href="login.jsp">Login</a> / <a href="register.jsp">Signup</a>
+			      <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
+			      <a href="#"><i class="fas fa-shopping-cart"></i></a>
+				  <form action="login.jsp" method="get" class="logout-form">
+  					<button type="submit" class="auth-button">
+   					 <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+  					</button>
+				  </form>
+
+				   <form action="register.jsp" method="get" class="logout-form">
+  						<button type="submit" class="auth-button">
+    						<i class="fas fa-user-plus"></i> <span>Signup</span>
+  						</button>
+				   </form>
+
+
+			      <!-- <a href="login.jsp">Login</a> / <a href="register.jsp">Signup</a> -->
+			      
 			    </c:otherwise>
 	  		</c:choose>
 	    </div>

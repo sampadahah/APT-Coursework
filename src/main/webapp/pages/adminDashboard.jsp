@@ -147,7 +147,7 @@
          	<a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
             <form action="login.jsp" method="get" class="logout-form">
   			<button type="submit" class="logout-button">
-    		<i class="fas fa-sign-out-alt"></i> Logout
+    			<i class="fas fa-sign-out-alt"></i> Logout
           </c:otherwise>
         </c:choose>
       </div>
