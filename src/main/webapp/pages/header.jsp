@@ -105,7 +105,6 @@
 	      			<!-- User is logged in -->
 	     			<a href="profile.jsp">Edit Profile</a>
 	      			<a href="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">Logout</a>
-    	  			<a href="#"><i class="far fa-heart"></i></a>
 	      			<a href="#"><i class="fas fa-shopping-cart"></i></a>
 	   	 		</c:when>
 			    <c:otherwise>
@@ -118,7 +117,7 @@
 	
 	  <nav class="nav-bar">
 	    <a href="home.jsp">Home</a>
-	    <a href="#">Products</a>
+	    <a href="productCategory.jsp">Products</a>
 	    <a href="#">Blog</a>
 	    <a href="#">About Us</a>
 	  </nav>
