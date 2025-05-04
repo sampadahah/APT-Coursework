@@ -18,7 +18,7 @@ import com.aptcoursework.model.user;
  */
 @WebServlet("/profileController")
 public class profileController extends HttpServlet {
-private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,45 +28,32 @@ private static final long serialVersionUID = 1L;
         // TODO Auto-generated constructor stub
     }
 
-/**
- * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
- */
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-// TODO Auto-generated method stub
-response.getWriter().append("Served at: ").append(request.getContextPath());
-}
-
-/**
- * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
- */
-protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-// TODO Auto-generated method stub
-	String methodOverride = request.getParameter("_method");
-	if("PUT".equalsIgnoreCase(methodOverride)) {
-		doPut(request, response);
-		return;
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-}
-protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-	
-	HttpSession session = request.getSession();
 
-	String role = (String)session.getAttribute("role");
-
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		
+		String oldUsername = (String) session.getAttribute("username");
+		
         String newUsername = request.getParameter("username");
-        String newEmail = request.getParameter("email");
-        String PhoneString=request.getParameter("phone");
-        long newPhone=Long.parseLong(PhoneString);
-        String newAddress = request.getParameter("address");
+        String email = request.getParameter("email");
+        String phoneString=request.getParameter("phone");
+        long phone=Long.parseLong(phoneString);
+        String address = request.getParameter("address");
 
         
         user updatedUser = new user();
         updatedUser.setName(newUsername);
-<<<<<<< HEAD
-        updatedUser.setEmail(newEmail);
-        updatedUser.setPhone(newPhone);
-        updatedUser.setAddress(newAddress);
-=======
         updatedUser.setEmail(email);
         updatedUser.setPhone(phone);
         updatedUser.setAddress(address);
@@ -85,24 +72,20 @@ protected void doPut(HttpServletRequest request, HttpServletResponse response) t
             //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
 
 
->>>>>>> 01d117b7d2fd8bb66bcd189ab685a2d77b82c49d
 
-       
-
-       boolean success=false;
         try {
             UserDAO userDAO = new UserDAO();
-            success = userDAO.updatedUserProfile(role, updatedUser);
+            success = userDAO.updatedUserProfile(oldUsername, updatedUser);
 
             if (success) {
                 // Update session
                 session.setAttribute("username", newUsername);
-                session.setAttribute("email", newEmail);
-                session.setAttribute("phone", newPhone);
-                session.setAttribute("address", newAddress);
+                session.setAttribute("email", email);
+                session.setAttribute("phone", phone);
+                session.setAttribute("address", address);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
-                response.sendRedirect(request.getContextPath()+"/pages/profile.jsp");
+                response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
                 return;
             } else {
                 request.setAttribute("errorMessage", "Failed to update profile.");
@@ -113,9 +96,7 @@ protected void doPut(HttpServletRequest request, HttpServletResponse response) t
             request.setAttribute("errorMessage", "Database connection error.");
         }
 
-       
+        request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
     }
-
 }
-
-
+}

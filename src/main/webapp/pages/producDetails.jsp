@@ -12,7 +12,6 @@
 </head>
 <style>
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -62,8 +61,8 @@
     background: #00b4d8;
 }
 .main-wrap .product .product-details{
-    flex-basis: 53%;
-    background: #d63384;
+    flex-basis: 80%;
+    background: #ffe4ec;
     box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
     padding: 40px 30px 40px 40px;
 }
@@ -76,14 +75,14 @@
     line-height: 35px;
     text-transform: capitalize;
     margin-bottom: 10px;
-    color: #011627;
+    color: #f72585;
 }
 .main-wrap .product .product-details .details h3{
     font-size: 20px;
     font-weight: 600;
     line-height: 35px;
     margin-bottom: 10px;
-    color: #011627;
+    color: #f72585;
 }
 .main-wrap .product .product-details .details h4{
     font-size: 18px;
@@ -201,7 +200,40 @@
     border-radius: 12px;
     width: 50px;
 }
-.main-wrap .product .product-details .sub-btn{
+.main-wrap .product .product-details {
+    flex-basis: 80%;
+    background: #ffe4ec;
+    box-shadow: -10px 5px 10px 10px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px 80px 40px; /* Add bottom padding for spacing */
+    position: relative;
+}
+
+.main-wrap .product .product-details .sub-btn {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    right: 30px;
+}
+
+.main-wrap .product .product-details .sub-btn .submit {
+    width: 100%;
+    padding: 15px;
+    background: #f72585;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 10px 10px rgba(85, 63, 240, 0.25);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.main-wrap .product .product-details .sub-btn .submit:hover {
+    background: #e3527d;
+}
+
+/* .main-wrap .product .product-details .sub-btn{
     padding: 0 30px;
 }
 .main-wrap .product .product-details .sub-btn .submit{
@@ -209,7 +241,7 @@
     padding: 10px;
     border: 0;
     outline: 0;
-    background: #0077b6;
+    background: #f72585;
     color: #fff;
     font-size: 15px;
     font-weight: 500;
@@ -220,10 +252,11 @@
     position: relative;
     overflow: hidden;
 }
-.main-wrap .product .product-details .sub-btn .submit:hover{
-    background: #00b4d8;
-}
-.main-wrap .product .product-details .sub-btn .submit::before{
+ .main-wrap .product .product-details .sub-btn .submit:hover{
+    background: #e3527d;
+}  */
+
+/* .main-wrap .product .product-details .sub-btn .submit::before{
     content: '';
     position: absolute;
     left: -100%;
@@ -242,7 +275,7 @@
     100%{
         left: 100%;
     }
-}
+} */
 </style>
 <body>
     <section class="main-wrap">
