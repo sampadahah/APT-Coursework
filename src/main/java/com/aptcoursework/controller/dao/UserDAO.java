@@ -108,9 +108,9 @@ public class UserDAO {
 
 	    return user;
 	}
-	public boolean updatedUserProfile(String oldUsername, user updatedUser) {
+	public boolean updatedUserProfile(String role, user updatedUser) {
 		boolean isUpdated = false;
-		String query = "UPDATE user SET username=?, email=?, phone=?, address=? WHERE username=?";
+		String query = "UPDATE user SET username=?, email=?, phone=?, address=? WHERE role=?";
 		
 		if(conn != null) {
 			try {
@@ -119,9 +119,10 @@ public class UserDAO {
 				ps.setString(2, updatedUser.getEmail());
                 ps.setLong(3, updatedUser.getPhone());
                 ps.setString(4, updatedUser.getAddress());
-                ps.setString(5, oldUsername);
-                System.out.println("Updating profile for: " + oldUsername);
-                System.out.println("New values: " + updatedUser.getName() + ", " + updatedUser.getEmail());
+                ps.setString(5, role);
+                System.out.println("Updating profile for: " + role);
+                System.out.println("New values: " + updatedUser.getName() + ", " + updatedUser.getEmail() +", " 
+                + updatedUser.getPhone() +", " + updatedUser.getAddress());
 
                 if(ps.executeUpdate()>0) {
                 	isUpdated = true;
@@ -133,5 +134,26 @@ public class UserDAO {
 		}
 		return isUpdated;
 	}
+	
+	// Method to get total number of users
+	public int getTotalUsers() {
+	    int totalUsers = 0;
+	    String query = "SELECT COUNT(*) FROM user";
+	    if (conn != null) {
+	        try {
+	            ps = conn.prepareStatement(query);
+	            ResultSet rs = ps.executeQuery();
+	            if (rs.next()) {
+	                totalUsers = rs.getInt(1); // Get count from the result set
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return totalUsers;
+	}
+
+	
+
 
 }
