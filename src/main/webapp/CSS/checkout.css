@@ -48,6 +48,13 @@ input,select {
 	border-radius:6px;
 	background-color : #fff;
 }
+.user-info label[for="paymentMethod"]{
+	margin-top: 15px;
+	font-weight:bold;
+}
+input[type="submit"]{
+	background-color:#d63384;
+}
 .order-summary{
 	margin-bottom: 0;
 }
@@ -76,9 +83,7 @@ button{
 	margin-top: 20px;
 	cursor: pointer;
 }
-button:hover {
-	background-color : #c21870;
-}
+
 footer {
     width: 100%;
     background-color: #f8d7da;

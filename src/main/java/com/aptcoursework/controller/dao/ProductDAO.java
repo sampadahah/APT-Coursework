@@ -1,6 +1,5 @@
 package com.aptcoursework.controller.dao;
 
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,11 +9,16 @@ import com.aptcoursework.model.Product;
 
 public class ProductDAO {
 
-    
+    private Connection conn;
+
+    public ProductDAO() throws ClassNotFoundException, SQLException {
+        this.conn = DatabaseConnection.getConnection();
+    }
+
     public void addProduct(Product p) throws Exception {
         String sql = "INSERT INTO products (name, category, title1, title2, title3, text1, text2, text3, price, quantity, imagePath) " +
                      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection con = DatabaseConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getCategory());
             ps.setString(3, p.getTitle1());
@@ -30,10 +34,9 @@ public class ProductDAO {
         }
     }
 
-    
     public void updateProduct(Product p) throws Exception {
         String sql = "UPDATE products SET name=?, category=?, title1=?, title2=?, title3=?, text1=?, text2=?, text3=?, price=?, quantity=?, imagePath=? WHERE id=?";
-        try (Connection con = DatabaseConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getName());
             ps.setString(2, p.getCategory());
             ps.setString(3, p.getTitle1());
@@ -50,10 +53,9 @@ public class ProductDAO {
         }
     }
 
-    
     public Product getProductById(int id) throws Exception {
         String sql = "SELECT * FROM products WHERE id=?";
-        try (Connection con = DatabaseConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -76,11 +78,10 @@ public class ProductDAO {
         return null;
     }
 
-   
     public List<Product> getAllProducts() throws Exception {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT * FROM products";
-        try (Connection con = DatabaseConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
@@ -102,14 +103,11 @@ public class ProductDAO {
         return list;
     }
 
-    
     public void deleteProduct(int id) throws Exception {
         String sql = "DELETE FROM products WHERE id=?";
-        try (Connection con = DatabaseConnection.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         }
     }
 }
-
-

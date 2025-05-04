@@ -62,9 +62,30 @@ protected void doPut(HttpServletRequest request, HttpServletResponse response) t
         
         user updatedUser = new user();
         updatedUser.setName(newUsername);
+<<<<<<< HEAD
         updatedUser.setEmail(newEmail);
         updatedUser.setPhone(newPhone);
         updatedUser.setAddress(newAddress);
+=======
+        updatedUser.setEmail(email);
+        updatedUser.setPhone(phone);
+        updatedUser.setAddress(address);
+
+        
+        
+        boolean success=false;
+        if (success) {
+        	System.out.println("Profile updated successfully for: " + newUsername);
+            session.setAttribute("username", newUsername);
+            session.setAttribute("email", email);
+            session.setAttribute("phone", phone);
+            session.setAttribute("address", address);
+            request.setAttribute("successMessage", "Profile updated successfully.");
+            response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
+            //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+
+
+>>>>>>> 01d117b7d2fd8bb66bcd189ab685a2d77b82c49d
 
        
 

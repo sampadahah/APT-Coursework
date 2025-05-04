@@ -15,10 +15,11 @@ public class ProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        ProductService service = new ProductService();
-        Product p = new Product();
-
         try {
+        	ProductService service = new ProductService();
+        	Product p = new Product();
+
+       
            
             p.setName(req.getParameter("name"));
             p.setCategory(req.getParameter("category"));

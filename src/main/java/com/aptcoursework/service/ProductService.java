@@ -1,5 +1,6 @@
-package com.aptcoursework.service;
+    package com.aptcoursework.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import com.aptcoursework.controller.dao.ProductDAO;
 import com.aptcoursework.model.Product;
@@ -7,7 +8,7 @@ import com.aptcoursework.model.Product;
 public class ProductService {
     private ProductDAO productDAO;
 
-    public ProductService() {
+    public ProductService() throws ClassNotFoundException, SQLException {
         productDAO = new ProductDAO();
     }
 

@@ -1,4 +1,15 @@
 @charset "UTF-8";
+.alert {
+  background-color: #d63384; /* Matches your brand color */
+  color: #ffffff;             /* White text */
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+	
      body {
       background-color: #ffe4ec;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
