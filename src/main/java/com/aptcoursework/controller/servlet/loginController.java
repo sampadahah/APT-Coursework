@@ -82,7 +82,7 @@ public class loginController extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/pages/home.jsp"); // Redirect to home for customer
                    
                 }else if ("Admin".equalsIgnoreCase(user.getRole())) {
-                    response.sendRedirect(request.getContextPath() + "/pages/dashboard.jsp"); // Redirect to dashboard for admin
+                    response.sendRedirect(request.getContextPath() + "/pages/adminDashboard.jsp"); // Redirect to dashboard for admin
                  
                 } else {
                     // If role is not recognized, redirect to home or show error
