@@ -6,9 +6,24 @@
 <meta charset="UTF-8">
 <title>Login</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/login.css">
+<style>
+.alert {
+  background-color: #ffe5e5;  /* Light reddish-white background */
+  color: #d63333;             /* Red text */
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d63333;  /* Red border */
+  margin-top: 15px;
+  text-align: center;
+  font-weight: bold;
+}
+
+
+
+</style>
 </head>
 <body>
-  <div class="brand">kasam</div>
+  <div class="brand">KASAM</div>
 
   <div class="login-box">
     <h2>Login to your account</h2>
