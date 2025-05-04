@@ -24,15 +24,14 @@ public class UserDAO {
 	public boolean register(user user) {
 		boolean isUserRegistered = false; // SQL statement to insert user details
 		String query =
-	     "INSERT INTO user (username, password, email, phone_no, address, role,registered) VALUES (?, ?, ?, ?, ?, ?,?)"; 
+	     "INSERT INTO user (username, password, email, phone, address, role,registered) VALUES (?, ?, ?, ?, ?, ?,?)"; 
 		if (conn != null) {
 		 try { 
 			 ps = conn.prepareStatement(query); 
 		 	 ps.setString(1, user.getName());
 			 ps.setString(2, user.getPassword()); 
 			 ps.setString(3, user.getEmail()); //
-			 //TODO Passwords should be hashed in real-world apps 
-			 ps.setInt(4, user.getPhone()); 
+			 ps.setLong(4, user.getPhone()); 
 			 ps.setString(5, user.getAddress()); 
 			 ps.setString(6, user.getRole());
 			 ps.setTimestamp(7, user.getRegisteredDate());
@@ -64,7 +63,7 @@ public class UserDAO {
 					user.setName(userSet.getString("username"));
 					user.setPassword(userSet.getString("password"));
 					user.setEmail(userSet.getString("email"));
-					user.setPhone(userSet.getInt("phone_no"));
+					user.setPhone(userSet.getLong("phone"));
 					user.setAddress(userSet.getString("address"));
 					user.setRole(userSet.getString("role"));
 					user.setRegisteredDate(userSet.getTimestamp("registered"));
@@ -96,7 +95,7 @@ public class UserDAO {
 	                    rs.getString("username"),
 	                    rs.getString("password"),
 	                    rs.getString("email"),
-	                    rs.getInt("phone_no"),
+	                    rs.getLong("phone"),
 	                    rs.getString("address"),
 	                    rs.getString("role"),
 	                    rs.getTimestamp("registered")
@@ -109,19 +108,22 @@ public class UserDAO {
 
 	    return user;
 	}
-	public boolean updatedUserProfile(String oldUsername, user updatedUser) {
+	public boolean updatedUserProfile(String role, user updatedUser) {
 		boolean isUpdated = false;
-		String query = "UPDATE user SET username=?, email=?, phone_no=?, address=? WHERE username=?";
+		String query = "UPDATE user SET username=?, email=?, phone=?, address=? WHERE role=?";
 		
 		if(conn != null) {
 			try {
 				ps = conn.prepareStatement(query);
 				ps.setString(1, updatedUser.getName());
 				ps.setString(2, updatedUser.getEmail());
-                ps.setInt(3, updatedUser.getPhone());
+                ps.setLong(3, updatedUser.getPhone());
                 ps.setString(4, updatedUser.getAddress());
-                ps.setString(5, oldUsername);
-                
+                ps.setString(5, role);
+                System.out.println("Updating profile for: " + role);
+                System.out.println("New values: " + updatedUser.getName() + ", " + updatedUser.getEmail() +", " 
+                + updatedUser.getPhone() +", " + updatedUser.getAddress());
+
                 if(ps.executeUpdate()>0) {
                 	isUpdated = true;
                 }

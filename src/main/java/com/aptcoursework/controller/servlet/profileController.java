@@ -41,36 +41,47 @@ response.getWriter().append("Served at: ").append(request.getContextPath());
  */
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 // TODO Auto-generated method stub
-HttpSession session = request.getSession();
+	String methodOverride = request.getParameter("_method");
+	if("PUT".equalsIgnoreCase(methodOverride)) {
+		doPut(request, response);
+		return;
+	}
+}
+protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	
+	HttpSession session = request.getSession();
 
-String oldUsername = (String) session.getAttribute("username");
+	String role = (String)session.getAttribute("role");
 
         String newUsername = request.getParameter("username");
-        String email = request.getParameter("email");
-        int phone= Integer.parseInt(request.getParameter("phone"));
-        String address = request.getParameter("address");
+        String newEmail = request.getParameter("email");
+        String PhoneString=request.getParameter("phone");
+        long newPhone=Long.parseLong(PhoneString);
+        String newAddress = request.getParameter("address");
 
         
         user updatedUser = new user();
         updatedUser.setName(newUsername);
-        updatedUser.setEmail(email);
-        updatedUser.setPhone(phone);
-        updatedUser.setAddress(address);
-        boolean success=false;
+        updatedUser.setEmail(newEmail);
+        updatedUser.setPhone(newPhone);
+        updatedUser.setAddress(newAddress);
 
+       
+
+       boolean success=false;
         try {
             UserDAO userDAO = new UserDAO();
-            success = userDAO.updatedUserProfile(oldUsername, updatedUser);
+            success = userDAO.updatedUserProfile(role, updatedUser);
 
             if (success) {
                 // Update session
                 session.setAttribute("username", newUsername);
-                session.setAttribute("email", email);
-                session.setAttribute("phone", phone);
-                session.setAttribute("address", address);
+                session.setAttribute("email", newEmail);
+                session.setAttribute("phone", newPhone);
+                session.setAttribute("address", newAddress);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
-                response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
+                response.sendRedirect(request.getContextPath()+"/pages/profile.jsp");
                 return;
             } else {
                 request.setAttribute("errorMessage", "Failed to update profile.");
@@ -81,6 +92,9 @@ String oldUsername = (String) session.getAttribute("username");
             request.setAttribute("errorMessage", "Database connection error.");
         }
 
-        request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+       
     }
+
 }
+
+

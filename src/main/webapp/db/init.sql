@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2025 at 05:36 AM
+-- Generation Time: Apr 21, 2025 at 03:19 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.1.25
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -97,7 +97,7 @@ CREATE TABLE `user` (
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `phone` varchar(30) NOT NULL,
+  `phone` bigint(20) NOT NULL,
   `address` varchar(30) NOT NULL,
   `role` varchar(30) NOT NULL,
   `registered` datetime(6) NOT NULL
