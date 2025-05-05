@@ -34,7 +34,7 @@
 }
 
 .add-to-cart:hover {
-    background-color: #f08f9f; /* Slightly deeper pink on hover */
+    background-color: #d63384; /* Slightly deeper pink on hover */
     transform: scale(1.1);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }

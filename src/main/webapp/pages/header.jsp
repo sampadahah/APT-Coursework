@@ -35,9 +35,6 @@
   transition: color 0.3s ease;
 }
 
-.header-icons i:hover {
-  color: #c12374; /* Slightly darker pink on hover */
-}
 
 .user-icon i {
   color: #d63384; /* Pink color matching your theme */
@@ -147,8 +144,8 @@
 }
 
 .auth-button:hover {
-  background-color: #c12374; /* Slightly darker pink on hover */
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  background-color: #c12374; /*Slightly darker pink on hover*/
+ box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 .auth-button i {
@@ -180,30 +177,29 @@
 	    	<c:choose>
 	    		<c:when test="${not empty sessionScope.userWithSession}">
 	      			<!-- User is logged in -->
-	     			<a href="profile.jsp">Edit Profile</a>
-	      			<a href="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">Logout</a>
-	      			<a href="#"><i class="fas fa-shopping-cart"></i></a>
-	      			<a href="#"><i class="fas fa-shopping-cart"></i></a>
+	      			<a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
+	      			<c:if test="${sessionScope.role eq 'Customer'}">
+  						<a href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
+					</c:if>
+				   <form action="${pageContext.request.contextPath}/logoutController" method="get" class="logout-form">
+  						<button type="submit" class="auth-button">
+    						<i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+  						</button>
+				   </form>
 	   	 		</c:when>
 			    <c:otherwise>
 			      <!-- User is NOT logged in -->
-			      <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
-			      <a href="#"><i class="fas fa-shopping-cart"></i></a>
 				  <form action="login.jsp" method="get" class="logout-form">
   					<button type="submit" class="auth-button">
    					 <i class="fas fa-sign-in-alt"></i> <span>Login</span>
   					</button>
 				  </form>
 
-				   <form action="register.jsp" method="get" class="logout-form">
+				  <form action="register.jsp" method="get" class="logout-form">
   						<button type="submit" class="auth-button">
     						<i class="fas fa-user-plus"></i> <span>Signup</span>
   						</button>
-				   </form>
-
-
-			      <!-- <a href="login.jsp">Login</a> / <a href="register.jsp">Signup</a> -->
-			      
+				  </form>
 			    </c:otherwise>
 	  		</c:choose>
 	    </div>
