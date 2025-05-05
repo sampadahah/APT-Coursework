@@ -14,11 +14,11 @@ import javax.servlet.http.HttpSession;
 import com.aptcoursework.controller.dao.CartItemDAO;
 import com.aptcoursework.model.CartItem;
 
-public class cartController extends HttpServlet{
+public class CartController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 
-	public cartController() {
+	public CartController() {
 		super();
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -85,7 +85,9 @@ public class cartController extends HttpServlet{
 		    orderSummary += "Product: " + name + ", Price: " + price + ", Quantity: " + quantity + "\n";
 		}
 
+	
 		session.removeAttribute("cartItems");
+		session.setAttribute("orderMessage", "Your order has been successfully placed!");
 		request.setAttribute("orderSummary", orderSummary);
 		request.getRequestDispatcher("orderConfirmation.jsp").forward(request, response);
 	
