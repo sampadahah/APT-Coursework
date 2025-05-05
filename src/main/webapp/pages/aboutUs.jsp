@@ -37,7 +37,7 @@
     </div>
     <div class="about-image">
       <img src="../img/homepage2.jpg" alt="Kasam product">
-    </div>
+    </div> 
   </div>
 
   <!-- Tagline -->
