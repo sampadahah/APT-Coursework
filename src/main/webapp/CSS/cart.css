@@ -88,10 +88,37 @@ footer {
     width: 100%;
     background-color: #f8d7da;
     text-align: center;
-    padding: 20px;
-    margin-top: 20px;
+    padding: 8px;          
+    margin-top: 10px;
+    font-size: 14px;        
+    color: #333;
+}
+.main-content-wrapper {
+    background-color: #ffffff;
+    padding: 20px 20px;
+    min-height: 80vh;
+    box-sizing: border-box;
+}
+.empty-cart {
+    background-color: #f3c2d4;
+    text-align: center;
+    padding: 50px;
+    color: #333;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 30px auto 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+.return-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #d63384;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
 @media screen and (max-width: 768px) {
   .checkout-container {
     flex-direction: column;

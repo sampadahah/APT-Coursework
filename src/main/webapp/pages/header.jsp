@@ -189,6 +189,11 @@
 	   	 		</c:when>
 			    <c:otherwise>
 			      <!-- User is NOT logged in -->
+<<<<<<< HEAD
+=======
+			      <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
+			      <a href="<%= request.getContextPath() %>/checkout.jsp"><i class="fas fa-shopping-cart"></i></a>
+>>>>>>> 6e2bb223bdd7bf79acf9e2fdb9c90cc49587eeed
 				  <form action="login.jsp" method="get" class="logout-form">
   					<button type="submit" class="auth-button">
    					 <i class="fas fa-sign-in-alt"></i> <span>Login</span>
