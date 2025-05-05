@@ -70,7 +70,7 @@
   border-radius: 8px;
   width: 400px;
   background-color: #ffe4ec;
-  margin-left:270px;
+  margin-left:110px;
 }
 
 .search-bar input {
@@ -166,7 +166,7 @@
 <body>
 	<header>
 	  <div class="header-top">
-	    <div class="brand-logo">kasam</div>
+	    <div class="brand-logo">KASAM</div>
 	
 	    <div class="search-bar">
 	      <input type="text" placeholder="Search for products">
@@ -211,8 +211,8 @@
 	  <nav class="nav-bar">
 	    <a href="home.jsp">Home</a>
 	    <a href="productCategory.jsp">Products</a>
-	    <a href="#">Blog</a>
-	    <a href="#">About Us</a>
+	    <a href="blog.jsp">Blog</a>
+	    <a href="aboutUs.jsp">About Us</a>
 	  </nav>
 	</header>
 		

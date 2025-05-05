@@ -1,0 +1,175 @@
+@charset "UTF-8";
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff0f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo {
+    width: 90px;
+    margin-right: 10px;
+}
+
+.header input {
+    flex: 1;
+    padding: 6px;
+    margin: 0 10px;
+}
+
+.header-links {
+    display: flex;
+    gap: 10px;
+}
+
+/* Navigation */
+.nav {
+    background-color: #f8c8dc;
+    text-align: center;
+    padding: 10px;
+}
+
+.nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+/* Blog Hero Section */
+.blog-hero {
+    background-image: url('../img/ourblogbackground.png');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 60px 20px;
+    margin: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    color: #fff;
+}
+
+.blog-hero h1 {
+    font-size: 70px;
+    font-weight: bold;
+    color: #cc0e74;
+    margin-bottom: 15px;
+}
+
+.blog-hero p {
+    font-size: 55px;
+    font-weight: normal;
+    color: #fff;
+    margin-bottom: 25px;
+}
+
+/* Kasam styled label instead of button */
+.kasam-label {
+    display: inline-block;
+    background-color: #cc0e74;
+    color: white;
+    padding: 6px 15px;
+    border-radius: 5px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Blog Posts Grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.post {
+    background-color: #fbd7e5;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.post img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.post p {
+    font-size: 14px;
+    color: #333;
+}
+
+.post:hover {
+    background-color: #cc0e74;
+}
+
+.post:hover p {
+    color: white;
+}
+
+/* Slogan */
+.slogan {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+    background: linear-gradient(to right, #fbd7e5, #fff0f5);
+    margin: 20px;
+    border-radius: 8px;
+}
+
+/* Footer */
+.footer {
+    background-color: #f8c8dc;
+    padding: 20px;
+    font-size: 14px;
+    clear: both;
+}
+
+.footer .column {
+    width: 23%;
+    float: left;
+    padding: 10px;
+}
+
+.footer input {
+    width: 80%;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.footer button {
+    padding: 5px 10px;
+    margin-top: 5px;
+    background-color: #cc0e74;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.footer-note {
+    clear: both;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+}
