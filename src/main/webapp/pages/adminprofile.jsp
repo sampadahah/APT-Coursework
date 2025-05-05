@@ -5,7 +5,7 @@
 	String role = (String) session.getAttribute("role");
 	String username = (String) session.getAttribute("username");
 	String email = (String) session.getAttribute("email");
-	String phone = String.valueOf(session.getAttribute("phone_no"));  // Use phone_no as set in servlet
+	String phone = String.valueOf(session.getAttribute("phone"));  // Use phone_no as set in servlet
 	String address = (String) session.getAttribute("address");
     
     String successMessage = (String) request.getAttribute("successMessage");

@@ -1,0 +1,134 @@
+@charset "UTF-8";
+	/* Container for the entire banner */
+	.promo-banner-container {
+	  width: 100%; /* Ensure it spans the full width of the screen */
+	  height: 100vh; /* Take up the full viewport height */
+	  margin: 0; /* Remove default margins */
+	  padding: 0; /* Remove padding to allow full use of space */
+	  display: flex; /* Flexbox layout for alignment */
+	  align-items: center; /* Vertically center content */
+	  justify-content: center; /* Horizontally center content */
+	  overflow: hidden; /* Optional: add space around the container */
+	  background-color: #ffe4ec
+	}
+	
+	/* Styles for the banner section */
+	.promo-banner {
+	  position: relative;
+	  display: flex;
+	  align-items: center;
+	  justify-content: space-between;
+	  
+	  width: 100%; /* Ensures the banner takes full width */
+	  height: 100%;
+	}
+	
+	/* Styles for the image inside the banner */
+	.promo-banner img {
+	  width: 60%;
+	  height: 60%;
+	  object-fit: cover; /* Ensures the image covers the area without stretching */
+	}
+	
+	/* Styles for the text inside the banner */
+	.promo-text {
+	  position: absolute;
+	  top: 50%; /* Vertically center the text */
+	  right: 20%; /* Position the text closer to the right corner */
+	  transform: translate(50%, -50%); /* Adjust horizontally to align properly */
+	  padding: 2rem;
+	  z-index: 2;
+	  text-align: center;
+	  max-width: 80%; /* Limit the width of the text block */
+	}
+	
+	/* Styles for the heading */
+	.promo-text h1 {
+	  font-size: 3rem;
+	  margin-bottom: 1rem; /* Space between heading and button */
+	  
+	}
+	
+	/* Styles for the button inside the promo text */
+	.promo-text button {
+	  padding: 0.75rem 1.5rem;
+	  border: 2px solid #000;
+	  background: transparent;
+	  font-size: 1rem;
+	  cursor: pointer;
+	}
+	
+	/* Hover effect for the button */
+	.promo-text button:hover {
+	  background-color: #ffffff;
+	}
+
+    .message {
+    font-size: 24px;
+      text-align: center;
+      padding: 2rem ;
+      color: #d63384;
+    }
+     .brands {
+     
+	  display: flex; /* Use flexbox to align items horizontally */
+	  justify-content: space-between; /* Ensure equal spacing between images */
+	  align-items: center; /* Vertically align images in the center */
+	  padding: 50px;
+	}
+
+	.brands img {
+	  max-width: 200px; /* Adjust the size of each image */
+	  height: auto; /* Maintain aspect ratio */
+	  object-fit: contain; /* Ensures the image is contained within the set dimensions */
+	}
+
+
+.best-sellers {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.best-sellers h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: #d63384;
+}
+.best-sellers .product-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.best-sellers .product {
+  width: 200px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.best-sellers .product:hover {
+  transform: scale(1.05);
+}
+
+.best-sellers .product img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.best-sellers .product p {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+
+	
+
+	
