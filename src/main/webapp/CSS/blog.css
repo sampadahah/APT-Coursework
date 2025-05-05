@@ -129,11 +129,21 @@ body {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-   .post:hover {
-  	 background-color: #cc0e74; /* darker pink */
-  	 color: white; /* optional: ensures text is readable on dark background */
+/*    .post:hover {
+  	 background-color: #cc0e74; darker pink
+  	 color: white; optional: ensures text is readable on dark background
 }
-	
+	 */
+	 
+    .post:hover {
+  		background-color: #cc0e74; /* Dark pink */
+  		color: white;
+	}
+
+	.post:hover p {
+  		color: white;
+	}
+	 
   
   .post img {
     width: 100%;
