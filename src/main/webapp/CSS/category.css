@@ -1,0 +1,147 @@
+@charset "UTF-8";
+
+body {
+    background-color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.main-content-wrapper {
+    background-color: #ffffff;
+    padding: 20px 20px;
+    min-height: 80vh;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.page.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h2, h3 {
+    color: #d63384;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 20px;
+}
+
+button.add-category-btn {
+    background-color: #d63384;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button.add-category-btn:hover {
+    background-color: #c1356d;
+}
+
+table.category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background-color: #fff;
+}
+
+table.category-table th,
+table.category-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+}
+
+table.category-table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+}
+
+table.category-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.form-section {
+    background-color: #f8f8f8;
+    padding: 20px 25px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-section h3 {
+    margin-top: 0;
+    color: #d63384;
+}
+
+.form-section label {
+    display: block;
+    margin: 12px 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-section input[type="text"],
+.form-section input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    background-color: #d63384;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.submit-btn:hover {
+    background-color: #c1356d;
+}
+
+
+.empty-cart {
+    background-color: #f3c2d4;
+    text-align: center;
+    padding: 50px;
+    color: #333;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 30px auto 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.return-btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #d63384;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+}
+
+@media screen and (max-width: 768px) {
+    .main-content-wrapper {
+        padding: 15px;
+    }
+
+    table.category-table {
+        font-size: 14px;
+    }
+
+    .form

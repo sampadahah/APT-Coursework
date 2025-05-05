@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.aptcoursework.controller.dao.UserDAO" %>
+<%@ page import="com.aptcoursework.controller.dao.ProductDAO" %>
+<%@ page import="java.util.*" %>
+<%
+    int totalUsers = 0;
+    int totalProducts = 0;
+
+    try {
+        UserDAO userDAO = new UserDAO();
+        ProductDAO productDAO = new ProductDAO();
+
+        totalUsers = userDAO.getAllUsers().size();
+        totalProducts = productDAO.getAllProducts().size();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +26,22 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
+  .card.no-hover:hover {
+  box-shadow: none; /* Remove hover shadow */
+  transform: none; /* Remove hover transform */
+  cursor: default; /* Remove pointer cursor */
+}
+  	.card {
+  border: 2px solid #f8c6d8; /* Soft pink border */
+  border-radius: 12px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+  	.card-body p {
+  	color: #6c757d; /* Bootstrap-like muted gray */
+ 	font-size: 16px;
+  	margin-top: 10px;
+}
+  	
   	.search-bar {
  	 display: flex;
  	 align-items: center;
@@ -37,11 +70,13 @@
   	color: #d63384;
   	font-weight: bold;
   	text-decoration: none;
+  	margin-left: 70px;
 	}
 
 	.nav-bar {
 	 background-color: ##fff; /* Optional: dark background for contrast */
   	 padding: 10px 20px;
+  	  justify-content: center;
 }
 	
     .card:hover {
@@ -49,53 +84,124 @@
       transform: translateY(-5px);
       transition: all 0.3s ease-in-out;
       cursor: pointer;
+      border-color: #d63384; /* Brighter pink on hover */
+ 	  box-shadow: 0 6px 12px rgba(214, 51, 132, 0.3);
     }
 
     .card:hover .custom-muted-uppercase a {
       color: #d63384;
       text-decoration: none;
       transition: color 0.3s ease;
+      
     }
 
-    .custom-muted-uppercase a {
-      font-size: 30px;
-      text-decoration: none;
-      color: #6c757d;
-    }
+.custom-muted-uppercase a {
+  font-size: 30px;
+  text-decoration: none;
+  color: #d63384;
+  font-weight: bold;
+}
 
-    .custom-muted-uppercase a:hover {
-      color: #d63384;
+.custom-muted-uppercase a:hover {
+  color: #c12374;
+}
     }
+    .logout-form {
+  display: inline;
+}
+
+.logout-button {
+  background-color: #d63384;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c12374;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.user-icon i {
+  color: #d63384; /* Pink color matching your theme */
+  font-size: 20px; /* Optional: adjust size */
+  transition: color 0.3s ease;
+}
+
+.user-icon i:hover {
+  color: #c12374; /* Slightly darker pink on hover */
+  
+  /* Remove hover effect for summary cards */
+}
+
+/* Summary cards container */
+.summary-row {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* individual summary card styling */
+.summary-card {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  height: 110px;
+}
+
+/* summary number text */
+.summary-count {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* update color of h2 inside summary cards */
+.summary-card h2 {
+  color: #d63384;
+
+
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-top">
-      <div class="brand-logo">KASAM</div>
-      <div class="search-bar">
-        <input type="text" placeholder="Search for products">
-        <button><i class="fas fa-search"></i></button>
-      </div>
-      <div class="header-icons">
-        <c:choose>
-          <c:when test="${not empty sessionScope.userWithSession}">
-            <a href="profile.jsp">Edit Profile</a>
-            <a href="${pageContext.request.contextPath}/logoutController">Logout</a>
-            <a href="#"><i class="far fa-heart"></i></a>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
-          </c:when>
-          <c:otherwise>
-         	<a href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
-         	<a href="profile.jsp"><i class="fas fa-user"></i></a>
-            <a href="login.jsp">Login</a> / <a href="register.jsp">Signup</a>
-          </c:otherwise>
-        </c:choose>
-      </div>
+<%@ include file="header.jsp" %>
+  
+<%-- <!-- Summary cards row -->
+<div class="custom-container" style="margin-top: 30px; display: flex; justify-content: space-around;">
+    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;">
+        <h2>TOTAL USERS</h2>
+        <p style="font-size: 24px; font-weight: bold;">${totalUsers}</p>
     </div>
-    <nav class="nav-bar">
-      <a href="#">WELCOME TO THE ADMIN PANEL</a>
-    </nav>
-  </header>
+
+    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;">
+        <h2>TOTAL PRODUCTS</h2>
+        <p style="font-size: 24px; font-weight: bold;">${totalProducts}</p>
+    </div>
+</div> --%>
+
+<!-- Summary cards row -->
+<div class="custom-container summary-row">
+    <div class="card no-hover summary-card">
+        <h2>TOTAL USERS</h2>
+        <p class="summary-count"><%= totalUsers %></p>
+    </div>
+
+    <div class="card no-hover summary-card">
+        <h2>TOTAL PRODUCTS</h2>
+        <p class="summary-count"><%= totalProducts %></p>
+    </div>
+</div>
+
+
 
   <!-- First row -->
   <div class="custom-container top-margin">
@@ -103,9 +209,12 @@
       <div class="card">
         <div class="card-body">
           <div class="container">
-            <img style="max-width: 120px;" src="../img/user.png" alt="user-icon">
+             <a href="viewUsers.jsp">
+        		<i class="fas fa-user fa-5x" style="color:#d63384;"></i>
+   			 </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="viewUsers.jsp">USERS</a></h1>
+          <h1 class="custom-muted-uppercase"><a href="viewUsers.jsp">USERS</a>
+          </h1>
           <p>Click to see all the users available in the system</p>
         </div>
       </div>
@@ -115,7 +224,9 @@
       <div class="card">
         <div class="card-body">
           <div class="container">
-            <img style="max-width: 120px;" src="../img/apps.png" alt="user-icon">
+          <a href="addCategory.jsp">
+            <i class="fas fa-layer-group fa-5x" style="color:#d63384;"></i>
+           </a>
           </div>
           <h1 class="custom-muted-uppercase"><a href="addCategory.jsp">ADD CATEGORY</a></h1>
           <p>Click to add a category of products into the system</p>
@@ -127,7 +238,9 @@
       <div class="card">
         <div class="card-body">
           <div class="container">
-            <img style="max-width: 120px;" src="../img/shopping-bag.png" alt="user-icon">
+          	<a href="add_product.jsp">
+            	<i class="fas fa-bag-shopping fa-5x" style="color:#d63384;"></i>
+            </a>
           </div>
           <h1 class="custom-muted-uppercase"><a href="add_product.jsp">ADD PRODUCTS</a></h1>
           <p>Click to add new products into the system</p>
@@ -136,7 +249,7 @@
     </div>
   </div>
 
-  <!-- Second row -->
+<!--   Second row -->
   <div class="custom-container">
     <div class="card-column">
       <div class="card">
@@ -162,56 +275,6 @@
       </div>
     </div>
   </div>
-
-  <footer class="footer">
-    <div class="footer-links">
-      <div class="footer-column">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#">Cleanser</a></li>
-          <li><a href="#">Toner</a></li>
-          <li><a href="#">Serum</a></li>
-          <li><a href="#">Moisturizer</a></li>
-          <li><a href="#">Sunscreen</a></li>
-          <li><a href="#">Lipcare</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="#">Blogs</a></li>
-          <li><a href="#">Features</a></li>
-          <li><a href="#">Rewards</a></li>
-          <li><a href="#">Newsletters</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Help</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Policies</a></li>
-          <li><a href="#">FAQs</a></li>
-        </ul>
-      </div>
-      <div class="footer-column-right">
-        <h3>KASAM, the promise to your skin.</h3>
-        <p>Sign up for expert skincare tips and previews!</p>
-        <div class="subscribe">
-          <input type="email" placeholder="Your email">
-          <button>Subscribe</button>
-        </div>
-        <div class="footer-icons">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <span><i class="fas fa-phone"></i> 061-891045</span>
-        </div>
-      </div>
-    </div>
-    <div class="copyright">
-      <p class="size">©2025 KASAM Skincare</p>
-    </div>
-  </footer>
+  <%@ include file="footer.jsp" %>
 </body>
 </html>
