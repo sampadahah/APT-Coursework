@@ -87,13 +87,30 @@ body {
 }
 
 /* Blog Posts Grid */
+.blog-header {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.blog-title {
+  font-size: 36px;
+  color: #cc0e74;
+  font-weight: bold;
+  font-family: 'Arial', sans-serif;
+  border-bottom: 4px solid #cc0e74;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+
 .blog-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 20px;
     padding: 20px;
-    max-width: 1000px;
-    margin: auto;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .post {
@@ -173,3 +190,4 @@ body {
     margin-top: 20px;
     font-size: 0.9em;
 }
+ 
