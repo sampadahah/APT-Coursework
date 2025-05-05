@@ -51,7 +51,7 @@ public class loginController extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("userWithSession", user);
                 
-                session.setAttribute("role", user.getRole());
+                session.setAttribute("user_id", user.getUserId());
                 session.setAttribute("username", user.getName());
                 session.setAttribute("email", user.getEmail());
                 session.setAttribute("phone_no", user.getPhone()); // must match "phone_no" used in JSP

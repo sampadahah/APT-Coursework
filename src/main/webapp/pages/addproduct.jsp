@@ -9,19 +9,10 @@
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/addproduct.css">
 </head>
 <body>
-
-<header>
-    <div class="header-top">
-        <div class="brand-logo">Kasam</div>
-    </div>
-
-    <nav class="nav-bar">
-        <a href="dashboard.jsp">Dashboard</a>
-        <a href="category.jsp">Category</a>
-        <a href="addproduct.jsp">Product</a>
-        <a href="${pageContext.request.contextPath}/logoutController" style="display:inline;">Logout</a>
-    </nav>
-</header>
+<%@ include file="header.jsp" %>
+<div class="back-link">
+    <a href="<%= request.getContextPath() %>/pages/adminDashboard.jsp">← Back to Admin Dashboard</a>
+</div>
 
 <main>
     <h2>Create New Product</h2>
@@ -78,6 +69,6 @@ function previewImage(event) {
     }
 }
 </script>
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>
