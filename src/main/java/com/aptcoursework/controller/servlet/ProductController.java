@@ -23,7 +23,7 @@ public class ProductController extends HttpServlet {
         p.setText3(req.getParameter("text3"));
         p.setPrice(Double.parseDouble(req.getParameter("price")));
         p.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-        p.setImagePath(req.getParameter("imagePath"));  // Can enhance with actual file upload
+        p.setImagePath(req.getParameter("imagePath"));  
 
         try {
             ProductDAO dao = new ProductDAO();

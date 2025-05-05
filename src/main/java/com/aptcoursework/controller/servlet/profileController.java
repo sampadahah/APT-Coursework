@@ -71,6 +71,8 @@ public class profileController extends HttpServlet {
             response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
             //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
 
+
+
         try {
             UserDAO userDAO = new UserDAO();
             success = userDAO.updatedUserProfile(oldUsername, updatedUser);
