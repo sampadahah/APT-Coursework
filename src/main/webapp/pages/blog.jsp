@@ -9,24 +9,24 @@
   <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/blog.css">
 </head>
 <body>
-
-  <!-- Header -->
-  <div class="header">
+<%@ include file="header.jsp" %>
+<!--   <!-- Header -->
+<!--   <div class="header">
     <img src="../img/logo.png"" alt="Kasam Logo" class="logo">
     <input type="text" placeholder="Search for products">
     <div class="header-links">
       <a href="#">Login / Sign Up</a>
       <span>🛒</span>
     </div>
-  </div>
+  </div> -->
 
   <!-- Navigation -->
-  <div class="nav">
+<!--   <div class="nav">
     <a href="home.jsp">Home</a>
     <a href="#">Products</a>
     <a href="blog.jsp">Blog</a>
     <a href="aboutUs.jsp">About Us</a>
-  </div>
+  </div> -->
 
   <!-- Blog Hero Section -->
   <div class="blog-hero">
@@ -79,9 +79,10 @@
   <div class="slogan">
     <p>Kasam: Your Glow, Your Story</p>
   </div>
+  
 
-  <!-- Footer -->
-  <div class="footer">
+<!--   <!-- Footer -->
+ <!--  <div class="footer">
     <div class="column">
       <h4>Shop</h4>
       <p>Cleanser<br>Serum<br>Moisturizer<br>Sunscreen</p>
@@ -102,7 +103,7 @@
       <p>📷 📘 🐦 ✉️ 📞 061-891045</p>
     </div>
     <p class="footer-note">© 2025 KASAM Skincare</p>
-  </div>
-
+  </div> --> 
+<%@ include file="footer.jsp" %>
 </body>
 </html>
