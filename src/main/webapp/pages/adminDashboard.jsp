@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="com.aptcoursework.controller.dao.UserDAO" %>
+<%@ page import="com.aptcoursework.controller.dao.ProductDAO" %>
+<%@ page import="java.util.*" %>
+<%
+    int totalUsers = 0;
+    int totalProducts = 0;
+
+    try {
+        UserDAO userDAO = new UserDAO();
+        ProductDAO productDAO = new ProductDAO();
+
+        totalUsers = userDAO.getAllUsers().size();
+        totalProducts = productDAO.getAllProducts().size();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -125,6 +142,34 @@
   
   /* Remove hover effect for summary cards */
 }
+
+/* Summary cards container */
+.summary-row {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* individual summary card styling */
+.summary-card {
+  flex: 1;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+  height: 110px;
+}
+
+/* summary number text */
+.summary-count {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* update color of h2 inside summary cards */
+.summary-card h2 {
+  color: #d63384;
+
+
   </style>
 </head>
 <body>
@@ -157,16 +202,29 @@
     </nav>
   </header>
   
-<!-- Summary cards row -->
+<%-- <!-- Summary cards row -->
 <div class="custom-container" style="margin-top: 30px; display: flex; justify-content: space-around;">
-    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;"> <!-- Reduced height -->
+    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;">
         <h2>TOTAL USERS</h2>
         <p style="font-size: 24px; font-weight: bold;">${totalUsers}</p>
     </div>
 
-    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;"> <!-- Reduced height -->
+    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;">
         <h2>TOTAL PRODUCTS</h2>
         <p style="font-size: 24px; font-weight: bold;">${totalProducts}</p>
+    </div>
+</div> --%>
+
+<!-- Summary cards row -->
+<div class="custom-container summary-row">
+    <div class="card no-hover summary-card">
+        <h2>TOTAL USERS</h2>
+        <p class="summary-count"><%= totalUsers %></p>
+    </div>
+
+    <div class="card no-hover summary-card">
+        <h2>TOTAL PRODUCTS</h2>
+        <p class="summary-count"><%= totalProducts %></p>
     </div>
 </div>
 
