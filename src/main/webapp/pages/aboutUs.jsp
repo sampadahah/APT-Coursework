@@ -36,10 +36,12 @@
       <div class="kasam-label">Kasam</div>
     </div>
     <div class="about-image">
-      <img src="../img/homepage2.jpg" alt="Kasam product">
+      <img src="../img/aboutuspage2.jpg" alt="Kasam product">
     </div> 
   </div>
-
+  
+  
+  
   <!-- Tagline -->
   <div class="tagline">
     <p>Today, Kasam is more than skincare. It’s about feeling good inside and out.</p>
@@ -64,7 +66,7 @@
         </p>
     </div>
     <div class="image">
-      <img src="../img/homepage3.png" alt="Kasam skincare">
+      <img src="../img/aboutuspage3.png" alt="Kasam skincare">
     </div>
   </div>
 
