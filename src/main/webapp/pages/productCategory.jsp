@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>Categories</title>
 	<%@ include file="header.jsp" %>
-    <title>Skincare Categories</title>
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/categories.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,21 +57,21 @@
 </head>
 <body>
     <h1 style="font-size:50px; color:#d63384">Our Categories</h1>
-    <p style="margin-top: 40px; font-size: 1.2em; color: #555;">Pure ingredients. Gentle skincare. A planet-friendly glow.</p>
+    <p style="margin-top: 40px; font-size: 1.2em; color: #555;">Safe ingredients. Gentle skincare.</p>
     <div class="category-container">
-        <a href="products.jsp?category=cleansers" class="category-name">
+        <a href="productCleanser.jsp" class="category-name">
             <h3>Cleansers</h3>
             <p>Remove dirt & makeup</p>
         </a>
-        <a href="products.jsp?category=moisturizers" class="category-name">
+        <a href="productMoisturizer.jsp" class="category-name">
             <h3>Moisturizers</h3>
             <p>Hydrate your skin</p>
         </a>
-        <a href="products.jsp?category=serums" class="category-name">
+        <a href="productSerum.jsp" class="category-name">
             <h3>Serums</h3>
             <p>Target specific concerns</p>
         </a>
-        <a href="products.jsp?category=sunscreens" class="category-name">
+        <a href="productSunscreen.jsp?category=sunscreens" class="category-name">
             <h3>Sunscreens</h3>
             <p>Protect from UV rays</p>
         </a>

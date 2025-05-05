@@ -110,4 +110,27 @@ public class ProductDAO {
             ps.executeUpdate();
         }
     }
+    
+ // Method to get total number of products
+    public int getTotalProducts() {
+        int totalProducts = 0;
+        String query = "SELECT COUNT(*) FROM product";
+        if (conn != null) {
+            try {
+                PreparedStatement ps = conn.prepareStatement(query);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    totalProducts = rs.getInt(1); // Get count from the result set
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return totalProducts;
+    }
+
+    
+    
+
+
 }
