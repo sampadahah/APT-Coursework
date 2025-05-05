@@ -3,6 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Product</title>
     <!-- Link to external CSS file -->
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/addproduct.css">
@@ -10,66 +11,73 @@
 <body>
 
 <header>
-  <div class="header-top">
-    <div class="brand-logo">kasam</div>
-  </div>
+    <div class="header-top">
+        <div class="brand-logo">Kasam</div>
+    </div>
 
-  <nav class="nav-bar">
-    <a href="dashboard.jsp">Dashboard</a>
-    <a href="#">Category</a>
-    <a href="#">Product</a>
-    <a href="${pageContext.request.contextPath}/logoutController" style="display:inline;">Logout</a>
-  </nav>
+    <nav class="nav-bar">
+        <a href="dashboard.jsp">Dashboard</a>
+        <a href="category.jsp">Category</a>
+        <a href="addproduct.jsp">Product</a>
+        <a href="${pageContext.request.contextPath}/logoutController" style="display:inline;">Logout</a>
+    </nav>
 </header>
 
-<h2>CREATE NEW PRODUCTS</h2>
+<main>
+    <h2>Create New Product</h2>
 
-<form action="ProductController" method="post" enctype="multipart/form-data">
-  <div class="container">
+    <!-- Add proper action and method attributes -->
+    <form id="productForm" action="<%= request.getContextPath() %>/ProductController" method="post" enctype="multipart/form-data">
+        <div class="form-container">
+            <!-- Left Side: Product Name, Description -->
+            <div class="form-left">
+                <label for="product_name">Product Name</label>
+                <input type="text" id="product_name" name="product_name" required>
 
-    <div class="form-left">
-      <label>Product Name</label>
-      <input type="text" name="name" required>
+                <label for="product_description">Product Description</label>
+                <textarea id="product_description" name="product_description" rows="5" required></textarea>
 
-      <label>Select Category</label>
-      <input type="text" name="category" required>
+                <label for="price">Price (in RS)</label>
+                <input type="number" id="price" name="price" step="0.01" required>
 
-      <label>Description</label>
-      <div class="desc-row">
-        <div>
-          <label>Description Title</label>
-          <input type="text" name="title1" placeholder="Title 1">
-          <input type="text" name="title2" placeholder="Title 2">
-          <input type="text" name="title3" placeholder="Title 3">
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" name="quantity" required>
+            </div>
+
+            <!-- Right Side: Image Upload -->
+            <div class="form-right">
+                <label for="imagePath">Product Image</label>
+                <div class="image-preview" id="imagePreview">[ Image Preview ]</div>
+                <input type="file" id="imagePath" name="imagePath" accept="image/*" onchange="previewImage(event)">
+
+                <div class="form-actions">
+                    <button type="button" onclick="document.getElementById('productForm').reset();">Clear</button>
+                    <button type="submit">Publish</button>
+                </div>
+            </div>
         </div>
-        <div>
-          <label>Description Text</label>
-          <input type="text" name="text1" placeholder="Text 1">
-          <input type="text" name="text2" placeholder="Text 2">
-          <input type="text" name="text3" placeholder="Text 3">
-        </div>
-      </div>
+    </form>
+</main>
 
-      <div class="form-actions">
-        <button type="reset">Clear</button>
-        <button type="submit">Publish</button>
-      </div>
-    </div>
+<!-- JavaScript for image preview -->
+<script>
+function previewImage(event) {
+    const preview = document.getElementById("imagePreview");
+    preview.innerHTML = ""; // Clear placeholder text
+    const file = event.target.files[0];
 
-    <div class="form-right">
-      <label>Product Image</label>
-      <div class="image-preview">[ Image Preview ]</div>
-      <input type="file" name="imagePath" accept="image/*">
-
-      <label>Price</label>
-      <input type="number" name="price" step="0.01" required>
-
-      <label>Quantity</label>
-      <input type="number" name="quantity" required>
-    </div>
-
-  </div>
-</form>
+    if (file) {
+        const img = document.createElement("img");
+        img.src = URL.createObjectURL(file);
+        img.style.maxWidth = "100%";
+        img.style.maxHeight = "150px";
+        img.onload = () => URL.revokeObjectURL(img.src);
+        preview.appendChild(img);
+    } else {
+        preview.innerHTML = "[ Image Preview ]";
+    }
+}
+</script>
 
 </body>
 </html>
