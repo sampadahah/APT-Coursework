@@ -2,10 +2,10 @@
 <%@ page import="java.sql.*, javax.sql.*" %>
 <%@ page session="true" %>
 <%
-	String role = (String) session.getAttribute("role");
+	
 	String username = (String) session.getAttribute("username");
 	String email = (String) session.getAttribute("email");
-	String phone = String.valueOf(session.getAttribute("phone"));  
+	String phone = String.valueOf(session.getAttribute("phone_no"));  
 	String address = (String) session.getAttribute("address");
     
     String successMessage = (String) request.getAttribute("successMessage");
@@ -23,7 +23,7 @@
 	<%@ include file="header.jsp" %>
 
 <div class="profile-box">
-    <h2>Welcome, <%= role %></h2>
+    <h2>Your Profile</h2>
     <form action="<%= request.getContextPath() %>/profileController" method="post">
     <input type="hidden" name="_method" value="PUT">
         Username:<br>

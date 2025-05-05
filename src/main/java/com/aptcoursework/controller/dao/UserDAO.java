@@ -108,9 +108,9 @@ public class UserDAO {
 
 	    return user;
 	}
-	public boolean updatedUserProfile(String role, user updatedUser) {
+	public boolean updatedUserProfile(int user_id, user updatedUser) {
 		boolean isUpdated = false;
-		String query = "UPDATE user SET username=?, email=?, phone=?, address=? WHERE role=?";
+		String query = "UPDATE user SET username=?, email=?, phone=?, address=? WHERE user_id=?";
 		
 		if(conn != null) {
 			try {
@@ -119,10 +119,9 @@ public class UserDAO {
 				ps.setString(2, updatedUser.getEmail());
                 ps.setLong(3, updatedUser.getPhone());
                 ps.setString(4, updatedUser.getAddress());
-                ps.setString(5, role);
-                System.out.println("Updating profile for: " + role);
-                System.out.println("New values: " + updatedUser.getName() + ", " + updatedUser.getEmail() +", " 
-                + updatedUser.getPhone() +", " + updatedUser.getAddress());
+                ps.setInt(5, user_id);
+                System.out.println("Updating profile for: " + user_id);
+                System.out.println("New values: " + updatedUser.getName() + ", " + updatedUser.getEmail() +", " + updatedUser.getPhone() +", " + updatedUser.getAddress());
 
                 if(ps.executeUpdate()>0) {
                 	isUpdated = true;
