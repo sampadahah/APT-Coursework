@@ -96,6 +96,7 @@
 	    <a href="dashboard.jsp">Dashboard</a>
 	    <a href="#">Category</a>
 	    <a href="#">Product</a>
+	    <a href="adminprofile.jsp">Edit Profile</a>
 	    <a href="${pageContext.request.contextPath}/logoutController" method="get" style="display:inline;">Logout</a> 
 	  </nav>
 	</header>
