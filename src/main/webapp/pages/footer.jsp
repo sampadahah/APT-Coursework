@@ -122,11 +122,9 @@
 	      <h4>Shop</h4>
 	      <ul>
 	        <li><a href="#">Cleanser</a></li>
-	        <li><a href="#">Toner</a></li>
 	        <li><a href="#">Serum</a></li>
 	        <li><a href="#">Moisturizer</a></li>
 	        <li><a href="#">Sunscreen</a></li>
-	        <li><a href="#">Lipcare</a></li>
 	      </ul>
 	    </div>
 	    <div class="footer-column">
