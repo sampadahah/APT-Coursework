@@ -11,10 +11,15 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/adminDashboard") // This maps the servlet to the URL /adminDashboard
-public class AdminDashboardServlet extends HttpServlet {
+@WebServlet("/adminDashboardController") // This maps the servlet to the URL /adminDashboard
+public class adminDashboardController extends HttpServlet{
+	
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             // Create DAO instances
             UserDAO userDAO = new UserDAO();

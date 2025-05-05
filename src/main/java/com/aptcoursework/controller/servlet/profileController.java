@@ -98,5 +98,8 @@ public class profileController extends HttpServlet {
 
         request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
     }
+	}
 }
-}
+
+
+

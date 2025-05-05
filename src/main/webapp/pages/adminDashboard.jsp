@@ -173,34 +173,7 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-top">
-      <div class="brand-logo">KASAM</div>
-      <div class="search-bar">
-        <input type="text" placeholder="Search for products">
-        <button><i class="fas fa-search"></i></button>
-      </div>
-      <div class="header-icons">
-        <c:choose>
-          <c:when test="${not empty sessionScope.userWithSession}">
-            <a href="profile.jsp">Edit Profile</a>
-            <a href="${pageContext.request.contextPath}/logoutController">Logout</a>
-            <a href="#"><i class="far fa-heart"></i></a>
-            <a href="#"><i class="fas fa-shopping-cart"></i></a>
-          </c:when>
-          <c:otherwise>
-         	<a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
-            <form action="login.jsp" method="get" class="logout-form">
-  			<button type="submit" class="logout-button">
-    			<i class="fas fa-sign-out-alt"></i> Logout
-          </c:otherwise>
-        </c:choose>
-      </div>
-    </div>
-    <nav class="nav-bar">
-      <a href="#">WELCOME TO THE ADMIN PANEL</a>
-    </nav>
-  </header>
+<%@ include file="header.jsp" %>
   
 <%-- <!-- Summary cards row -->
 <div class="custom-container" style="margin-top: 30px; display: flex; justify-content: space-around;">
@@ -302,57 +275,6 @@
       </div>
     </div>
   </div>
-
-
-  <footer class="footer">
-    <div class="footer-links">
-      <div class="footer-column">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#">Cleanser</a></li>
-          <li><a href="#">Toner</a></li>
-          <li><a href="#">Serum</a></li>
-          <li><a href="#">Moisturizer</a></li>
-          <li><a href="#">Sunscreen</a></li>
-          <li><a href="#">Lipcare</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="#">Blogs</a></li>
-          <li><a href="#">Features</a></li>
-          <li><a href="#">Rewards</a></li>
-          <li><a href="#">Newsletters</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Help</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Policies</a></li>
-          <li><a href="#">FAQs</a></li>
-        </ul>
-      </div>
-      <div class="footer-column-right">
-        <h3>KASAM, the promise to your skin.</h3>
-        <p>Sign up for expert skincare tips and previews!</p>
-        <div class="subscribe">
-          <input type="email" placeholder="Your email">
-          <button>Subscribe</button>
-        </div>
-        <div class="footer-icons">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <span><i class="fas fa-phone"></i> 061-891045</span>
-        </div>
-      </div>
-    </div>
-    <div class="copyright">
-      <p class="size">©2025 KASAM Skincare</p>
-    </div>
-  </footer>
+  <%@ include file="footer.jsp" %>
 </body>
 </html>
