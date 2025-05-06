@@ -173,7 +173,7 @@
   </style>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="adminheader.jsp" %>
   
 
 <!-- Summary cards row -->
@@ -226,11 +226,11 @@
       <div class="card">
         <div class="card-body">
           <div class="container">
-          	<a href="add_product.jsp">
+          	<a href="addproduct.jsp">
             	<i class="fas fa-bag-shopping fa-5x" style="color:#d63384;"></i>
             </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="add_product.jsp">ADD PRODUCTS</a></h1>
+          <h1 class="custom-muted-uppercase"><a href="addproduct.jsp">ADD PRODUCTS</a></h1>
           <p>Click to add new products into the system</p>
         </div>
       </div>

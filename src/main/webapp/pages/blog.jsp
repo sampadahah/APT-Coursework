@@ -17,7 +17,12 @@
     <p>Explore. Learn. Glow with us</p>
     <div class="kasam-label">Kasam</div>
   </div>
-
+  
+  <!-- Blog Header Section -->
+  <div class="blog-header">
+    <h2 class="blog-title">Glow Up Journal</h2>
+  </div>
+  
   <!-- Blog Posts Grid -->
   <div class="blog-grid">
     <div class="post">
@@ -58,11 +63,16 @@
     </div>
   </div>
 
-  <!-- Slogan -->
+  <!-- Slogan Section -->
   <div class="slogan">
     <p>Kasam: Your Glow, Your Story</p>
   </div>
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 8a733a2264178bb8ea154ff9a59dc8efaafaff63
 <%@ include file="footer.jsp" %>
 </body>
 </html>
+ 

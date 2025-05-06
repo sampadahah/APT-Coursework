@@ -5,10 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Home</title>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8a733a2264178bb8ea154ff9a59dc8efaafaff63
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/home.css">
 </head>
 <body>
+<<<<<<< HEAD
 	  <%@ include file="header.jsp" %>
+=======
+	<%@ include file="header.jsp" %>
+>>>>>>> 8a733a2264178bb8ea154ff9a59dc8efaafaff63
 	  <section class="promo-banner">
 	    <div class="promo-text">
 	      <h1 style="font-size:40px;">Introducing KASAM Skincare<br>Where Beauty Meets Wellness</h1>

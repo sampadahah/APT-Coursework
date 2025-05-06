@@ -14,7 +14,17 @@
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/cart.css">
 </head>
 <body>
+<<<<<<< HEAD
 <%@ include file="header.jsp" %>
+=======
+    <h1>Your Shopping Cart</h1>
+    
+    <!-- Check if the cart is empty -->
+    <c:if test="${empty cartItems}">
+        <p>Your cart is empty.</p>
+        <a href="${pageContext.request.contextPath}/pages/productCategory.jsp">Continue Shopping</a>
+    </c:if>
+>>>>>>> 8a733a2264178bb8ea154ff9a59dc8efaafaff63
 
 <div class="cart-container">
     <h2>Your Shopping Cart</h2>
