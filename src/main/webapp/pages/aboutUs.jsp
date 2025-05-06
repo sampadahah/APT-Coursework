@@ -9,24 +9,7 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
- <!-- <!--  Header
-  <div class="header">
-    <img src="../img/logo.png" alt="Logo" class="logo">
-    <input type="text" placeholder="Search for products" class="search">
-    <div class="header-right">
-      <a href="#">Login / Sign Up</a>
-      <span>🛒</span>
-    </div>
-  </div>
-
-  Navigation
-  <div class="nav">
-    <a href="home.jsp">Home</a>
-    <a href="#">Products</a>
-    <a href="blog.jsp">Blog</a>
-    <a href="aboutUs.jsp">About Us</a>
-  </div> --> 
-
+ 
   <!-- About Section -->
   <div class="about">
     <div class="about-text">
@@ -72,30 +55,6 @@
   <div class="slogan">
     <h2>Kasam: Glow with purpose</h2>
   </div>
-
-  <!-- Footer -->
-  <!-- <div class="footer">
-    <div class="column">
-      <h4>Shop</h4>
-      <p>Cleanser<br>Serum<br>Moisturizer<br>Sunscreen</p>
-    </div>
-    <div class="column">
-      <h4>Learn</h4>
-      <p>Blogs<br>Features<br>Rewards<br>Newsletters</p>
-    </div>
-    <div class="column">
-      <h4>Help</h4>
-      <p>Contact Us<br>Policies<br>FAQs</p>
-    </div>
-    <div class="column">
-      <h4>KASAM, the promise to your skin.</h4>
-      <p>Sign up for skincare tips:</p>
-      <input type="email" placeholder="your email">
-      <button>subscribe</button>
-      <p>📷 📘 🐦 ✉️ 📞 061-891045</p>
-    </div>
-    <p class="footer-note">© 2025 KASAM Skincare</p>
-  </div> -->
 	<%@ include file="footer.jsp" %>
 </body>
 </html>

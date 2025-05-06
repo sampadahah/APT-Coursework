@@ -132,6 +132,7 @@
 	  flex: 1;
 	  min-width: 150px;
 	  margin-bottom: 20px;
+	  font-family:  'Arial', sans-serif;
 	}
 	
 .footer-column h4 {
@@ -162,6 +163,7 @@
 .footer-column-right {
 	  flex: 2;
 	  min-width: 250px;
+	  font-family:  'Arial', sans-serif;
 	}
 	
 .footer-column-right h3 {
