@@ -50,23 +50,23 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 	
 	HttpSession session = request.getSession();
-
 	int userId = (int)session.getAttribute("user_id");
 
+		// Read updated form values from the request
         String newUsername = request.getParameter("username");
         String newEmail = request.getParameter("email");
         String PhoneString=request.getParameter("phone");
         long newPhone=Long.parseLong(PhoneString);
         String newAddress = request.getParameter("address");
 
-        
+        // Prepare user object for DB update
         user updatedUser = new user();
         updatedUser.setName(newUsername);
         updatedUser.setEmail(newEmail);
         updatedUser.setPhone(newPhone);
         updatedUser.setAddress(newAddress);
         
-        
+        // updating the database
         boolean success=false;
             
         try {

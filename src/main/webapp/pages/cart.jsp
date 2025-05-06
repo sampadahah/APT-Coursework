@@ -14,7 +14,7 @@
     <!-- Check if the cart is empty -->
     <c:if test="${empty cartItems}">
         <p>Your cart is empty.</p>
-        <a href="${pageContext.request.contextPath}/pages/Product.jsp">Continue Shopping</a>
+        <a href="${pageContext.request.contextPath}/pages/productCategory.jsp">Continue Shopping</a>
     </c:if>
 
     <!-- If cart has items, display them -->
