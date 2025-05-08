@@ -1,60 +1,49 @@
 package com.aptcoursework.controller.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.ResultSet;
+import com.aptcoursework.controller.database.DatabaseConnection;
+import com.aptcoursework.model.AddCategory;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.aptcoursework.controller.database.DatabaseConnection;
-import com.aptcoursework.model.Category;
-
 public class CategoryDAO {
     private Connection conn;
-    private PreparedStatement ps;
 
     public CategoryDAO() throws ClassNotFoundException, SQLException {
-        this.conn = DatabaseConnection.getConnection();
+        this.conn  = DatabaseConnection.getConnection(); 
     }
 
-    public boolean addCategory(Category category) {
-        boolean added = false;
-        String query = "INSERT INTO categories (name, total_products) VALUES (?, ?)";
-
-        try {
-            ps = conn.prepareStatement(query);
-            ps.setString(1, category.getName());
-            ps.setInt(2, category.getTotalProducts());
-
-            if (ps.executeUpdate() > 0) {
-                added = true;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return added;
+    public boolean addCategory(AddCategory category) throws SQLException {
+        String sql = "INSERT INTO category (category_id, name, description, total_products) VALUES (?, ?, ?, ?)";
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setInt(1, category.getCategoryId());
+        stmt.setString(2, category.getCategoryName());
+        stmt.setString(3, category.getDescription());
+        stmt.setInt(4, category.getTotalProducts());
+        return stmt.executeUpdate() > 0;
     }
 
-    public List<Category> getAllCategories() {
-        List<Category> categories = new ArrayList<>();
-        String query = "SELECT * FROM categories";
+    public List<AddCategory> getAllCategories() {
+        List<AddCategory> categories = new ArrayList<>();
+        String sql = "SELECT * FROM category";
 
-        try {
-            ps = conn.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
+        try (PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
-                Category category = new Category();
-                category.setId(rs.getInt("id"));
-                category.setName(rs.getString("name"));
+                AddCategory category = new AddCategory();
+                category.setCategoryId(rs.getInt("category_id"));
+                category.setCategoryName(rs.getString("name"));
+                category.setDescription(rs.getString("description"));
                 category.setTotalProducts(rs.getInt("total_products"));
-
                 categories.add(category);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return categories;
     }
 }
