@@ -65,12 +65,11 @@
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #eee;
+  background-color: #ffe4ec;
   padding: 5px 10px;
   border-radius: 8px;
   width: 400px;
-  background-color: #ffe4ec;
-  margin-left:110px;
+  margin-left: 110px; /* Adjust as needed */
 }
 
 .search-bar input {
@@ -86,6 +85,15 @@
   border: none;
   cursor: pointer;
   font-size: 18px;
+}
+
+.search-bar form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.search-bar i{
+display:flex:
 }
 
 .header-icons {
@@ -168,10 +176,12 @@
 	  <div class="header-top">
 	    <div class="brand-logo">KASAM</div>
 	
-	    <div class="search-bar">
-	      <input type="text" placeholder="Search for products">
-	      <button><i class="fas fa-search"></i></button>
-	    </div>
+<div class="search-bar">
+  <form action="search.jsp" method="get">
+      <input type="text" name="query" placeholder="Search for products" required>
+      <button type="submit"><i class="fas fa-search"></i></button>
+  </form>
+</div>
 	
 	    <div class="header-icons">
 	    	<c:choose>
@@ -189,11 +199,8 @@
 	   	 		</c:when>
 			    <c:otherwise>
 			      <!-- User is NOT logged in -->
-<<<<<<< HEAD
-=======
-			      <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
+	      <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
 			      <a href="<%= request.getContextPath() %>/checkout.jsp"><i class="fas fa-shopping-cart"></i></a>
->>>>>>> 6e2bb223bdd7bf79acf9e2fdb9c90cc49587eeed
 				  <form action="login.jsp" method="get" class="logout-form">
   					<button type="submit" class="auth-button">
    					 <i class="fas fa-sign-in-alt"></i> <span>Login</span>

@@ -13,17 +13,17 @@ public class ProductController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         Product p = new Product();
 
-        p.setName(req.getParameter("name"));
-        p.setCategory(req.getParameter("category"));
-        p.setTitle1(req.getParameter("title1"));
-        p.setTitle2(req.getParameter("title2"));
-        p.setTitle3(req.getParameter("title3"));
-        p.setText1(req.getParameter("text1"));
-        p.setText2(req.getParameter("text2"));
-        p.setText3(req.getParameter("text3"));
+        // Set the product details from the form
+        p.setProductName(req.getParameter("name"));  // updated field name
+		/*
+		 * p.setTitle1(req.getParameter("title1"));
+		 * p.setTitle2(req.getParameter("title2"));
+		 * p.setTitle3(req.getParameter("title3"));
+		 * p.setText1(req.getParameter("text1")); p.setText2(req.getParameter("text2"));
+		 * p.setText3(req.getParameter("text3"));
+		 */
         p.setPrice(Double.parseDouble(req.getParameter("price")));
-        p.setQuantity(Integer.parseInt(req.getParameter("quantity")));
-        p.setImagePath(req.getParameter("imagePath"));  
+        p.setStockQuantity(Integer.parseInt(req.getParameter("quantity")));  // updated field name
 
         try {
             ProductDAO dao = new ProductDAO();
