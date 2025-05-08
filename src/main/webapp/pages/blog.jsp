@@ -10,23 +10,6 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<!--   <!-- Header -->
-<!--   <div class="header">
-    <img src="../img/logo.png"" alt="Kasam Logo" class="logo">
-    <input type="text" placeholder="Search for products">
-    <div class="header-links">
-      <a href="#">Login / Sign Up</a>
-      <span>🛒</span>
-    </div>
-  </div> -->
-
-  <!-- Navigation -->
-<!--   <div class="nav">
-    <a href="home.jsp">Home</a>
-    <a href="#">Products</a>
-    <a href="blog.jsp">Blog</a>
-    <a href="aboutUs.jsp">About Us</a>
-  </div> -->
 
   <!-- Blog Hero Section -->
   <div class="blog-hero">
@@ -34,7 +17,12 @@
     <p>Explore. Learn. Glow with us</p>
     <div class="kasam-label">Kasam</div>
   </div>
-
+  
+  <!-- Blog Header Section -->
+  <div class="blog-header">
+    <h2 class="blog-title">Glow Up Journal</h2>
+  </div>
+  
   <!-- Blog Posts Grid -->
   <div class="blog-grid">
     <div class="post">
@@ -75,35 +63,16 @@
     </div>
   </div>
 
-  <!-- Slogan -->
+  <!-- Slogan Section -->
   <div class="slogan">
     <p>Kasam: Your Glow, Your Story</p>
   </div>
+<<<<<<< HEAD
   
+=======
 
-<!--   <!-- Footer -->
- <!--  <div class="footer">
-    <div class="column">
-      <h4>Shop</h4>
-      <p>Cleanser<br>Serum<br>Moisturizer<br>Sunscreen</p>
-    </div>
-    <div class="column">
-      <h4>Learn</h4>
-      <p>Blogs<br>Features<br>Rewards<br>Newsletters</p>
-    </div>
-    <div class="column">
-      <h4>Help</h4>
-      <p>Contact Us<br>Policies<br>FAQs</p>
-    </div>
-    <div class="column">
-      <h4>KASAM, the promise to your skin.</h4>
-      <p>Sign up for skincare tips:</p>
-      <input type="email" placeholder="your email">
-      <button>subscribe</button>
-      <p>📷 📘 🐦 ✉️ 📞 061-891045</p>
-    </div>
-    <p class="footer-note">© 2025 KASAM Skincare</p>
-  </div> --> 
+>>>>>>> 8a733a2264178bb8ea154ff9a59dc8efaafaff63
 <%@ include file="footer.jsp" %>
 </body>
 </html>
+ 

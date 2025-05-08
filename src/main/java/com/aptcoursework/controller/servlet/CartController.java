@@ -1,95 +1,54 @@
 package com.aptcoursework.controller.servlet;
 
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import com.aptcoursework.controller.dao.CartItemDAO;
+import com.aptcoursework.controller.dao.CartDAO;
 import com.aptcoursework.model.CartItem;
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.*;
+import java.io.IOException;
+import java.util.List;
 
-public class CartController extends HttpServlet{
-	private static final long serialVersionUID = 1L;
+@WebServlet("/cart")
+public class CartController extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
 
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-	public CartController() {
-		super();
-	}
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	 throws ServletException, IOException{
-		
-		HttpSession session = request.getSession();
-		Integer userId = (Integer) session.getAttribute("userId");
-		
-		CartItemDAO cartItemDAO = null;
-		try {
-			cartItemDAO = new CartItemDAO();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		List<CartItem> cartItems =  cartItemDAO.getCartItemByUserID(userId);
-		
-		if(cartItems == null || cartItems.isEmpty()) {
-			request.setAttribute("message", "No Product in the cart");
-			request.getRequestDispatcher("cart.jsp").forward(request, response);
-			return;
-		}
-	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		HttpSession session = request.getSession();
-		Integer userId = (Integer) session.getAttribute("userId");
-		
-		CartItemDAO cartItemDAO = null;
-		try {
-			cartItemDAO = new CartItemDAO();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		List<CartItem> cartItems = cartItemDAO.getCartItemByUserID(userId);
-		
-		if(cartItems == null || cartItems.isEmpty()) {
-			request.setAttribute("message", "No Product in the cart");
-			request.getRequestDispatcher("cart.jsp").forward(request, response);
-			return;
-		}
-		String address = request.getParameter("address");
-		String city = request.getParameter("city");
-		String streetno = request.getParameter("streetno");
-		String paymentMethod = request.getParameter("paymentMethod");
-		
-		String orderSummary = "Order placed sucessfully!\n";
-		orderSummary += "Shipping Address:" + address+ "," + city + " "  + streetno + "\n";
-		orderSummary += "Payment Method:" + paymentMethod + "\n";
-		orderSummary += "Cart Items: \n";
-		
-		for (CartItem item : cartItems) {
-		    String name = item.getName();
-		    double price = item.getPrice();
-		    int quantity = item.getQuantity();
-		    orderSummary += "Product: " + name + ", Price: " + price + ", Quantity: " + quantity + "\n";
-		}
+        try {
+            CartDAO dao = new CartDAO();
+            dao.addToCart(userId, productId, quantity);
+            response.sendRedirect("cart");
+        } catch (Exception e) {
+            throw new ServletException("Error adding item to cart", e);
+        }
+    }
 
-	
-		session.removeAttribute("cartItems");
-		session.setAttribute("orderMessage", "Your order has been successfully placed!");
-		request.setAttribute("orderSummary", orderSummary);
-		request.getRequestDispatcher("orderConfirmation.jsp").forward(request, response);
-	
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        Integer userId = (Integer) session.getAttribute("userId");
+        if (userId == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        try {
+            CartDAO dao = new CartDAO();
+            List<CartItem> cartItems = dao.getCartItems(userId);
+            if (cartItems == null || cartItems.isEmpty()) {
+                request.setAttribute("message", "Your cart is empty.");
+            } else {
+                request.setAttribute("cartItems", cartItems);
+            }
+            request.getRequestDispatcher("cart.jsp").forward(request, response);
+        } catch (Exception e) {
+            throw new ServletException("Error retrieving cart items", e);
+        }
+    }
 }

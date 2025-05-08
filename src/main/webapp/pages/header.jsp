@@ -59,7 +59,8 @@
 .brand-logo {
   font-weight: bold;
   font-size: 24px;
-  color: #d63384;
+  color: #d63384; 
+  font-family:'Arial', sans-serif;
 }
 
 .search-bar {
@@ -119,6 +120,7 @@ display:flex:
   padding: 10px 0;
   gap: 40px;
   background-color:#ffe4ec;
+  font-family: 'Arial', sans-serif;
 }
 
 .nav-bar a {
@@ -166,12 +168,11 @@ display:flex:
   font-size: 16px; /* Optional: adjust font size */
 }
 
-
-
 </style>
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+<<<<<<< HEAD
 	<header>
 	  <div class="header-top">
 	    <div class="brand-logo">KASAM</div>
@@ -206,24 +207,70 @@ display:flex:
    					 <i class="fas fa-sign-in-alt"></i> <span>Login</span>
   					</button>
 				  </form>
+=======
+  <header>
+    <div class="header-top">
+      <div class="brand-logo">KASAM</div>
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
 
-				  <form action="register.jsp" method="get" class="logout-form">
-  						<button type="submit" class="auth-button">
-    						<i class="fas fa-user-plus"></i> <span>Signup</span>
-  						</button>
-				  </form>
-			    </c:otherwise>
-	  		</c:choose>
-	    </div>
-	  </div>
-	
-	  <nav class="nav-bar">
-	    <a href="home.jsp">Home</a>
-	    <a href="productCategory.jsp">Products</a>
-	    <a href="blog.jsp">Blog</a>
-	    <a href="aboutUs.jsp">About Us</a>
-	  </nav>
-	</header>
-		
+      <div class="search-bar">
+        <input type="text" placeholder="Search for products">
+        <button><i class="fas fa-search"></i></button>
+      </div>
+
+      <div class="header-icons">
+        <c:choose>
+          <c:when test="${not empty sessionScope.userWithSession}">
+            <!-- when user is logged in Cart icon only for Customers -->
+            <c:if test="${sessionScope.userWithSession.role == 'Customer'}">
+              <a href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
+            </c:if>
+
+            <!-- Profile and Logout -->
+            <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
+
+            <form action="${pageContext.request.contextPath}/logoutController" method="get" class="logout-form">
+              <button type="submit" class="auth-button">
+                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+              </button>
+            </form>
+          </c:when>
+
+          <c:otherwise>
+            <!-- Login and Signup when user is NOT logged in -->
+            <form action="login.jsp" method="get" class="logout-form">
+              <button type="submit" class="auth-button">
+                <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+              </button>
+            </form>
+
+            <form action="register.jsp" method="get" class="logout-form">
+              <button type="submit" class="auth-button">
+                <i class="fas fa-user-plus"></i> <span>Signup</span>
+              </button>
+            </form>
+          </c:otherwise>
+        </c:choose>
+      </div>
+    </div>
+
+    <!-- Navigation Bar for Customer and Admin separate -->
+    <nav class="nav-bar">
+       <c:choose>
+    <c:when test="${not empty sessionScope.userWithSession and sessionScope.userWithSession.role == 'Admin'}">
+      <a href="dashboard.jsp">Dashboard</a>
+      <a href="#">Category</a>
+      <a href="#">Product</a>
+    </c:when>
+    <c:otherwise>
+      <!-- Shown to Customer or not logged in -->
+      <a href="home.jsp">Home</a>
+      <a href="productCategory.jsp">Products</a>
+      <a href="blog.jsp">Blog</a>
+      <a href="aboutUs.jsp">About Us</a>
+    </c:otherwise>
+  </c:choose>
+    </nav>
+  </header>
 </body>
 </html>

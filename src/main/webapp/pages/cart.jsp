@@ -1,82 +1,77 @@
-<%@ page language="java" import="java.util.List, java.util.Map" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.aptcoursework.model.CartItem" %>
+<%
+    List<CartItem> cartItems = (List<CartItem>) request.getAttribute("cartItems");
+    String message = (String) request.getAttribute("message");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Checkout</title>
+    <title>Your Cart</title>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/cart.css">
 </head>
 <body>
-    <%@ include file="header.jsp" %>
-    <div class="main-content-wrapper">
-        <%
-            List<Map<String, Object>> cartItems = (List<Map<String, Object>>) session.getAttribute("cartItems");
-            String orderMessage = (String) session.getAttribute("orderMessage");
-            if (orderMessage != null) {
-        %>
-            <div class="order-success-message">
-                <h2><%= orderMessage %></h2>
-            </div>
-            <%
-                session.removeAttribute("orderMessage");
-            }
-        %>
+<<<<<<< HEAD
+<%@ include file="header.jsp" %>
+=======
+    <h1>Your Shopping Cart</h1>
+    
+    <!-- Check if the cart is empty -->
+    <c:if test="${empty cartItems}">
+        <p>Your cart is empty.</p>
+        <a href="${pageContext.request.contextPath}/pages/productCategory.jsp">Continue Shopping</a>
+    </c:if>
+>>>>>>> 8a733a2264178bb8ea154ff9a59dc8efaafaff63
 
-        <% if (cartItems == null || cartItems.isEmpty()) { %>
-            <div class="empty-cart">
-                <h2>No Products in the cart.</h2>
-                <p><a href="productCategory.jsp" class="return-btn">Return to Shop</a></p>
-            </div>
-        <% } else { %>
-            <div class="checkout-container">
-                <div class="user-info">
-                    <h3>Shipping Address</h3>
-                    <form action="<%= request.getContextPath() %>/placeOrder" method="post">
-                        <label>Address: <input type="text" name="address" required></label><br>
-                        <label>Town/City: <input type="text" name="towncity" required></label><br>
-                        <label>Street No: <input type="text" name="streetnumber" required></label><br><br>
-                        <h4>Payment Method</h4>
-                        <label><input type="radio" name="paymentMethod" value="COD" checked> Cash on Delivery</label><br>
-                        <label><input type="radio" name="paymentMethod" value="Banking"> Banking</label><br><br>
-                        <button type="submit" class="checkout-btn">Place Order</button>
-                    </form>
-                </div>
+<div class="cart-container">
+    <h2>Your Shopping Cart</h2>
 
-                <div class="order-summary">
-                    <h3>Order Summary</h3>
-                    <table>
-                        <tr>
-                            <th>Image</th><th>Product</th><th>Price</th><th>Quantity</th><th>Total</th>
-                        </tr>
-                        <%
-                            double subtotal = 0.0;
-                            for (Map<String, Object> item : cartItems) {
-                                String name = (String) item.get("name");
-                                double price = (Double) item.get("price");
-                                int quantity = (Integer) item.get("quantity");
-                                double itemTotal = price * quantity;
-                                subtotal += itemTotal;
-                                String imagePath = (String) item.get("image");
-                        %>
-                        <tr>
-                            <td><img src="<%= imagePath %>" alt="Product Image" class="product-img"></td>
-                            <td><%= name %></td><td><%= price %></td><td><%= quantity %></td><td><%= itemTotal %></td>
-                        </tr>
-                        <% } %>
-                    </table>
-                    <%
-                        double deliveryCharge = 150.0;
-                        double total = subtotal + deliveryCharge;
-                    %>
-                    <div class="order-summary-totals">
-                        <p>Subtotal: <%= subtotal %></p>
-                        <p>Delivery Charge: <%= deliveryCharge %></p>
-                        <p><strong>Total: <%= total %></strong></p>
-                    </div>
-                </div>
-            </div>
-        <% } %>
-    </div>
-    <%@ include file="footer.jsp" %>
+    <% if (message != null) { %>
+        <p class="empty-cart-message"><%= message %></p>
+    <% } else if (cartItems != null && !cartItems.isEmpty()) { %>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price (Rs)</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% double grandTotal = 0; %>
+                <% for (CartItem item : cartItems) {
+                    double total = item.getPrice() * item.getQuantity();
+                    grandTotal += total;
+                %>
+                <tr>
+                    <td><%= item.getProductName() %></td>
+                    <td><%= item.getProductDescription() %></td>
+                    <td><%= item.getPrice() %></td>
+                    <td><%= item.getQuantity() %></td>
+                    <td><%= total %></td>
+                </tr>
+                <% } %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-right"><strong>Grand Total:</strong></td>
+                    <td><strong>Rs. <%= grandTotal %></strong></td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="checkout-btn">
+            <form action="checkout.jsp" method="get">
+                <button type="submit">Proceed to Checkout</button>
+            </form>
+        </div>
+    <% } %>
+</div>
+
+<%@ include file="footer.jsp" %>
 </body>
 </html>

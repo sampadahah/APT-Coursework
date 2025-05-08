@@ -1,57 +1,59 @@
 package com.aptcoursework.model;
 
 public class CartItem {
-	private int id;
-	private String name;
-	private double price;
-	private int quantity;
-	private String image;
+    private int productId;
+    private String productName;
+    private String productDescription;
+    private double price;
+    private int quantity;
 
-	// Constructor
-	public CartItem() {
-	}
-	
-	public CartItem(int id, String name, double price, int quantity) {
-		this.id= id;
-		this.name = name;
-		this.price = price;
-		this.quantity = quantity;
-	}
-	public int getId() {
-		return id;
-	}
+    public CartItem() {}
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public CartItem(int productId, String productName, String productDescription, double price, int quantity) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public int getProductId() {
+        return productId;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
-	public double getPrice() {
-		return price;
-	}
+    public String getProductName() {
+        return productName;
+    }
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
 
-	public int getQuantity() {
-		return quantity;
-	}
+    public String getProductDescription() {
+        return productDescription;
+    }
 
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

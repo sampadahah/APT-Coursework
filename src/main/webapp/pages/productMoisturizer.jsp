@@ -50,7 +50,7 @@
             <h3>Kleida Skin Lightening Moisturizer</h3>
             <p>Evens skin tone and hydrates deeply.</p>
             <p class="price">Rs. 1100</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>
@@ -59,7 +59,7 @@
             <h3>CeraVe Daily Moisturizing Lotion</h3>
             <p>Restores skin barrier and locks in moisture.</p>
             <p class="price">Rs. 1900</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>
@@ -68,7 +68,7 @@
             <h3>Aqualogica Illuminate Oil-Free Moisturizer</h3>
             <p>Hydrates skin without clogging pores.</p>
             <p class="price">Rs. 650</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>

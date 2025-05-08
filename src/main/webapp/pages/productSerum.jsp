@@ -50,7 +50,7 @@
             <h3>Plum Mandarin + Vitamin C Serum</h3>
             <p>Brightens skin and fades dark spots.</p>
             <p class="price">Rs. 1200</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>
@@ -59,7 +59,7 @@
             <h3>Minimalist Salicylic Acid Serum</h3>
             <p>Clears pores and reduces acne.</p>
             <p class="price">Rs. 890</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>
@@ -68,7 +68,7 @@
             <h3>DermaCo 2% Kojic Acid Face Serum</h3>
             <p>Reduces pigmentation and evens tone.</p>
             <p class="price">Rs. 700</p>
-             <button class="add-to-cart" title="Add to Cart">
+             <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>

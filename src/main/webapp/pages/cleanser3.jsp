@@ -1,19 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-    // Initialize quantity to 1 if not already set
-    Integer quantity = (Integer) request.getAttribute("quantity");
-    if (quantity == null) quantity = 1;
+    String quantityParam = request.getParameter("quantity");
+    Integer quantity = 1;
+    if (quantityParam != null) {
+        try {
+            quantity = Integer.parseInt(quantityParam);
+        } catch (NumberFormatException e) {
+            quantity = 1;
+        }
+    }
 
-    // Get action from the form (increase or decrease)
     String action = request.getParameter("action");
     if ("increase".equals(action)) {
-        quantity+=1;
+        quantity++;
     } else if ("decrease".equals(action) && quantity > 1) {
         quantity--;
     }
-    
-    // Set the updated quantity in the request for next page load
+
     request.setAttribute("quantity", quantity);
 %>
 <!DOCTYPE html>
@@ -32,17 +36,13 @@
                 <h1>Dot&Key Vitamin Gel Cleanser</h1>
                     <p>Brightens complexion and gently exfoliates with Vitamin C and E, while cleansing out dirt to reveal refreshed, glowing skin.</p>
                 <p class="price">Rs. 750</p>
-                <form action="cleanser3.jsp" method="GET">
-                    <div class="quantity-selector">
-                        <button type="submit" name="action" value="decrease">–</button>
-                        <input 
-                            type="text" 
-                            name="quantity" 
-                            value="<%= quantity %>" 
-                            readonly 
-                        />
-                        <button type="submit" name="action" value="increase">+</button>
-                    </div>
+               	<form action="cleanser3.jsp" method="GET">
+                   <div class="quantity-selector">
+				    <button type="submit" name="action" value="decrease" class="quantity-btn">–</button>
+				    <input type="text" name="quantityDisplay" value="<%= quantity %>" readonly />
+				    <input type="hidden" name="quantity" value="<%= quantity %>" />
+				    <button type="submit" name="action" value="increase" class="quantity-btn">+</button>
+				</div>
                     <button class="add-to-cart">Add to Cart</button>
                 </form>
             </div>

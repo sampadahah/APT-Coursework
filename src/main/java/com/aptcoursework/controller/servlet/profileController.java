@@ -18,7 +18,7 @@ import com.aptcoursework.model.user;
  */
 @WebServlet("/profileController")
 public class profileController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,64 +28,60 @@ public class profileController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+/**
+ * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+ */
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+// TODO Auto-generated method stub
+response.getWriter().append("Served at: ").append(request.getContextPath());
+}
+
+/**
+ * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+ */
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+// TODO Auto-generated method stub
+	String methodOverride = request.getParameter("_method");
+	if("PUT".equalsIgnoreCase(methodOverride)) {
+		doPut(request, response);
+		return;
 	}
+}
+protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	
+	HttpSession session = request.getSession();
+	int userId = (int)session.getAttribute("user_id");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		
-		String oldUsername = (String) session.getAttribute("username");
-		
+		// Read updated form values from the request
         String newUsername = request.getParameter("username");
-        String email = request.getParameter("email");
-        String phoneString=request.getParameter("phone");
-        long phone=Long.parseLong(phoneString);
-        String address = request.getParameter("address");
+        String newEmail = request.getParameter("email");
+        String PhoneString=request.getParameter("phone");
+        long newPhone=Long.parseLong(PhoneString);
+        String newAddress = request.getParameter("address");
 
-        
+        // Prepare user object for DB update
         user updatedUser = new user();
         updatedUser.setName(newUsername);
-        updatedUser.setEmail(email);
-        updatedUser.setPhone(phone);
-        updatedUser.setAddress(address);
-
+        updatedUser.setEmail(newEmail);
+        updatedUser.setPhone(newPhone);
+        updatedUser.setAddress(newAddress);
         
-        
+        // updating the database
         boolean success=false;
-        if (success) {
-        	System.out.println("Profile updated successfully for: " + newUsername);
-            session.setAttribute("username", newUsername);
-            session.setAttribute("email", email);
-            session.setAttribute("phone", phone);
-            session.setAttribute("address", address);
-            request.setAttribute("successMessage", "Profile updated successfully.");
-            response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
-            //request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
-
-
-
+            
         try {
             UserDAO userDAO = new UserDAO();
-            success = userDAO.updatedUserProfile(oldUsername, updatedUser);
+            success = userDAO.updatedUserProfile(userId, updatedUser);
 
             if (success) {
                 // Update session
                 session.setAttribute("username", newUsername);
-                session.setAttribute("email", email);
-                session.setAttribute("phone", phone);
-                session.setAttribute("address", address);
+                session.setAttribute("email", newEmail);
+                session.setAttribute("phone_no", newPhone);
+                session.setAttribute("address", newAddress);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
-                response.sendRedirect(request.getContextPath()+"/pages/home.jsp");
+                request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
                 return;
             } else {
                 request.setAttribute("errorMessage", "Failed to update profile.");
@@ -96,10 +92,7 @@ public class profileController extends HttpServlet {
             request.setAttribute("errorMessage", "Database connection error.");
         }
 
-        request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+       
     }
-	}
+
 }
-
-
-

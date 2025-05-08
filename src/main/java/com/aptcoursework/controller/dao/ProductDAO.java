@@ -93,7 +93,9 @@ public class ProductDAO {
         this.conn = DatabaseConnection.getConnection();
     }
 
+    // Method to add a product
     public void addProduct(Product p) throws Exception {
+<<<<<<< HEAD
         String sql = "INSERT INTO product (product_name, product_description, stock_quantity, price) " +
                      "VALUES (?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -101,11 +103,23 @@ public class ProductDAO {
             ps.setString(2, p.getProductDescription());
             ps.setInt(3, p.getStockQuantity());
             ps.setDouble(4, p.getPrice());
+=======
+        String sql = "INSERT INTO product (product_name, product_description, stock_quantity, price, imagePath) " +
+                     "VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, p.getName());               
+            ps.setString(2, p.getDescription());        
+            ps.setInt(3, p.getStockQuantity());         
+            ps.setDouble(4, p.getPrice());              
+            ps.setString(5, p.getImagePath());          
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
             ps.executeUpdate();
         }
     }
 
+    // Method to update a product
     public void updateProduct(Product p) throws Exception {
+<<<<<<< HEAD
         String sql = "UPDATE product SET product_name=?, product_description=?, stock_quantity=?, price=? WHERE product_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getProductName());
@@ -113,28 +127,53 @@ public class ProductDAO {
             ps.setInt(3, p.getStockQuantity());
             ps.setDouble(4, p.getPrice());
             ps.setInt(5, p.getProductId());
+=======
+        String sql = "UPDATE product SET product_name=?, product_description=?, stock_quantity=?, price=?, imagePath=? WHERE id=?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, p.getName());               
+            ps.setString(2, p.getDescription());        
+            ps.setInt(3, p.getStockQuantity());        
+            ps.setDouble(4, p.getPrice());              
+            ps.setString(5, p.getImagePath());          
+            ps.setInt(6, p.getId());                   
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
             ps.executeUpdate();
         }
     }
 
+    // Method to get a product by its ID
     public Product getProductById(int id) throws Exception {
+<<<<<<< HEAD
         String sql = "SELECT * FROM product WHERE product_id=?";
+=======
+        String sql = "SELECT * FROM product WHERE id=?";
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 Product p = new Product();
+<<<<<<< HEAD
                 p.setProductId(rs.getInt("product_id"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductDescription(rs.getString("product_description"));
                 p.setStockQuantity(rs.getInt("stock_quantity"));
                 p.setPrice(rs.getDouble("price"));
+=======
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("product_name"));        
+                p.setDescription(rs.getString("product_description"));
+                p.setStockQuantity(rs.getInt("stock_quantity"));
+                p.setPrice(rs.getDouble("price"));             
+                p.setImagePath(rs.getString("imagePath"));      
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
                 return p;
             }
         }
         return null;
     }
 
+    // Method to get all products
     public List<Product> getAllProducts() throws Exception {
         List<Product> list = new ArrayList<>();
         String sql = "SELECT * FROM product";
@@ -142,31 +181,48 @@ public class ProductDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
+<<<<<<< HEAD
                 p.setProductId(rs.getInt("product_id"));
                 p.setProductName(rs.getString("product_name"));
                 p.setProductDescription(rs.getString("product_description"));
                 p.setStockQuantity(rs.getInt("stock_quantity"));
                 p.setPrice(rs.getDouble("price"));
+=======
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("product_name"));        
+                p.setDescription(rs.getString("product_description"));
+                p.setStockQuantity(rs.getInt("stock_quantity"));
+                p.setPrice(rs.getDouble("price"));             
+                p.setImagePath(rs.getString("imagePath"));     
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
                 list.add(p);
             }
         }
         return list;
     }
 
+    // Method to delete a product by ID
     public void deleteProduct(int id) throws Exception {
+<<<<<<< HEAD
         String sql = "DELETE FROM product WHERE product_id=?";
+=======
+        String sql = "DELETE FROM product WHERE id=?";
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         }
     }
 
+<<<<<<< HEAD
+=======
+    // Method to get total number of products
+>>>>>>> eb8bfd08a995a002e6e5af96d7d93be6dd9028ad
     public int getTotalProducts() {
         int totalProducts = 0;
         String query = "SELECT COUNT(*) FROM product";
         if (conn != null) {
-            try {
-                PreparedStatement ps = conn.prepareStatement(query);
+            try (PreparedStatement ps = conn.prepareStatement(query)) {
                 ResultSet rs = ps.executeQuery();
                 if (rs.next()) {
                     totalProducts = rs.getInt(1);

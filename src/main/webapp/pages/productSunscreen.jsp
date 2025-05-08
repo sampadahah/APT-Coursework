@@ -50,7 +50,7 @@
             <h3>Fix Derma Shadow SPF 50+ Cream</h3>
             <p>Broad spectrum protection with a matte finish.</p>
             <p class="price">Rs. 980</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>
@@ -59,7 +59,7 @@
             <h3>Dot&Key Blueberry SPF 50+ Sunscreen</h3>
             <p>Lightweight, hydrating, and antioxidant-rich.</p>
             <p class="price">Rs. 740</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>
@@ -68,7 +68,7 @@
             <h3>Raystop SPF 50+++ Sunscreen Lotion</h3>
             <p>Strong UVA/UVB defense with skin brightening.</p>
             <p class="price">Rs. 1300</p>
-            <button class="add-to-cart" title="Add to Cart">
+            <button type="submit" class="add-to-cart" title="Add to Cart">
     			<i class="fas fa-cart-plus"></i>
 			</button>
         </div>
