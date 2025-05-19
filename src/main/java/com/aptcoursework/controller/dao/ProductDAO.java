@@ -31,7 +31,7 @@ public class ProductDAO {
 
     // Method to update a product
     public void updateProduct(Product p) throws Exception {
-        String sql = "UPDATE product SET product_name=?, product_description=?, stock_quantity=?, price=?, imagePath=? WHERE id=?";
+        String sql = "UPDATE product SET product_name=?, product_description=?, stock_quantity=?, price=?, imagepath=? WHERE product_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, p.getName());               
             ps.setString(2, p.getDescription());        
@@ -84,7 +84,7 @@ public class ProductDAO {
 
     // Method to delete a product by ID
     public void deleteProduct(int id) throws Exception {
-        String sql = "DELETE FROM product WHERE id=?";
+        String sql = "DELETE FROM product WHERE product_id=?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setInt(1, id);
             ps.executeUpdate();
@@ -107,84 +107,4 @@ public class ProductDAO {
         }
         return totalProducts;
     }
-    
-    public List<Product> getCleansers() throws SQLException {
-        List<Product> cleansers = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, "%Cleanser%");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getInt("product_id"));
-                p.setName(rs.getString("product_name"));
-                p.setDescription(rs.getString("product_description"));
-                p.setPrice(rs.getDouble("price"));
-                p.setImagePath(rs.getString("imagepath"));
-                cleansers.add(p);
-            }
-        }
-        return cleansers;
-    }
-
-    public List<Product> getMoisturizers() throws SQLException {
-        List<Product> moisturizers = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
-        try (PreparedStatement ps= conn.prepareStatement(sql)) {
-            ps.setString(1, "%Moist%");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getInt("product_id"));
-                p.setName(rs.getString("product_name"));
-                p.setDescription(rs.getString("product_description"));
-                p.setPrice(rs.getDouble("price"));
-                p.setImagePath(rs.getString("imagepath"));
-                moisturizers.add(p);
-            }
-        }
-        return moisturizers;
-    }
-    
-    public List<Product> getSerum() throws SQLException {
-        List<Product> serum= new ArrayList<>();
-        String sql= "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, "%Serum%");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getInt("product_id"));
-                p.setName(rs.getString("product_name"));
-                p.setDescription(rs.getString("product_description"));
-                p.setPrice(rs.getDouble("price"));
-                p.setImagePath(rs.getString("imagepath"));
-                serum.add(p);
-            }
-        }
-        return serum;
-    }
-    public List<Product> getSunscreen() throws SQLException {
-        List<Product> sunscreen= new ArrayList<>();
-        String sql= "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setString(1, "%SPF%");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getInt("product_id"));
-                p.setName(rs.getString("product_name"));
-                p.setDescription(rs.getString("product_description"));
-                p.setPrice(rs.getDouble("price"));
-                p.setImagePath(rs.getString("imagepath"));
-                sunscreen.add(p);
-            }
-        }
-        return sunscreen;
-    }
-
 }

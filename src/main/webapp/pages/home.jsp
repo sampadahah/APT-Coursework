@@ -9,7 +9,11 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/home.css">
 </head>
 <body>
+
 	  <%@ include file="header.jsp" %>
+
+	  <%@ include file="header.jsp" %>
+
 	  <section class="promo-banner">
 	    <div class="promo-text">
 	      <h1 style="font-size:40px;">Introducing KASAM Skincare<br>Where Beauty Meets Wellness</h1>

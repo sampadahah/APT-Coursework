@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.aptcoursework.controller.dao.ProductDAO;
+import com.aptcoursework.controller.dao.UserProductDAO;
 import com.aptcoursework.model.Product;
 
 @WebServlet("/loadSunscreen")
@@ -18,9 +18,9 @@ public class loadSunscreenServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductDAO dao;
+        UserProductDAO dao;
         try {
-            dao = new ProductDAO();
+            dao = new UserProductDAO();
             List<Product> sunscreenList = dao.getSunscreen(); 
 
           
