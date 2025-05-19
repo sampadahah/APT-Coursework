@@ -65,7 +65,7 @@
   	margin-top: 40px;
 	}
 	
-	.nav-bar a {
+/* 	.nav-bar a {
   	font-size: 24px;
   	color: #d63384;
   	font-weight: bold;
@@ -77,7 +77,7 @@
 	 background-color: ##fff; /* Optional: dark background for contrast */
   	 padding: 10px 20px;
   	  justify-content: center;
-}
+} */
 	
     .card:hover {
       box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -173,20 +173,8 @@
   </style>
 </head>
 <body>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="header.jsp" %>
   
-<%-- <!-- Summary cards row -->
-<div class="custom-container" style="margin-top: 30px; display: flex; justify-content: space-around;">
-    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;">
-        <h2>TOTAL USERS</h2>
-        <p style="font-size: 24px; font-weight: bold;">${totalUsers}</p>
-    </div>
-
-    <div class="card no-hover" style="flex: 1; margin: 10px; padding: 20px; text-align: center; height: 110px;">
-        <h2>TOTAL PRODUCTS</h2>
-        <p style="font-size: 24px; font-weight: bold;">${totalProducts}</p>
-    </div>
-</div> --%>
 
 <!-- Summary cards row -->
 <div class="custom-container summary-row">
@@ -213,7 +201,8 @@
         		<i class="fas fa-user fa-5x" style="color:#d63384;"></i>
    			 </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="viewUsers.jsp">USERS</a>
+          <h1 class="custom-muted-uppercase"><a href="${pageContext.request.contextPath}/ViewUsersController">USERS</a>
+
           </h1>
           <p>Click to see all the users available in the system</p>
         </div>
@@ -275,6 +264,5 @@
       </div>
     </div>
   </div>
-  <%@ include file="footer.jsp" %>
 </body>
 </html>

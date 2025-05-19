@@ -5,6 +5,7 @@ body {
     margin: 0;
     padding: 0;
     background-color: #fff0f5;
+    overflow-x: hidden; /* Hides horizontal scroll */
 }
 
 /* Header */

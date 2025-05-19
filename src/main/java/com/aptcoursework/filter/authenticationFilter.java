@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = { "/pages/adminDashboard.jsp"})
+@WebFilter(urlPatterns = { "/pages/adminDashboard.jsp","/pages/profile.jsp","/pages/CartPage.jsp","/pages/addproduct.jsp","/pages/viewUsers.jsp"})
 public class authenticationFilter implements Filter {
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

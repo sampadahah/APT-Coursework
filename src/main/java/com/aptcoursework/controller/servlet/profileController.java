@@ -81,7 +81,7 @@ protected void doPut(HttpServletRequest request, HttpServletResponse response) t
                 session.setAttribute("address", newAddress);
 
                 request.setAttribute("successMessage", "Profile updated successfully.");
-                request.getRequestDispatcher("/pages/profile.jsp").forward(request, response);
+                request.getRequestDispatcher(request.getContextPath()+"/pages/profile.jsp").forward(request, response);
                 return;
             } else {
                 request.setAttribute("errorMessage", "Failed to update profile.");

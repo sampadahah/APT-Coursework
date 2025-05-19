@@ -1,60 +1,59 @@
 package com.aptcoursework.model;
 
 public class Product {
-    private int id;  
-    private String name;  
-    private String description;  
-    private int stockQuantity;  
-    private double price;  
-    private String imagePath;  
+    private int id;
+    private String name;
+    private String description;
+    private double price;
+    private String imagePath;
+    private int stockQuantity;
 
-    // Getters and setters for all fields
-
+    // Getters and Setters
     public int getId() {
-        return id;  
+        return id;
     }
 
     public void setId(int id) {
-        this.id = id;  
+        this.id = id;
     }
 
     public String getName() {
-        return name;  
+        return name;
     }
 
     public void setName(String name) {
-        this.name = name;  
+        this.name = name;
     }
 
     public String getDescription() {
-        return description;  
+        return description;
     }
 
     public void setDescription(String description) {
-        this.description = description;  
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;  
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;  
+        this.description = description;
     }
 
     public double getPrice() {
-        return price;  
+        return price;
     }
 
     public void setPrice(double price) {
-        this.price = price;  
+        this.price = price;
     }
 
     public String getImagePath() {
-        return imagePath;  
+        return imagePath;
     }
 
     public void setImagePath(String imagePath) {
-        this.imagePath = imagePath; 
+        this.imagePath = imagePath;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
     }
 }

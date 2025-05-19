@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Categories</title>
-	<%@ include file="header.jsp" %>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,6 +12,7 @@
             margin: 0;
             padding: 0;
             text-align: center;
+            overflow-x: hidden; /* Hides horizontal scroll */
         }
 
         .category-container {
@@ -56,26 +56,28 @@
     </style>
 </head>
 <body>
+	<%@ include file="header.jsp" %>
     <h1 style="font-size:50px; color:#d63384">Our Categories</h1>
     <p style="margin-top: 40px; font-size: 1.2em; color: #555;">Safe ingredients. Gentle skincare.</p>
     <div class="category-container">
-        <a href="productCleanser.jsp" class="category-name">
+        <a href="<%= request.getContextPath() %>/loadCleansers" class="category-name">
             <h3>Cleansers</h3>
             <p>Remove dirt & makeup</p>
         </a>
-        <a href="productMoisturizer.jsp" class="category-name">
+        <a href="<%= request.getContextPath() %>/loadMoisturizers" class="category-name">
             <h3>Moisturizers</h3>
             <p>Hydrate your skin</p>
         </a>
-        <a href="productSerum.jsp" class="category-name">
+        <a href="<%= request.getContextPath() %>/loadSerums" class="category-name">
             <h3>Serums</h3>
             <p>Target specific concerns</p>
         </a>
-        <a href="productSunscreen.jsp?category=sunscreens" class="category-name">
+        <a href="<%= request.getContextPath() %>/loadSunscreen" class="category-name">
             <h3>Sunscreens</h3>
             <p>Protect from UV rays</p>
         </a>
     </div>
     <%@ include file="footer.jsp" %>
+    
 </body>
 </html>

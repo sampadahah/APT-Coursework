@@ -4,6 +4,7 @@
             background-color: #f7f7f7;
             margin: 0;
             padding: 0;
+            overflow-x: hidden; /* Hides horizontal scroll */
         }
 
         .container {
@@ -58,6 +59,13 @@
   gap: 10px;
 }
 
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
 .quantity-btn {
   background-color: #d63384;
   color: white;
@@ -82,18 +90,34 @@
   border-radius: 5px;
   background-color: #fff;
 }
-        .add-to-cart {
-            margin-top: 25px;
-            padding: 12px 24px;
-            font-size: 18px;
-            background-color: #d63384;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+/* .add-to-cart {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    background-color: #f5a9b8; Darker pastel pink for the circle
+    width: 50px; Increased size of the circle
+    height: 50px; Increased size of the circle
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #ffffff; Lighter pink for the icon
+    font-size: 22px; Increased size of the icon
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-        .add-to-cart:hover {
-            background-color: #b0206a;
-        }
+.add-to-cart i {
+	margin-top:3px;
+	margin-left:5px;
+    font-size: 22px; Increased size of the icon
+    line-height: 1;
+}
+
+.add-to-cart:hover {
+    background-color: #d63384; Slightly deeper pink on hover
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+ */

@@ -153,6 +153,80 @@ public class UserDAO {
 	}
 
 	
+//user edit code
+    public user getUserById(int userId) {
+        user u = null;
+        String query = "SELECT * FROM user WHERE user_id = ?";
+
+        try (Connection conn = DatabaseConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                u = new user();
+                u.setUserId(rs.getInt("user_id"));
+                u.setName(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setEmail(rs.getString("email"));
+                u.setPhone(rs.getLong("phone_no")); // Ensure your DB column name is "phone_no"
+                u.setAddress(rs.getString("address"));
+                u.setRole(rs.getString("role"));
+                u.setRegisteredDate(rs.getTimestamp("registered"));
+            }
+
+            rs.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return u;
+    }
+
+
+
+	public boolean updateUser(user updatedUser) {
+	    boolean isUpdated = false;
+	    String query = "UPDATE user SET username=?, email=?, phone=?, address=?, role=? WHERE user_id=?";
+	    
+	    if (conn != null) {
+	        try {
+	            ps = conn.prepareStatement(query);
+	            ps.setString(1, updatedUser.getName());
+	            ps.setString(2, updatedUser.getEmail());
+	            ps.setLong(3, updatedUser.getPhone());
+	            ps.setString(4, updatedUser.getAddress());
+	            ps.setString(5, updatedUser.getRole());
+	            ps.setInt(6, updatedUser.getUserId());
+
+	            if (ps.executeUpdate() > 0) {
+	                isUpdated = true;
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return isUpdated;
+	}
+	
+	public boolean deleteUser(int userId) {
+	    boolean isDeleted = false;
+	    String query = "DELETE FROM user WHERE user_id = ?";
+	    
+	    if (conn != null) {
+	        try {
+	            ps = conn.prepareStatement(query);
+	            ps.setInt(1, userId);
+	            if (ps.executeUpdate() > 0) {
+	                isDeleted = true;
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    return isDeleted;
+	}
 
 
 }
