@@ -1,12 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="com.aptcoursework.model.user" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<!-- <meta charset="UTF-8">  -->
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
@@ -178,11 +177,17 @@
           <c:when test="${not empty sessionScope.userWithSession}">
             <!-- when user is logged in Cart icon only for Customers -->
             <c:if test="${sessionScope.userWithSession.role == 'Customer'}">
-              <a href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
+         		<%
+		    			int cartCount = 0;
+		    if (session.getAttribute("cart_count") != null) {
+		        cartCount = (int) session.getAttribute("cart_count");
+		    }
+		%>
+         	<a href="${pageContext.request.contextPath}/ViewCartServlet"><i class="fas fa-shopping-cart"></i>(<%= cartCount %>)</a>
             </c:if>
 
             <!-- Profile and Logout -->
-            <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
+            <a href="${pageContext.request.contextPath}/pages/profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
 
             <form action="${pageContext.request.contextPath}/logoutController" method="get" class="logout-form">
               <button type="submit" class="auth-button">
@@ -193,13 +198,13 @@
 
           <c:otherwise>
             <!-- Login and Signup when user is NOT logged in -->
-            <form action="login.jsp" method="get" class="logout-form">
+            <form action="${pageContext.request.contextPath}/pages/login.jsp" method="get" class="logout-form">
               <button type="submit" class="auth-button">
                 <i class="fas fa-sign-in-alt"></i> <span>Login</span>
               </button>
             </form>
 
-            <form action="register.jsp" method="get" class="logout-form">
+            <form action="${pageContext.request.contextPath}/pages/register.jsp" method="get" class="logout-form">
               <button type="submit" class="auth-button">
                 <i class="fas fa-user-plus"></i> <span>Signup</span>
               </button>
@@ -213,16 +218,17 @@
     <nav class="nav-bar">
        <c:choose>
     <c:when test="${not empty sessionScope.userWithSession and sessionScope.userWithSession.role == 'Admin'}">
-      <a href="dashboard.jsp">Dashboard</a>
-      <a href="#">Category</a>
-      <a href="#">Product</a>
+      <a href="${pageContext.request.contextPath}/pages/adminDashboard.jsp">Dashboard</a>
+      <a href="${pageContext.request.contextPath}/pages/category.jsp">Category</a>
+      <a href="${pageContext.request.contextPath}/pages/addproduct.jsp">Product</a>
+      <a href="${pageContext.request.contextPath}/pages/viewUsers.jsp">Users</a>
     </c:when>
     <c:otherwise>
       <!-- Shown to Customer or not logged in -->
-      <a href="home.jsp">Home</a>
-      <a href="productCategory.jsp">Products</a>
-      <a href="blog.jsp">Blog</a>
-      <a href="aboutUs.jsp">About Us</a>
+      <a href="${pageContext.request.contextPath}/pages/home.jsp">Home</a>
+      <a href="${pageContext.request.contextPath}/pages/productCategory.jsp">Products</a>
+      <a href="${pageContext.request.contextPath}/pages/blog.jsp">Blog</a>
+      <a href="${pageContext.request.contextPath}/pages/aboutUs.jsp">About Us</a>
     </c:otherwise>
   </c:choose>
     </nav>

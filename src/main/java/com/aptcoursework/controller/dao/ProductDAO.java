@@ -44,23 +44,22 @@ public class ProductDAO {
     }
 
     // Method to get a product by its ID
-    public Product getProductById(int id) throws Exception {
-        String sql = "SELECT * FROM product WHERE id=?";
-        try (PreparedStatement ps = conn.prepareStatement(sql)) {
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+    public Product getProductById(int id) throws SQLException {
+        Product p = null;
+        String query = "SELECT * FROM product WHERE product_id = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                Product p = new Product();
-                p.setId(rs.getInt("id"));
-                p.setName(rs.getString("product_name"));        
+                p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
                 p.setDescription(rs.getString("product_description"));
-                p.setStockQuantity(rs.getInt("stock_quantity"));
-                p.setPrice(rs.getDouble("price"));             
-                p.setImagePath(rs.getString("imagePath"));      
-                return p;
+                p.setPrice(rs.getDouble("price"));
+                p.setImagePath(rs.getString("imagepath"));
             }
         }
-        return null;
+        return p;
     }
 
     // Method to get all products
@@ -71,12 +70,12 @@ public class ProductDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                p.setId(rs.getInt("id"));
+                p.setId(rs.getInt("product_id"));
                 p.setName(rs.getString("product_name"));        
                 p.setDescription(rs.getString("product_description"));
                 p.setStockQuantity(rs.getInt("stock_quantity"));
                 p.setPrice(rs.getDouble("price"));             
-                p.setImagePath(rs.getString("imagePath"));     
+                p.setImagePath(rs.getString("imagepath"));     
                 list.add(p);
             }
         }
@@ -108,4 +107,84 @@ public class ProductDAO {
         }
         return totalProducts;
     }
+    
+    public List<Product> getCleansers() throws SQLException {
+        List<Product> cleansers = new ArrayList<>();
+        String sql = "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%Cleanser%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setDescription(rs.getString("product_description"));
+                p.setPrice(rs.getDouble("price"));
+                p.setImagePath(rs.getString("imagepath"));
+                cleansers.add(p);
+            }
+        }
+        return cleansers;
+    }
+
+    public List<Product> getMoisturizers() throws SQLException {
+        List<Product> moisturizers = new ArrayList<>();
+        String sql = "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        try (PreparedStatement ps= conn.prepareStatement(sql)) {
+            ps.setString(1, "%Moist%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setDescription(rs.getString("product_description"));
+                p.setPrice(rs.getDouble("price"));
+                p.setImagePath(rs.getString("imagepath"));
+                moisturizers.add(p);
+            }
+        }
+        return moisturizers;
+    }
+    
+    public List<Product> getSerum() throws SQLException {
+        List<Product> serum= new ArrayList<>();
+        String sql= "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%Serum%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setDescription(rs.getString("product_description"));
+                p.setPrice(rs.getDouble("price"));
+                p.setImagePath(rs.getString("imagepath"));
+                serum.add(p);
+            }
+        }
+        return serum;
+    }
+    public List<Product> getSunscreen() throws SQLException {
+        List<Product> sunscreen= new ArrayList<>();
+        String sql= "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, "%SPF%");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("product_id"));
+                p.setName(rs.getString("product_name"));
+                p.setDescription(rs.getString("product_description"));
+                p.setPrice(rs.getDouble("price"));
+                p.setImagePath(rs.getString("imagepath"));
+                sunscreen.add(p);
+            }
+        }
+        return sunscreen;
+    }
+
 }

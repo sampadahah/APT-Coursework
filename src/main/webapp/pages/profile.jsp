@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, javax.sql.*" %>
 <%@ page session="true" %>
+<%@ include file="header.jsp" %>
 <%
 	
 	String username = (String) session.getAttribute("username");
@@ -20,7 +21,6 @@
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/profile.css">
 </head>
 <body>
-	<%@ include file="header.jsp" %>
 
 <div class="profile-box">
     <h2>Your Profile</h2>

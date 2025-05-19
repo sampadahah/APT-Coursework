@@ -34,7 +34,7 @@ public class adminDashboardController extends HttpServlet{
             request.setAttribute("totalProducts", totalProducts);
 
             // Forward to adminDashboard.jsp
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/adminDashboard.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher(request.getContextPath()+"/pages/adminDashboard.jsp");
             dispatcher.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
