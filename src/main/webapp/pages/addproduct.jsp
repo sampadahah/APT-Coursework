@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/addproduct.css">
 </head>
 <body>
-<%@ include file="header.jsp" %>
+
 <div class="back-link">
     <a href="<%= request.getContextPath() %>/pages/adminDashboard.jsp">← Back to Admin Dashboard</a>
 </div>
@@ -69,6 +70,5 @@ function previewImage(event) {
     }
 }
 </script>
-<%@ include file="footer.jsp" %>
 </body>
 </html>

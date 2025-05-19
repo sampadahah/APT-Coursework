@@ -94,7 +94,7 @@ public class loginController extends HttpServlet {
             }
         } catch (ClassNotFoundException | SQLException e) {
             request.setAttribute("errorMessage", "A system error occurred. Please try again later.");
-            request.getRequestDispatcher(request.getContextPath()+"/pages/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
         
         } finally {
             if (out != null) {

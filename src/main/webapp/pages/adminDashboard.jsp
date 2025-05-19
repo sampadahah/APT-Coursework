@@ -173,7 +173,7 @@
   </style>
 </head>
 <body>
-<%@ include file="adminheader.jsp" %>
+<%@ include file="header.jsp" %>
   
 
 <!-- Summary cards row -->
@@ -264,6 +264,5 @@
       </div>
     </div>
   </div>
-  <%@ include file="footer.jsp" %>
 </body>
 </html>

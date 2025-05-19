@@ -2,6 +2,7 @@
 <%@ page import="com.aptcoursework.controller.dao.UserDAO" %>
 <%@ page import="com.aptcoursework.model.user" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="header.jsp" %>
 <%
     ArrayList<user> userList = null;
     try {
@@ -14,7 +15,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>All Users</title>
     <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/adminDashboard.css">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -154,7 +154,7 @@
     </style>
 </head>
 <body>
-  <header>
+<!--   <header>
     <div class="header-top">
       <div class="brand-logo">KASAM</div>
       <div class="search-bar">
@@ -173,10 +173,10 @@
 </form>
 
       </div>
-    </div>
-    <nav class="nav-bar">
+    </div> -->
+<!--     <nav class="nav-bar">
       <a href="#">REGISTERED USERS</a>
-    </nav>
+    </nav> -->
   </header>
     <table>
         <tr>
@@ -213,57 +213,6 @@
     <div class="back-button-container">
   <a href="adminDashboard.jsp" class="back-button">Back to Dashboard</a>
 </div>
-  <footer class="footer">
-    <div class="footer-links">
-      <div class="footer-column">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#">Cleanser</a></li>
-          <li><a href="#">Toner</a></li>
-          <li><a href="#">Serum</a></li>
-          <li><a href="#">Moisturizer</a></li>
-          <li><a href="#">Sunscreen</a></li>
-          <li><a href="#">Lipcare</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="#">Blogs</a></li>
-          <li><a href="#">Features</a></li>
-          <li><a href="#">Rewards</a></li>
-          <li><a href="#">Newsletters</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Help</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Policies</a></li>
-          <li><a href="#">FAQs</a></li>
-        </ul>
-      </div>
-      <div class="footer-column-right">
-        <h3>KASAM, the promise to your skin.</h3>
-        <p>Sign up for expert skincare tips and previews!</p>
-        <div class="subscribe">
-          <input type="email" placeholder="Your email">
-          <button>Subscribe</button>
-        </div>
-        <div class="footer-icons">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <span><i class="fas fa-phone"></i> 061-891045</span>
-        </div>
-      </div>
-    </div>
-    <div class="copyright">
-      <p class="size">©2025 KASAM Skincare</p>
-    </div>
-  </footer>
-    
 </body>
 </html>
  --%>
@@ -556,57 +505,6 @@
  <div class="back-button-container">
     <a href="${pageContext.request.contextPath}/pages/adminDashboard.jsp" class="back-button">Back to Dashboard</a>
 </div>
- 
-<footer class="footer">
-    <div class="footer-links">
-      <div class="footer-column">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#">Cleanser</a></li>
-          <li><a href="#">Toner</a></li>
-          <li><a href="#">Serum</a></li>
-          <li><a href="#">Moisturizer</a></li>
-          <li><a href="#">Sunscreen</a></li>
-          <li><a href="#">Lipcare</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Learn</h4>
-        <ul>
-          <li><a href="#">Blogs</a></li>
-          <li><a href="#">Features</a></li>
-          <li><a href="#">Rewards</a></li>
-          <li><a href="#">Newsletters</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Help</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Policies</a></li>
-          <li><a href="#">FAQs</a></li>
-        </ul>
-      </div>
-      <div class="footer-column-right">
-        <h3>KASAM, the promise to your skin.</h3>
-        <p>Sign up for expert skincare tips and previews!</p>
-        <div class="subscribe">
-          <input type="email" placeholder="Your email">
-          <button>Subscribe</button>
-        </div>
-        <div class="footer-icons">
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-youtube"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <span><i class="fas fa-phone"></i> 061-891045</span>
-        </div>
-      </div>
-    </div>
-    <div class="copyright">
-      <p class="size">©2025 KASAM Skincare</p>
-    </div>
-</footer>
 </body>
 </html>
  

@@ -6,11 +6,10 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Insert title here</title>
+    <title>KASAM - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        /* --- Your existing CSS --- */
         .header-btn {
             display: flex;
             align-items: center;
@@ -158,66 +157,71 @@
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-top">
-            <div class="brand-logo">KASAM</div>
+<header>
+    <div class="header-top">
+        <div class="brand-logo">KASAM</div>
 
-            <div class="search-bar">
-                <form action="search.jsp" method="get">
-                    <input type="text" name="query" placeholder="Search for products" required>
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-
-            <div class="header-icons">
-                <c:choose>
-                    <c:when test="${not empty sessionScope.userWithSession}">
-                        <!-- When user is logged in -->
-                        <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
-                        <c:if test="${sessionScope.userWithSession.role == 'Customer'}">
-                            <a href="cart.jsp"><i class="fas fa-shopping-cart"></i></a>
-                        </c:if>
-                        <form action="${pageContext.request.contextPath}/logoutController" method="get" class="logout-form">
-                            <button type="submit" class="auth-button">
-                                <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
-                            </button>
-                        </form>
-                    </c:when>
-                    <c:otherwise>
-                        <!-- When user is NOT logged in -->
-                        <a href="profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
-                        <a href="<%= request.getContextPath() %>/checkout.jsp"><i class="fas fa-shopping-cart"></i></a>
-                        <form action="login.jsp" method="get" class="logout-form">
-                            <button type="submit" class="auth-button">
-                                <i class="fas fa-sign-in-alt"></i> <span>Login</span>
-                            </button>
-                        </form>
-                        <form action="register.jsp" method="get" class="logout-form">
-                            <button type="submit" class="auth-button">
-                                <i class="fas fa-user-plus"></i> <span>Signup</span>
-                            </button>
-                        </form>
-                    </c:otherwise>
-                </c:choose>
-            </div>
+        <div class="search-bar">
+            <form action="<%= request.getContextPath() %>/pages/search.jsp" method="get">
+                <input type="text" name="query" placeholder="Search for products" required>
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
         </div>
 
-        <nav class="nav-bar">
+        <div class="header-icons">
             <c:choose>
-                <c:when test="${not empty sessionScope.userWithSession and sessionScope.userWithSession.role == 'Admin'}">
-                    <a href="dashboard.jsp">Dashboard</a>
-                    <a href="#">Category</a>
-                    <a href="#">Product</a>
+                <c:when test="${not empty sessionScope.userWithSession}">
+                    <a href="${pageContext.request.contextPath}/pages/profile.jsp" class="user-icon"><i class="fas fa-user"></i></a>
+
+                    <c:if test="${sessionScope.userWithSession.role == 'Customer'}">
+                        <%
+                            int cartCount = 0;
+                            if (session.getAttribute("cart_count") != null) {
+                                cartCount = (int) session.getAttribute("cart_count");
+                            }
+                        %>
+                        <a href="${pageContext.request.contextPath}/ViewCartServlet"><i class="fas fa-shopping-cart"></i> (<%= cartCount %>)</a>
+                    </c:if>
+
+                    <form action="${pageContext.request.contextPath}/logoutController" method="get" class="logout-form">
+                        <button type="submit" class="auth-button">
+                            <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+                        </button>
+                    </form>
                 </c:when>
                 <c:otherwise>
-                    <!-- Shown to Customer or not logged in -->
-                    <a href="home.jsp">Home</a>
-                    <a href="productCategory.jsp">Products</a>
-                    <a href="blog.jsp">Blog</a>
-                    <a href="aboutUs.jsp">About Us</a>
+                    <form action="${pageContext.request.contextPath}/pages/login.jsp" method="get" class="logout-form">
+                        <button type="submit" class="auth-button">
+                            <i class="fas fa-sign-in-alt"></i> <span>Login</span>
+                        </button>
+                    </form>
+
+                    <form action="${pageContext.request.contextPath}/pages/register.jsp" method="get" class="logout-form">
+                        <button type="submit" class="auth-button">
+                            <i class="fas fa-user-plus"></i> <span>Signup</span>
+                        </button>
+                    </form>
                 </c:otherwise>
             </c:choose>
-        </nav>
-    </header>
+        </div>
+    </div>
+
+    <nav class="nav-bar">
+        <c:choose>
+            <c:when test="${not empty sessionScope.userWithSession and sessionScope.userWithSession.role == 'Admin'}">
+                <a href="${pageContext.request.contextPath}/pages/adminDashboard.jsp">Dashboard</a>
+                <a href="${pageContext.request.contextPath}/pages/category.jsp">Category</a>
+                <a href="${pageContext.request.contextPath}/pages/addproduct.jsp">Product</a>
+                <a href="${pageContext.request.contextPath}/pages/viewUsers.jsp">Users</a>
+            </c:when>
+            <c:otherwise>
+                <a href="${pageContext.request.contextPath}/pages/home.jsp">Home</a>
+                <a href="${pageContext.request.contextPath}/pages/productCategory.jsp">Products</a>
+                <a href="${pageContext.request.contextPath}/pages/blog.jsp">Blog</a>
+                <a href="${pageContext.request.contextPath}/pages/aboutUs.jsp">About Us</a>
+            </c:otherwise>
+        </c:choose>
+    </nav>
+</header>
 </body>
 </html>

@@ -2,6 +2,7 @@
  body {
       background-color: #ffe4ec;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden; /* Hides horizontal scroll */
     }
     .brand {
 	  text-align: center;

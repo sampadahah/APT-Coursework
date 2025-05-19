@@ -96,6 +96,7 @@ public class registerController extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
+            // Retrieve and trim form inputs
             String username = request.getParameter("username").trim();
             String email = request.getParameter("email").trim();
             String phoneStr = request.getParameter("phone").trim();
@@ -105,22 +106,22 @@ public class registerController extends HttpServlet {
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
 
-            // Basic empty check
+            // Validate empty fields
             if (username.isEmpty() || email.isEmpty() || phoneStr.isEmpty() || address.isEmpty() ||
-                role.isEmpty() || registered.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+                    role.isEmpty() || registered.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 request.setAttribute("errorMessage", "Please fill in all fields.");
                 request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
                 return;
             }
 
-            // Email format validation
-            if (!email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            // Validate email format
+            if (!email.matches("^[\\w.-]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
                 request.setAttribute("errorMessage", "Invalid email format.");
                 request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
                 return;
             }
 
-            // Phone validation (digits only, length 10)
+            // Validate phone number (digits only, 10 digits)
             if (!phoneStr.matches("\\d{10}")) {
                 request.setAttribute("errorMessage", "Phone number must be exactly 10 digits.");
                 request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
@@ -128,25 +129,26 @@ public class registerController extends HttpServlet {
             }
             long phone = Long.parseLong(phoneStr);
 
-            // Password strength validation
+            // Validate password strength
             if (!password.matches("^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d@$!%*#?&]{8,}$")) {
-                request.setAttribute("errorMessage", "Password must be at least 8 characters long and contain letters and numbers.");
+                request.setAttribute("errorMessage", "Password must be at least 8 characters long and contain both letters and numbers.");
                 request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
                 return;
             }
 
-            // Password match check
+            // Confirm passwords match
             if (!password.equals(confirmPassword)) {
                 request.setAttribute("errorMessage", "Passwords do not match.");
                 request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
                 return;
             }
 
-            // Date conversion
+            // Parse registration date
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime dateTime = LocalDateTime.parse(registered, formatter);
             Timestamp timestamp = Timestamp.valueOf(dateTime);
 
+            // Populate user object
             user newUser = new user();
             newUser.setName(username);
             newUser.setEmail(email);
@@ -156,6 +158,7 @@ public class registerController extends HttpServlet {
             newUser.setPassword(EncryptDecrypt.encrypt(password));
             newUser.setRegisteredDate(timestamp);
 
+            // Register user via DAO
             UserDAO userdao = new UserDAO();
             boolean isRegistered = userdao.register(newUser);
 
@@ -166,9 +169,13 @@ public class registerController extends HttpServlet {
                 request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
             }
 
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            request.setAttribute("errorMessage", "A system error occurred. Please try again later.");
+            request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Unexpected error occurred. Please try again.");
+            request.setAttribute("errorMessage", "Unexpected error occurred.");
             request.getRequestDispatcher("/pages/register.jsp").forward(request, response);
         } finally {
             out.close();

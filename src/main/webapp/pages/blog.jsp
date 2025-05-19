@@ -67,11 +67,6 @@
   <div class="slogan">
     <p>Kasam: Your Glow, Your Story</p>
   </div>
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> 8a733a2264178bb8ea154ff9a59dc8efaafaff63
 <%@ include file="footer.jsp" %>
 </body>
 </html>

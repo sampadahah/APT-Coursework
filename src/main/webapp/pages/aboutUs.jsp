@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +9,8 @@
   <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/aboutUs.css">
 </head>
 <body>
-<%@ include file="header.jsp" %>
- 
+
+ <%@ include file="header.jsp" %>
   <!-- About Section -->
   <div class="about">
     <div class="about-text">
@@ -57,7 +58,7 @@
   <div class="slogan">
     <h2>Kasam: Glow with purpose</h2>
   </div>
-	<%@ include file="footer.jsp" %>
+  <%@ include file="footer.jsp" %>
 </body>
 </html>
     
