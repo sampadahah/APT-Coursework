@@ -30,7 +30,7 @@
       <p>A daily skincare routine helps prevent aging, reduce acne, and improve hydration. Consistent care keeps your skin glowing, healthy, and protected from environmental damage.</p>
     </div>
     <div class="post">
-      <img src="../img/blog2.png" alt="Blog Post 2" />
+      <img src="../img/blog2.png" alt="Blog Post 2" />z
       <p>In 2024, skincare is all about simplicity and sustainability. People are embracing skinimalism with fewer, multi-purpose products. There's a focus on protecting skin from blue light and using products that calm both skin and mind. Eco-friendly packaging is also becoming a must, and maintaining a healthy skin microbiome is gaining importance.</p>
     </div>
     <div class="post">

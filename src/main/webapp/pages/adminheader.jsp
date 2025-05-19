@@ -27,7 +27,7 @@
 
 .header-btn i {
   font-size: 18px; /* Icon size */
-}
+}z
 
 .header-icons i {
   color: #d63384; /* Pink color matching your theme */

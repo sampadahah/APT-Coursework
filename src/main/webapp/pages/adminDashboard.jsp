@@ -201,7 +201,8 @@
         		<i class="fas fa-user fa-5x" style="color:#d63384;"></i>
    			 </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="viewUsers.jsp">USERS</a>
+          <h1 class="custom-muted-uppercase"><a href="${pageContext.request.contextPath}/ViewUsersController">USERS</a>
+
           </h1>
           <p>Click to see all the users available in the system</p>
         </div>

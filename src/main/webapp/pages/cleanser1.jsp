@@ -30,7 +30,7 @@
                 <input type="hidden" name="productId" value="1"/>
                 <input type="hidden" name="quantity" value="<%= quantity %>"/>
                 <div class="quantity-selector">
-                    <a href="cleanser1.jsp?action=decrease&quantity=<%= quantity %>">–</a>
+                    <a href="cleanser1.jsp?action=deczrease&quantity=<%= quantity %>">–</a>
                     <input type="text" value="<%= quantity %>" readonly />
                     <a href="cleanser1.jsp?action=increase&quantity=<%= quantity %>">+</a>
                 </div>

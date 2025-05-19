@@ -91,7 +91,7 @@
         }
 
         h1 {
-            font-size: 20px;
+            font-size: 50px;
             color: #d63384;
             margin-top: 30px;
         }
@@ -138,15 +138,8 @@
             transition: color 0.3s;
             text-align: left;
             width: 100%;
+            font-weight: bold;
         }
-.product-card p {
-    color: #333;
-    transition: color 0.3s;
-    text-align: left;
-    width: 100%;
-    font-weight: bold;
-}
-
 
         .price {
             font-weight: bold;
@@ -154,22 +147,34 @@
         }
 
         .add-to-cart {
-            margin-top: 15px;
-            font-size: 20px;
-            color: #d63384;
-            background: none;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            background-color: #f5a9b8;
+            width: 50px;
+            height: 50px;
             border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             cursor: pointer;
-            transition: color 0.3s;
+            color: #ffffff;
+            font-size: 22px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
-
-        .product-card:hover .add-to-cart {
-            color: white;
-        }
-        
 
         .add-to-cart i {
-            margin-right: 8px;
+            margin-top: 3px;
+            margin-left: 5px;
+            font-size: 22px;
+            line-height: 1;
+        }
+
+        .add-to-cart:hover {
+            background-color: #d63384;
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .no-results {
@@ -178,37 +183,6 @@
             font-size: 20px;
             color: #999;
         }
-.add-to-cart {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
-    background-color: #f5a9b8; /* Darker pastel pink for the circle */
-    width: 50px; /* Increased size of the circle */
-    height: 50px; /* Increased size of the circle */
-    border: none;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    color: #ffffff; /* Lighter pink for the icon */
-    font-size: 22px; /* Increased size of the icon */
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.add-to-cart i {
-	margin-top:3px;
-	margin-left:5px;
-    font-size: 22px; /* Increased size of the icon */
-    line-height: 1;
-}
-
-.add-to-cart:hover {
-    background-color: #d63384; /* Slightly deeper pink on hover */
-    transform: scale(1.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
     </style>
 </head>
 <body>
@@ -225,24 +199,24 @@
                 boolean found = false;
     %>
     <div class="product-container">
-    <%
-                for (Product p : products) {
-                    if (p.getProductName().toLowerCase().contains(query.toLowerCase())) {
-                        found = true;
-    %>
+        <%
+            for (Product p : products) {
+                if (p.getName().toLowerCase().contains(query.toLowerCase())) {
+                    found = true;
+        %>
         <div class="product-card">
-            <img src="img/default-product.png" alt="<%= p.getProductName() %>" class="product-img">
-            <h3><%= p.getProductName() %></h3>
+            <img src="<%= p.getImagePath() %>" alt="<%= p.getName() %>" class="product-img">
+            <h3><%= p.getName() %></h3>
             <p>Stock: <%= p.getStockQuantity() %></p>
             <p class="price">Rs. <%= p.getPrice() %></p>
             <button class="add-to-cart" title="Add to Cart">
                 <i class="fas fa-cart-plus"></i>
             </button>
         </div>
-    <%
-                    }
+        <%
                 }
-    %>
+            }
+        %>
     </div>
     <%
                 if (!found) {
@@ -253,10 +227,13 @@
             } catch (Exception e) {
                 out.println("Error: " + e.getMessage());
             }
+        } else {
+    %>
+        <p class="no-results">Please enter a search term.</p>
+    <%
         }
     %>
 
     <%@ include file="footer.jsp" %>
 </body>
 </html>
-
