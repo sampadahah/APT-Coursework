@@ -8,8 +8,7 @@ public class Product {
     private String imagePath;
     private int stockQuantity;
 
-    // Getters and setters for all fields
-
+    // Getters and Setters
     public int getId() {
         return id;
     }
@@ -50,14 +49,11 @@ public class Product {
         this.imagePath = imagePath;
     }
 
-	public void setStockQuantity(int stockQuantity) {
-		this.stockQuantity=stockQuantity;
-		
-	}
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
 
-	public int getStockQuantity() {
-		// TODO Auto-generated method stub
-		return stockQuantity;
-	}
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
 }
-

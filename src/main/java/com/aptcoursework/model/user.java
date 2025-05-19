@@ -94,4 +94,9 @@ public class user {
 	public void setRegisteredDate(Timestamp dateTime) {
 		this.registered= dateTime;
 	}
+
+	public void setUsername(String username) {
+		this.username = username;
+		
+	}
 }
