@@ -6,6 +6,7 @@ public class Product {
     private String description;
     private double price;
     private String imagePath;
+    private int stockQuantity;
 
     // Getters and setters for all fields
 
@@ -49,13 +50,14 @@ public class Product {
         this.imagePath = imagePath;
     }
 
-	public void setStockQuantity(int int1) {
-		// TODO Auto-generated method stub
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity=stockQuantity;
 		
 	}
 
 	public int getStockQuantity() {
 		// TODO Auto-generated method stub
-		return 0;
+		return stockQuantity;
 	}
 }
+
