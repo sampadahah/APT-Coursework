@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2025 at 03:19 PM
+-- Generation Time: May 19, 2025 at 05:18 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,7 +83,8 @@ CREATE TABLE `product` (
   `product_name` varchar(50) NOT NULL,
   `product_description` text NOT NULL,
   `stock_quantity` int(11) NOT NULL,
-  `price` decimal(30,0) NOT NULL
+  `price` decimal(30,0) NOT NULL,
+  `imagepath` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

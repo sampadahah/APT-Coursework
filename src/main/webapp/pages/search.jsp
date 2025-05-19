@@ -1,5 +1,5 @@
-<!-- akiritisearchpageforakritiproductcode -->
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <!-- akiritisearchpageforakritiproductcode -->
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.aptcoursework.controller.dao.ProductDAO" %>
 <%@ page import="com.aptcoursework.model.Product" %>
 <%@ page import="java.util.List" %>
@@ -67,7 +67,7 @@
 
 <%@ include file="footer.jsp" %>
 </body>
-</html> --%>
+</html>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.aptcoursework.controller.dao.ProductDAO" %>
@@ -260,3 +260,4 @@
 </body>
 </html>
 
+ --%>

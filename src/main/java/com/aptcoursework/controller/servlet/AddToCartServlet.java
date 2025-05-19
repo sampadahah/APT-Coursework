@@ -24,6 +24,7 @@ public class AddToCartServlet extends HttpServlet {
         }
 
         int userId = (int) session.getAttribute("user_id");
+        System.out.println(userId);
         int productId = Integer.parseInt(request.getParameter("product_id"));
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 

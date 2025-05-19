@@ -52,7 +52,7 @@ public class PlaceOrderServlet extends HttpServlet {
                 cartDAO.clearCart(cartId);
             }
 
-            response.sendRedirect(request.getContextPath()+"ViewCartServlet");
+            response.sendRedirect("ViewCartServlet");
 
         } catch (Exception e) {
             e.printStackTrace();

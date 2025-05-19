@@ -47,5 +47,7 @@
       Don't have an account? <a href="<%= request.getContextPath() %>/pages/register.jsp">Sign up</a>
     </div>
   </div>
+      <a href="<%= request.getContextPath() %>/pages/home.jsp" style="color: #d63384;padding: 25px 25px;
+		    font-size: 18px;font-weight:bold;cursor: pointer;">← Explore For Now</a>
 </body>
 </html>

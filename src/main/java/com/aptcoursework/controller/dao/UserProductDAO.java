@@ -18,7 +18,7 @@ public class UserProductDAO {
     
     public List<Product> getCleansers() throws SQLException {
         List<Product> cleansers = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        String sql = "SELECT * FROM product WHERE product_name LIKE ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, "%Cleanser%");
             ResultSet rs = ps.executeQuery();
@@ -38,7 +38,7 @@ public class UserProductDAO {
 
     public List<Product> getMoisturizers() throws SQLException {
         List<Product> moisturizers = new ArrayList<>();
-        String sql = "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        String sql = "SELECT * FROM product WHERE product_name LIKE ?"; 
         try (PreparedStatement ps= conn.prepareStatement(sql)) {
             ps.setString(1, "%Moist%");
             ResultSet rs = ps.executeQuery();
@@ -58,7 +58,7 @@ public class UserProductDAO {
     
     public List<Product> getSerum() throws SQLException {
         List<Product> serum= new ArrayList<>();
-        String sql= "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        String sql= "SELECT * FROM product WHERE product_name LIKE ?"; 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, "%Serum%");
             ResultSet rs = ps.executeQuery();
@@ -77,7 +77,7 @@ public class UserProductDAO {
     }
     public List<Product> getSunscreen() throws SQLException {
         List<Product> sunscreen= new ArrayList<>();
-        String sql= "SELECT * FROM product WHERE product_name LIKE ? LIMIT 3"; // Example query
+        String sql= "SELECT * FROM product WHERE product_name LIKE ?"; 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, "%SPF%");
             ResultSet rs = ps.executeQuery();
