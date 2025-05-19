@@ -108,4 +108,23 @@ public class ProductDAO {
         }
         return totalProducts;
     }
+    public List<Product> getRandomProducts(int limit) throws Exception {
+        List<Product> list = new ArrayList<>();
+        String sql = "SELECT * FROM product ORDER BY RAND() LIMIT ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setInt(1, limit);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                
+                p.setName(rs.getString("product_name"));
+                p.setDescription(rs.getString("product_description"));
+                p.setPrice(rs.getDouble("price"));
+                p.setImagePath(rs.getString("imagePath"));
+                list.add(p);
+            }
+        }
+        return list;
+    }
+
 }
