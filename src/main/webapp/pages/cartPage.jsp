@@ -136,7 +136,7 @@
     </table>
     <% if (items != null && !items.isEmpty()) { %>
 		<div style="text-align: center; margin-top: 20px;">
-		  <form action="<%= request.getContextPath() %>/placeOrder" method="post">
+		  <form action="placeOrder" method="post">
 		    <button type="submit" style="background-color: #d63384;color: white;border: none;padding: 12px 25px;
 		    font-size: 16px;border-radius: 8px;cursor: pointer;">Place Order</button>
 		  </form>

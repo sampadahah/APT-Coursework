@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Moisturizers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/productsCategory.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/Category.css">
 </head>
 <body>
 <%@ include file="header.jsp" %>
@@ -32,14 +32,16 @@
                 <a href="cleanser<%= p.getId() %>.jsp">
                     <img src="<%= request.getContextPath() + p.getImagePath() %>" alt="<%= p.getName() %>" class="product-img">
                 </a>
-                <h3><%= p.getName() %></h3>
-                <p><%= p.getDescription() %></p>
-                <p class="price">Rs. <%= p.getPrice() %></p>
+                <div class="product-info">
+	                <h3><%= p.getName() %></h3>
+	                <p><%= p.getDescription() %></p>
+	                <p class="price">Rs. <%= p.getPrice() %></p>
+                </div>
                <form action="addToCart" method="post">
 				    <input type="hidden" name="product_id" value="<%= p.getId() %>"/>
 				    <input type="hidden" name="quantity" value="1"/>
 				    <button type="submit" class="add-to-cart" title="Add to Cart">
-				        <i class="fas fa-cart-plus"></i> Add
+				        <i class="fas fa-cart-plus"></i> 
 				    </button>
 				</form>
 
