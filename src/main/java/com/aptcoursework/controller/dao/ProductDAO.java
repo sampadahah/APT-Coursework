@@ -116,9 +116,7 @@ public class ProductDAO {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
-                
                 p.setName(rs.getString("product_name"));
-                p.setDescription(rs.getString("product_description"));
                 p.setPrice(rs.getDouble("price"));
                 p.setImagePath(rs.getString("imagePath"));
                 list.add(p);

@@ -20,7 +20,7 @@
       <div class="kasam-label">Kasam</div>
     </div>
     <div class="about-image">
-      <img src="../img/aboutuspage2.jpg" alt="Kasam product">
+      <img src="${pageContext.request.contextPath}/img/aboutuspage2.jpg" alt="Kasam product">
     </div> 
   </div>
   
@@ -50,7 +50,7 @@
         </p>
     </div>
     <div class="image">
-      <img src="../img/aboutuspage3.png" alt="Kasam skincare">
+      <img src="${pageContext.request.contextPath}/img/aboutuspage3.png" alt="Kasam skincare">
     </div>
   </div>
 

@@ -215,7 +215,7 @@
                 <a href="${pageContext.request.contextPath}/pages/viewUsers.jsp">Users</a>
             </c:when>
             <c:otherwise>
-                <a href="${pageContext.request.contextPath}/pages/home.jsp">Home</a>
+                <a href="${pageContext.request.contextPath}/home">Home</a>
                 <a href="${pageContext.request.contextPath}/pages/productCategory.jsp">Products</a>
                 <a href="${pageContext.request.contextPath}/pages/blog.jsp">Blog</a>
                 <a href="${pageContext.request.contextPath}/pages/aboutUs.jsp">About Us</a>
