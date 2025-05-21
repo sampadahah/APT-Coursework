@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isErrorPage="true" %>
 <!DOCTYPE html>
 <html>
@@ -66,8 +67,25 @@
 <div class="container">
     <h1>Oops! Something went wrong</h1>
     <p>We’re sorry for the inconvenience. Please try again later.</p>
-
-    <a href="<%= request.getContextPath() %>/pages/home.jsp" class="btn">Go to Home</a>
+    
+    <c:choose>
+        <c:when test="${not empty sessionScope.userWithSession}">
+            <c:choose>
+                <c:when test="${sessionScope.userWithSession.role == 'Admin'}">
+                    <!-- Redirect to Admin Dashboard if the user is an Admin -->
+                    <a href="<%= request.getContextPath() %>/pages/adminDashboard.jsp" class="btn">Go to Dashboard</a>
+                </c:when>
+                <c:otherwise>
+                    <!-- Redirect to Home if the user is a Customer -->
+                    <a href="<%= request.getContextPath() %>/pages/home.jsp" class="btn">Go to Home</a>
+                </c:otherwise>
+            </c:choose>
+        </c:when>
+        <c:otherwise>
+            <!-- Redirect to Home if no user is logged in -->
+            <a href="<%= request.getContextPath() %>/pages/home.jsp" class="btn">Go to Home</a>
+        </c:otherwise>
+    </c:choose>
 
     <% if (exception != null) { %>
         <div class="code">

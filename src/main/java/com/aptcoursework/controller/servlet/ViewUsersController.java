@@ -23,7 +23,7 @@ public class ViewUsersController extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("errorMessage", "Error fetching users.");
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+            request.getRequestDispatcher("/pages/ErrorPage.jsp").forward(request, response);
         }
     }
 }

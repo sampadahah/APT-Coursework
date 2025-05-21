@@ -36,7 +36,6 @@ public class loadCleansers extends HttpServlet {
 
             // Forward to the JSP (productCleanser.jsp)
             request.getRequestDispatcher("/pages/productCleanser.jsp").forward(request, response);
-
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

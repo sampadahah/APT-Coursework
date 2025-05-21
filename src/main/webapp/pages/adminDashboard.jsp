@@ -217,8 +217,8 @@
             <i class="fas fa-layer-group fa-5x" style="color:#d63384;"></i>
            </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="addCategory.jsp">ADD CATEGORY</a></h1>
-          <p>Click to add a category of products into the system</p>
+          <h1 class="custom-muted-uppercase"><a href="${pageContext.request.contextPath}/manageOrders">MANAGE ORDERS</a></h1>
+          <p>Click to manage all the orders available in the system</p>
         </div>
       </div>
     </div>
@@ -231,35 +231,8 @@
             	<i class="fas fa-bag-shopping fa-5x" style="color:#d63384;"></i>
             </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="addproduct.jsp">ADD PRODUCTS</a></h1>
+          <h1 class="custom-muted-uppercase"><a href="AddProduct.jsp">ADD PRODUCTS</a></h1>
           <p>Click to add new products into the system</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!--   Second row -->
-  <div class="custom-container">
-    <div class="card-column">
-      <div class="card">
-        <div class="card-body">
-          <div class="container">
-            <img style="max-width: 120px;" src="../img/user.png" alt="user-icon">
-          </div>
-          <h1>2343</h1>
-          <h1 class="custom-muted-uppercase">Products</h1>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-column">
-      <div class="card">
-        <div class="card-body">
-          <div class="container">
-            <img style="max-width: 120px;" src="../img/user.png" alt="user-icon">
-          </div>
-          <h1>2343</h1>
-          <h1 class="custom-muted-uppercase">Products</h1>
         </div>
       </div>
     </div>

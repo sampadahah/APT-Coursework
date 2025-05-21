@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Moisturizers</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/Category.css">
+    <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/CSS/ProductCategory.css">
 </head>
 <body>
 <%@ include file="header.jsp" %>

@@ -50,7 +50,7 @@ public class ViewCartServlet extends HttpServlet {
             List<Order> orders = orderDAO.getOrdersForUser(userId);
             request.setAttribute("orders", orders);
 
-            request.getRequestDispatcher("/pages/cartPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/pages/CartPage.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();

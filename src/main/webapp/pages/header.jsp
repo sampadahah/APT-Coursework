@@ -161,13 +161,15 @@
     <div class="header-top">
         <div class="brand-logo">KASAM</div>
 
-        <div class="search-bar">
-            <form action="<%= request.getContextPath() %>/pages/search.jsp" method="get">
-                <input type="text" name="query" placeholder="Search for products" required>
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </form>
-        </div>
-
+	<c:if test="${empty sessionScope.userWithSession or sessionScope.userWithSession.role != 'Admin'}">
+    <div class="search-bar">
+        <form action="${pageContext.request.contextPath}/search" method="get">
+            <input type="text" name="query" placeholder="Search for products" required>
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+    </div>
+</c:if>
+	
         <div class="header-icons">
             <c:choose>
                 <c:when test="${not empty sessionScope.userWithSession}">
@@ -209,10 +211,10 @@
     <nav class="nav-bar">
         <c:choose>
             <c:when test="${not empty sessionScope.userWithSession and sessionScope.userWithSession.role == 'Admin'}">
-                <a href="${pageContext.request.contextPath}/pages/adminDashboard.jsp">Dashboard</a>
-                <a href="${pageContext.request.contextPath}/pages/category.jsp">Category</a>
+<%--                 <a href="${pageContext.request.contextPath}/pages/adminDashboard.jsp">Dashboard</a>
+                <a href="${pageContext.request.contextPath}/manageOrders">Orders</a>
                 <a href="${pageContext.request.contextPath}/pages/addproduct.jsp">Product</a>
-                <a href="${pageContext.request.contextPath}/pages/viewUsers.jsp">Users</a>
+                <a href="${pageContext.request.contextPath}/ViewUsersController">Users</a> --%>
             </c:when>
             <c:otherwise>
                 <a href="${pageContext.request.contextPath}/home">Home</a>

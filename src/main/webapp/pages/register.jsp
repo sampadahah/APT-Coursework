@@ -120,7 +120,7 @@
 			<a href="<%= request.getContextPath() %>/pages/login.jsp">Already have an account?</a>
     	</div>
 	</div>
-  	      <a href="<%= request.getContextPath() %>/pages/home.jsp" style="color: #d63384;padding:60% 45%;
-  			 font-size: 18px;font-weight:bold;cursor: pointer;">← Explore For Now</a>
+  	      <%-- <a href="<%= request.getContextPath() %>/pages/home.jsp" style="color: #d63384;padding:60% 45%;
+  			 font-size: 18px;font-weight:bold;cursor: pointer;">← Explore For Now</a> --%>
 </body>
 </html>

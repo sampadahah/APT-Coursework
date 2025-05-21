@@ -23,7 +23,7 @@ public class DeleteUserController extends HttpServlet {
             response.sendRedirect("ViewUsersController");
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
+            response.sendRedirect("/pages/ErrorPage.jsp");
         }
     }
 }

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
@@ -8,6 +8,72 @@
 <title>Home</title>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/home.css">
+<style>
+	.featured-products {
+	  text-align: center;
+	  padding: 2rem 0;
+	}
+	
+	.featured-products h1 {
+	  font-size: 2.5rem;
+	  margin-bottom: 1rem;
+	  font-weight: bold;
+	  color: #d63384;
+	}
+	 .product-list {
+	  display: flex;
+	  justify-content: center;
+	  flex-wrap: wrap;
+	  gap: 20px;
+	  padding: 20px;
+	}
+
+	
+	.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 16px;
+    width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 330px;
+}
+
+.product img {
+    width: 200px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid  #f8f8f8; 
+    box-shadow: 0 0 10px rgba(255,255,255);
+    
+    padding: 10px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+.product img:hover {
+     transform: scale(1.05);
+     transition: transform 0.3s;
+}
+.product h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+    flex-grow: 1;
+    color: #d63384;
+}
+
+.product p {
+    font-size: 15px;
+    font-weight: bold;
+    color: #d63384;
+    margin: 0;
+}</style>
 
 </head>
 

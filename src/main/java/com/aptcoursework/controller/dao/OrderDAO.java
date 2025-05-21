@@ -55,7 +55,7 @@ public class OrderDAO {
                 rsItem.close();
                 psItem.close();
 
-                orders.add(new Order(orderId, orderDate, status, items));
+                orders.add(new Order(orderId,userId, orderDate, status, items));
             }
 
             rsOrder.close();
@@ -66,4 +66,68 @@ public class OrderDAO {
 
         return orders;
     }
+    public List<Order> getAllOrders() {
+        List<Order> orders = new ArrayList<>();
+
+        String orderQuery = "SELECT * FROM orders";
+        String itemQuery = """
+            SELECT oi.product_id, p.product_name, oi.quantity_ordered, oi.price_each
+            FROM order_item oi
+            JOIN product p ON oi.product_id = p.product_id
+            WHERE oi.order_id = ?
+        """;
+
+        try {
+            PreparedStatement psOrder = conn.prepareStatement(orderQuery);
+            ResultSet rsOrder = psOrder.executeQuery();
+
+            while (rsOrder.next()) {
+                int orderId = rsOrder.getInt("order_id");
+                int userId = rsOrder.getInt("user_id");
+                Timestamp orderDate = rsOrder.getTimestamp("order_date");
+                String status = rsOrder.getString("status");
+
+                List<OrderItem> items = new ArrayList<>();
+
+                PreparedStatement psItem = conn.prepareStatement(itemQuery);
+                psItem.setInt(1, orderId);
+                ResultSet rsItem = psItem.executeQuery();
+
+                while (rsItem.next()) {
+                    OrderItem item = new OrderItem(
+                        rsItem.getInt("product_id"),
+                        rsItem.getString("product_name"),
+                        rsItem.getInt("quantity_ordered"),
+                        rsItem.getDouble("price_each")
+                    );
+                    items.add(item);
+                }
+
+                rsItem.close();
+                psItem.close();
+
+                orders.add(new Order(orderId, userId, orderDate, status, items));
+            }
+
+            rsOrder.close();
+            psOrder.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orders;
+    }
+    public boolean updateOrderStatus(int orderId, String newStatus) {
+        String sql = "UPDATE orders SET status = ? WHERE order_id = ?";
+        try (PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setString(1, newStatus);
+            ps.setInt(2, orderId);
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
