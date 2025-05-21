@@ -1,90 +1,17 @@
-/* General body styles */
+@charset "UTF-8";
 body {
     font-family: Arial, sans-serif;
-    background-color: #fff0f5; /* soft pink background */
+    background-color: #fff0f5;
     margin: 0;
     padding: 0;
 }
 
-/* Reuse header style if not already included from header.css */
-.header-top,
-.nav-bar {
+.header-top, .nav-bar {
     font-family: Arial, sans-serif;
 }
 
-/* Main form container */
-main {
-    padding: 20px;
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #ffffff;
-    box-shadow: 0 0 15px rgba(204, 14, 116, 0.15);
-    border-radius: 12px;
-}
-
-/* Heading */
-main h2 {
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 1.8rem;
-    color: #cc0e74;
-}
-
-/* Flex container for left and right sections */
-.form-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.form-left,
-.form-right {
-    width: 48%;
-}
-
-/* Labels */
-label {
-    font-weight: bold;
-    color: #b10c65;
-    display: block;
-    margin-bottom: 5px;
-}
-
-/* Inputs and Textareas */
-input,
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #f8c8dc;
-    border-radius: 6px;
-    font-size: 1rem;
-    background-color: #fff0f5;
-}
-
-/* Image Preview Box */
-.image-preview {
-    width: 100%;
-    height: 150px;
-    background-color: #ffe6f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px dashed #cc0e74;
-    margin-bottom: 20px;
-    border-radius: 6px;
-    overflow: hidden;
-    color: #999;
-    text-align: center;
-}
-
-/* Previewed Image Styling */
-.image-preview img {
-    max-width: 100%;
-    max-height: 100%;
-}
 .back-link {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20px auto 0;
     padding: 0 20px;
 }
@@ -102,21 +29,100 @@ textarea {
     color: #b10c65;
 }
 
+main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(204, 14, 116, 0.15);
+    border-radius: 12px;
+}
 
-/* Buttons */
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #cc0e74;
+}
+
+.form-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.form-left,
+.form-right {
+    width: 50%;
+}
+
+label {
+    font-weight: bold;
+    color: #b10c65;
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+input,
+textarea {
+    width: 100%;
+    padding: 6px 10px;      
+    margin-bottom: 10px;
+    border: 1px solid #f8c8dc;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    background-color: #fff0f5;
+    line-height: 1.2rem;
+    box-sizing: border-box; 
+}
+
+textarea {
+    height: 50px;
+    resize: vertical;
+}
+
+
+.image-preview {
+    width: 100%;
+    height: 120px;
+    background-color: #ffe6f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #cc0e74;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    overflow: hidden;
+    color: #999;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.image-preview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
 button {
-    padding: 10px 20px;
+    padding: 8px 16px;
     background-color: #cc0e74;
     color: white;
     border: none;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 0.95rem;
+    font-weight: bold;
     cursor: pointer;
-    margin: 5px 5px 0 0;
     transition: background-color 0.3s ease;
 }
 
-button[type="button"] {
+button[type="reset"] {
     background-color: #b10c65;
 }
 
@@ -124,13 +130,43 @@ button:hover {
     background-color: #d63384;
 }
 
-button[type="button"]:hover {
+button[type="reset"]:hover {
     background-color: #9c0b58;
 }
 
-/* Form actions container */
-.form-actions {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+.button-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #b10c65;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button-link:hover {
+    background-color: #9c0b58;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.95rem;
+}
+
+.message.success {
+    background-color: #ff69b4;
+    color: #ffffff;
+    border: 1px solid #ff1493;
+}
+
+.message.error {
+    background-color: #ff69b4;
+    color: #ffffff;
+    border: 1px solid #ff1493;
 }

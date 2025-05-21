@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.aptcoursework.controller.dao.UserDAO" %>
-<%@ page import="com.aptcoursework.controller.dao.ProductDAO" %>
+<%@ page import="com.aptcoursework.controller.dao.AdminProductDAO" %>
 <%@ page import="java.util.*" %>
 <%
-    int totalUsers = 0;
+int totalUsers = 0;
     int totalProducts = 0;
 
     try {
         UserDAO userDAO = new UserDAO();
-        ProductDAO productDAO = new ProductDAO();
+        AdminProductDAO productDAO = new AdminProductDAO();
 
         totalUsers = userDAO.getAllUsers().size();
         totalProducts = productDAO.getAllProducts().size();
@@ -231,7 +231,7 @@
             	<i class="fas fa-bag-shopping fa-5x" style="color:#d63384;"></i>
             </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="addproduct.jsp">ADD PRODUCTS</a></h1>
+          <h1 class="custom-muted-uppercase"><a href="addProduct.jsp">ADD PRODUCTS</a></h1>
           <p>Click to add new products into the system</p>
         </div>
       </div>

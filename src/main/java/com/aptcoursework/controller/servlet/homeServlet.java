@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.aptcoursework.controller.dao.ProductDAO;
+import com.aptcoursework.controller.dao.AdminProductDAO;
 import com.aptcoursework.model.Product;
 
 /**
@@ -34,7 +34,7 @@ public class homeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			ProductDAO productDAO = new ProductDAO();
+			AdminProductDAO productDAO = new AdminProductDAO();
 			List<Product> featuredProducts = productDAO.getRandomProducts(4);
 			System.out.println("Number of products fetched: " + featuredProducts.size());
 			

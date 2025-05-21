@@ -70,7 +70,7 @@
 </html> --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.aptcoursework.controller.dao.ProductDAO" %>
+<%@ page import="com.aptcoursework.controller.dao.AdminProductDAO" %>
 <%@ page import="com.aptcoursework.model.Product" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.sql.*" %>
@@ -191,12 +191,12 @@
     <h1>Search Results</h1>
 
     <%
-        String query = request.getParameter("query");
-        if (query != null && !query.trim().isEmpty()) {
-            try {
-                ProductDAO productDAO = new ProductDAO();
-                List<Product> products = productDAO.getAllProducts();
-                boolean found = false;
+    String query = request.getParameter("query");
+            if (query != null && !query.trim().isEmpty()) {
+                try {
+                    AdminProductDAO productDAO = new AdminProductDAO();
+                    List<Product> products = productDAO.getAllProducts();
+                    boolean found = false;
     %>
     <div class="product-container">
         <%

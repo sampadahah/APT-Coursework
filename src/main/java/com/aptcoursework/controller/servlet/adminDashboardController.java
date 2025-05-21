@@ -1,6 +1,6 @@
 package com.aptcoursework.controller.servlet;
 
-import com.aptcoursework.controller.dao.ProductDAO;
+import com.aptcoursework.controller.dao.AdminProductDAO;
 import com.aptcoursework.controller.dao.UserDAO;
 import com.aptcoursework.model.Product;
 import com.aptcoursework.model.user;
@@ -23,7 +23,7 @@ public class adminDashboardController extends HttpServlet{
         try {
             // Create DAO instances
             UserDAO userDAO = new UserDAO();
-            ProductDAO productDAO = new ProductDAO();
+            AdminProductDAO productDAO = new AdminProductDAO();
 
             // Get the total number of users and products
             int totalUsers = userDAO.getAllUsers().size();
