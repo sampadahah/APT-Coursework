@@ -146,7 +146,7 @@
                 %>
             </ul>
         </td>
-        <td>$<%= String.format("%.2f", totalPrice) %></td>
+        <td>Rs.<%= String.format("%.2f", totalPrice) %></td>
     </tr>
     <%
             }

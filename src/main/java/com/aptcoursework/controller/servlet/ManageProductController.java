@@ -128,13 +128,13 @@ if ("updateProduct".equals(action)) {
 
 try (Connection conn = DatabaseConnection.getConnection()) {
 
-int id = Integer.parseInt(request.getParameter("id"));
+int id = Integer.parseInt(request.getParameter("product_id"));
 
-String name = request.getParameter("name");
+String name = request.getParameter("product_name");
 
-String description = request.getParameter("description");
+String description = request.getParameter("product_description");
 
-int quantity = Integer.parseInt(request.getParameter("stockQuantity"));
+int quantity = Integer.parseInt(request.getParameter("stock_quantity"));
 
 double price = Double.parseDouble(request.getParameter("price"));
 

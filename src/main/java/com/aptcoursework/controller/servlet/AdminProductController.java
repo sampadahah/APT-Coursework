@@ -62,7 +62,7 @@ public class AdminProductController extends HttpServlet {
                 filePart.write(savePath);
 
                 // Set relative path in product
-                p.setImagePath("img/" + uniqueFileName);
+                p.setImagePath("/img/" + uniqueFileName);
             } else {
                 throw new ServletException("Image upload failed or empty.");
             }
