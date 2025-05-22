@@ -14,23 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.aptcoursework.controller.dao.UserDAO;
-import com.aptcoursework.model.user;
+import com.aptcoursework.model.User;
 import com.aptcoursework.utility.EncryptDecrypt;
 
 /**
  * Servlet implementation class RegisterController
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/registerController" })
-public class registerController extends HttpServlet {
+public class RegisterController extends HttpServlet {
     private static final long serialVersionUID = 1L;
        
-    public registerController() {
+    public RegisterController() {
         super();
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-            throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
     }
     //oldsampadacode
 	/*
@@ -149,7 +144,7 @@ public class registerController extends HttpServlet {
             Timestamp timestamp = Timestamp.valueOf(dateTime);
 
             // Populate user object
-            user newUser = new user();
+            User newUser = new User();
             newUser.setName(username);
             newUser.setEmail(email);
             newUser.setPhone(phone);

@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/manageOrders")
-public class ManageOrdersServlet extends HttpServlet {
+public class ManageOrderController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         

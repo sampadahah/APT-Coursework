@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.aptcoursework.controller.dao.UserDAO;
-import com.aptcoursework.model.user;
+import com.aptcoursework.model.User;
 
 /*
  * @WebServlet("/UpdateUserController") public class UpdateUserController
@@ -101,7 +101,7 @@ public class UpdateUserController extends HttpServlet {
         }
 
         try {
-            user existingUser = userDAO.getUserById(userId);
+            User existingUser = userDAO.getUserById(userId);
             if (existingUser == null) {
                 setAttributesAndForward(request, response, "User not found.");
                 return;

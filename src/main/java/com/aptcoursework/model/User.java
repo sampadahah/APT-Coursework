@@ -3,7 +3,7 @@ package com.aptcoursework.model;
 import java.sql.Timestamp;
 
 
-public class user {
+public class User {
 	private int user_id;
 	private String username;
 	private String password;
@@ -14,10 +14,10 @@ public class user {
 	private Timestamp registered;
 
 	// Constructors
-	public user() {
+	public User() {
 	}
 
-	public user(int user_id, String username, String password, String email, long phone_no, String address, String role,Timestamp dateTime) {
+	public User(int user_id, String username, String password, String email, long phone_no, String address, String role,Timestamp dateTime) {
 		this.user_id = user_id;
 		this.username = username;
 		this.password = password;

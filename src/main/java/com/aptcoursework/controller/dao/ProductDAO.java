@@ -120,7 +120,7 @@ public class ProductDAO {
                 p.setName(rs.getString("product_name"));
                 p.setDescription(rs.getString("product_description"));
                 p.setPrice(rs.getDouble("price"));
-                p.setImagePath(rs.getString("imagePath"));
+                p.setImagePath(rs.getString("imagepath"));
                 list.add(p);
             }
         }

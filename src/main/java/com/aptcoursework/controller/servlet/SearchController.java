@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/search") // This maps the Servlet to the URL /search
-public class SearchServlet extends HttpServlet {
+public class SearchController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -14,7 +14,7 @@ import com.aptcoursework.controller.dao.UserProductDAO;
 import com.aptcoursework.model.Product;
 
 @WebServlet("/loadMoisturizers")
-public class loadMoisturizersServlet extends HttpServlet {
+public class MoisturizersController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

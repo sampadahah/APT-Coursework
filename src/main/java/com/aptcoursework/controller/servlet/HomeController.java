@@ -16,13 +16,13 @@ import com.aptcoursework.model.Product;
  * Servlet implementation class homeServlet
  */
 @WebServlet("/home")
-public class homeServlet extends HttpServlet {
+public class HomeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public homeServlet() {
+    public HomeController() {
         super();
         // TODO Auto-generated constructor stub
     }

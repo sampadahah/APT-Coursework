@@ -15,23 +15,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.aptcoursework.controller.dao.UserDAO;
-import com.aptcoursework.model.user;
+import com.aptcoursework.model.User;
 import com.aptcoursework.utility.EncryptDecrypt;
 
 /**
  * Servlet implementation class LogInController
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/loginController" })
-public class loginController extends HttpServlet {
+public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    public loginController() {
+    public LoginController() {
         super();
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.getWriter().append("Served at: ").append(request.getContextPath());
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -45,7 +40,7 @@ public class loginController extends HttpServlet {
         try {
             UserDAO userdao = new UserDAO();
             //String encryptedPassword = EncryptDecrypt.encrypt(passwordToCheck);   //checking the user entered password
-            user user = userdao.login(emailToCheck, EncryptDecrypt.encrypt(passwordToCheck));
+            User user = userdao.login(emailToCheck, EncryptDecrypt.encrypt(passwordToCheck));
             if (user != null) {
             	//session creation for logged-in user
                 HttpSession session = request.getSession();

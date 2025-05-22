@@ -3,7 +3,7 @@ package com.aptcoursework.controller.servlet;
 import com.aptcoursework.controller.dao.ProductDAO;
 import com.aptcoursework.controller.dao.UserDAO;
 import com.aptcoursework.model.Product;
-import com.aptcoursework.model.user;
+import com.aptcoursework.model.User;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/adminDashboardController") // This maps the servlet to the URL /adminDashboard
-public class adminDashboardController extends HttpServlet{
+public class AdminDashboardController extends HttpServlet{
 	
     /**
 	 * 

@@ -20,7 +20,7 @@ import com.aptcoursework.model.Order;
  */
 
 @WebServlet("/ViewCartServlet")
-public class ViewCartServlet extends HttpServlet {
+public class ViewCartController extends HttpServlet {
     /**
 	 * 
 	 */

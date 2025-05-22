@@ -2,7 +2,7 @@
   package com.aptcoursework.controller.servlet;
   
   import com.aptcoursework.controller.dao.UserDAO; import
-  com.aptcoursework.model.user;
+  com.aptcoursework.model.User;
   
   import javax.servlet.ServletException; import
   javax.servlet.annotation.WebServlet; import javax.servlet.http.*; import
@@ -10,19 +10,23 @@
   
   @WebServlet("/EditUserController") 
   public class EditUserController extends HttpServlet { 
-	  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
   
 		  try { 
 			  int userId = Integer.parseInt(request.getParameter("id")); // ?id=1
 			  UserDAO dao = new UserDAO(); 
-			  user u = dao.getUserById(userId);
+			  User u = dao.getUserById(userId);
 		  
 			  if (u != null) { 
 				  request.setAttribute("editUser", u);
 				  request.getRequestDispatcher("/pages/editUser.jsp").forward(request,response); 
 			  } else { 
 				  request.setAttribute("message", "User not found");
-				  request.getRequestDispatcher("/pages/userNotFound.jsp").forward(request,response); 
 			  } 
 		  } catch (Exception e) { 
 			  e.printStackTrace();

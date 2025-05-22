@@ -1,7 +1,7 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.aptcoursework.model.user" %>
+<%@ page import="com.aptcoursework.model.User" %>
 <%
-    ArrayList<user> userList = (ArrayList<user>) request.getAttribute("userList");
+    ArrayList<User> userList = (ArrayList<User>) request.getAttribute("userList");
 %>
 <!DOCTYPE html>
 <html>
@@ -130,7 +130,7 @@
     </tr>
     <%
         if (userList != null && !userList.isEmpty()) {
-            for (user u : userList) {
+            for (User u : userList) {
     %>
     <tr>
         <td><%= u.getUserId() %></td>

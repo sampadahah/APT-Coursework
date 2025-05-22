@@ -13,27 +13,27 @@ import javax.servlet.http.HttpServletResponse;
 import com.aptcoursework.controller.dao.UserProductDAO;
 import com.aptcoursework.model.Product;
 
-@WebServlet("/loadSunscreen")
-public class loadSunscreenServlet extends HttpServlet {
+@WebServlet("/loadSerums")
+public class SerumController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserProductDAO dao;
         try {
             dao = new UserProductDAO();
-            List<Product> sunscreenList = dao.getSunscreen(); 
+            List<Product> serumList = dao.getSerum(); 
 
           
-            System.out.println("Number of sunscreen fetched: " + sunscreenList.size());
+            System.out.println("Number of serums fetched: " + serumList.size());
 
-            if (sunscreenList != null && !sunscreenList.isEmpty()) {
-                request.setAttribute("products", sunscreenList);  // Set products in the request
-                System.out.println("Number of sunscreen found: " + sunscreenList.size());  
+            if (serumList != null && !serumList.isEmpty()) {
+                request.setAttribute("products", serumList);  // Set products in the request
+                System.out.println("Number of serums found: " + serumList.size());  
             } else {
                 request.setAttribute("error", "No products found");
                 System.out.println("No products found.");
             }
-            request.getRequestDispatcher("/pages/productSunscreen.jsp").forward(request, response);
+            request.getRequestDispatcher("/pages/productSerum.jsp").forward(request, response);
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();

@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .alert {
-  background-color: #d63384; /* Matches your brand color */
-  color: #ffffff;             /* White text */
+  background-color: #d63384; 
+  color: #ffffff;            
   padding: 12px;
   border-radius: 8px;
   margin-top: 15px;

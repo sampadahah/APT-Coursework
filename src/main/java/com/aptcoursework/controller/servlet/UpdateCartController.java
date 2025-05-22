@@ -14,13 +14,13 @@ import com.aptcoursework.controller.dao.CartDAO;
  * Servlet implementation class UpdateCartServlet
  */
 @WebServlet("/updateCart")
-public class UpdateCartServlet extends HttpServlet {
+public class UpdateCartController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateCartServlet() {
+    public UpdateCartController() {
         super();
         // TODO Auto-generated constructor stub
     }

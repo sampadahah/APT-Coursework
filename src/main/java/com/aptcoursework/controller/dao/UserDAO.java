@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.aptcoursework.controller.database.DatabaseConnection;
-import com.aptcoursework.model.user;
+import com.aptcoursework.model.User;
 
 
 public class UserDAO {
@@ -21,7 +21,7 @@ public class UserDAO {
 
 
 	// Registers a new user in the database 
-	public boolean register(user user) {
+	public boolean register(User user) {
 		boolean isUserRegistered = false; // SQL statement to insert user details
 		String query =
 	     "INSERT INTO user (username, password, email, phone, address, role,registered) VALUES (?, ?, ?, ?, ?, ?,?)"; 
@@ -48,8 +48,8 @@ public class UserDAO {
 	}
 
 	// get all the users from database
-	public ArrayList<user> getAllUsers() {
-		ArrayList<user> users = new ArrayList<>();
+	public ArrayList<User> getAllUsers() {
+		ArrayList<User> users = new ArrayList<>();
 		String query = "SELECT * FROM user";
 		if (conn != null) {
 			try {
@@ -58,7 +58,7 @@ public class UserDAO {
 				
 				// Iterate over result set and populate User objects
 				while (userSet.next()) {
-					user user = new user();
+					User user = new User();
 					user.setUserId(userSet.getInt("user_id"));
 					user.setName(userSet.getString("username"));
 					user.setPassword(userSet.getString("password"));
@@ -78,8 +78,8 @@ public class UserDAO {
 	}
 
 	// Authenticates user by checking email and password
-	public user login(String emailToCheck, String passwordToCheck) {
-	    user user = null;
+	public User login(String emailToCheck, String passwordToCheck) {
+	    User user = null;
 	    String query = "SELECT * FROM user WHERE email = ? AND password = ?";
 	    
 	    if (conn != null) {
@@ -90,7 +90,7 @@ public class UserDAO {
 
 	            ResultSet rs = ps.executeQuery();
 	            if (rs.next()) {
-	                user = new user(
+	                user = new User(
 	                    rs.getInt("user_id"),
 	                    rs.getString("username"),
 	                    rs.getString("password"),
@@ -108,7 +108,7 @@ public class UserDAO {
 
 	    return user;
 	}
-	public boolean updatedUserProfile(int user_id, user updatedUser) {
+	public boolean updatedUserProfile(int user_id, User updatedUser) {
 		boolean isUpdated = false;
 		String query = "UPDATE user SET username=?, email=?, phone=?, address=? WHERE user_id=?";
 		
@@ -154,8 +154,8 @@ public class UserDAO {
 
 	
 //user edit code
-    public user getUserById(int userId) {
-        user u = null;
+    public User getUserById(int userId) {
+        User u = null;
         String query = "SELECT * FROM user WHERE user_id = ?";
 
         try (Connection conn = DatabaseConnection.getConnection();
@@ -165,7 +165,7 @@ public class UserDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                u = new user();
+                u = new User();
                 u.setUserId(rs.getInt("user_id"));
                 u.setName(rs.getString("username"));
                 u.setPassword(rs.getString("password"));
@@ -186,7 +186,7 @@ public class UserDAO {
 
 
 
-	public boolean updateUser(user updatedUser) {
+	public boolean updateUser(User updatedUser) {
 	    boolean isUpdated = false;
 	    String query = "UPDATE user SET username=?, email=?, phone=?, address=?, role=? WHERE user_id=?";
 	    

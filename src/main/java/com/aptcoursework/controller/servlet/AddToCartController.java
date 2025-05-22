@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 @WebServlet("/addToCart")
-public class AddToCartServlet extends HttpServlet {
+public class AddToCartController extends HttpServlet {
     /**
 	 * 
 	 */

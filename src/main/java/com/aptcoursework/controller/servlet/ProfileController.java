@@ -11,30 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.aptcoursework.controller.dao.UserDAO;
-import com.aptcoursework.model.user;
+import com.aptcoursework.model.User;
 
 /**
  * Servlet implementation class profileController
  */
 @WebServlet("/profileController")
-public class profileController extends HttpServlet {
+public class ProfileController extends HttpServlet {
 private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public profileController() {
+    public ProfileController() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-/**
- * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
- */
-protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-// TODO Auto-generated method stub
-response.getWriter().append("Served at: ").append(request.getContextPath());
-}
 
 /**
  * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -60,7 +52,7 @@ protected void doPut(HttpServletRequest request, HttpServletResponse response) t
         String newAddress = request.getParameter("address");
 
         // Prepare user object for DB update
-        user updatedUser = new user();
+        User updatedUser = new User();
         updatedUser.setName(newUsername);
         updatedUser.setEmail(newEmail);
         updatedUser.setPhone(newPhone);
