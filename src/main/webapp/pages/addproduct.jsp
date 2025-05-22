@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="header.jsp" %>
 
 <!DOCTYPE html>
@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8" />
     <title>Add Product</title>
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/addproduct.css" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/AddProduct.css" />
 </head>
 <body>
 
@@ -76,5 +76,91 @@
 
 </main>
 
+</body>
+</html>
+ --%>
+ 
+ 
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file="header.jsp" %> 
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Add Product</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/CSS/addproduct.css" />
+</head>
+<body>
+
+<main>
+    <h2>Create New Product</h2>
+
+    <% 
+        // Retrieve message parameter from request (either from query or set attribute)
+        String message = request.getParameter("message");
+        if (message == null) {
+            message = (String) request.getAttribute("message");
+        }
+
+        // Show success or error message based on outcome
+        if ("success".equals(message)) {
+    %>
+        <div class="message success">Product added successfully!</div>
+    <% } else if ("error".equals(message)) { %>
+        <div class="message error">Error occurred while adding the product. Please try again.</div>
+    <% } %>
+
+    <!-- Product form to capture input and upload image -->
+    <form id="productForm" action="<%= request.getContextPath() %>/ProductController" method="post" enctype="multipart/form-data">
+        <label for="product_name">Product Name</label>
+        <input type="text" id="product_name" name="product_name" required />
+
+        <label for="product_description">Product Description</label>
+        <textarea id="product_description" name="product_description" rows="5" required></textarea>
+
+        <label for="price">Price (in RS)</label>
+        <input type="number" id="price" name="price" step="0.01" required />
+
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" required />
+
+        <label for="imagePath">Product Image</label>
+        <input type="file" id="imagePath" name="imagePath" accept="image/*" required />
+
+        <% if (message == null) { %>
+        <!-- Show buttons only if form hasn’t been submitted yet -->
+        <div class="form-actions">
+            <button type="reset">Clear</button>
+            <button type="submit">Add</button>
+        </div>
+        <% } %>
+    </form>
+
+    <% 
+        // If image uploaded, show a preview
+        String uploadedImagePath = (String) request.getAttribute("uploadedImagePath");
+        if (uploadedImagePath != null) {
+    %>
+        <div style="margin-top: 20px;">
+            <p><b>Uploaded Image Preview:</b></p>
+            <img src="<%= uploadedImagePath %>" alt="Uploaded Product Image" style="max-width: 300px; border-radius: 10px;" />
+        </div>
+    <% } %>
+
+    <% if (message == null) { %>
+    <!-- Option to go to Manage Products page -->
+    <div class="form-actions" style="margin-top: 20px;">
+        <form action="<%= request.getContextPath() %>/ManageProductController" method="get">
+            <button type="submit">Back to Manage Products</button>
+        </form>
+    </div>
+    <% } %>
+
+</div>
+
+</main>
+
+</div>
 </body>
 </html>

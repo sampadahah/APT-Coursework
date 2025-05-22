@@ -169,3 +169,26 @@ background-color: #ff69b4;
 color: #ffffff;
 border: 1px solid #ff1493;
 }
+
+.back-button-container {
+text-align: center;
+margin: 30px 0;
+}
+
+.back-button {
+display: inline-block;
+padding: 12px 25px;
+background-color: #d63384;
+color: white;
+font-weight: bold;
+border-radius: 8px;
+text-decoration: none;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+}
+
+.back-button:hover {
+background-color: #c12374;
+text-decoration: none;
+box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }

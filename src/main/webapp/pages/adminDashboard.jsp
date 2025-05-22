@@ -231,8 +231,8 @@
             	<i class="fas fa-bag-shopping fa-5x" style="color:#d63384;"></i>
             </a>
           </div>
-          <h1 class="custom-muted-uppercase"><a href="AddProduct.jsp">ADD PRODUCTS</a></h1>
-          <p>Click to add new products into the system</p>
+          <h1 class="custom-muted-uppercase"><a href="${pageContext.request.contextPath}/ManageProductController">MANAGE PRODUCTS</a></h1>
+          <p>Click to manage all products available the system</p>
         </div>
       </div>
     </div>
