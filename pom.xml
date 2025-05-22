@@ -26,6 +26,21 @@
 			<version>4.0.1</version>
 			<scope>provided</scope> <!-- Provided by Tomcat -->
 		</dependency>
+		    <!-- Javax Servlet API for Tomcat 8.5 (Servlet 3.1) -->
+	    <dependency>
+	        <groupId>javax.servlet</groupId>
+	        <artifactId>javax.servlet-api</artifactId>
+	        <version>3.1.0</version>
+	        <scope>provided</scope>
+	    </dependency>
+	
+	    <!-- JSP API for Tomcat 8.5 (JSP 2.3) -->
+	    <dependency>
+	        <groupId>javax.servlet.jsp</groupId>
+	        <artifactId>javax.servlet.jsp-api</artifactId>
+	        <version>2.3.3</version>
+	        <scope>provided</scope>
+	    </dependency>
 	</dependencies>
 	<build>
 		<plugins>
